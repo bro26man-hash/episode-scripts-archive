@@ -33,6 +33,10 @@ As part of ongoing research into the tools and communities shaping modern biotec
 | **[Edinburgh-Genome-Foundry/DnaFeaturesViewer](https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer)** | 690 | Python | Python library for plotting DNA sequence features from GenBank/GFF files — essential for visualizing genetic constructs. |
 | **[Adibvafa/CodonTransformer](https://github.com/Adibvafa/CodonTransformer)** | 212 | Python | Transformer-based ML model for codon optimization with 2M+ downloads. |
 | **[hasanbaig/GeneTech](https://github.com/hasanbaig/GeneTech)** | 10 | Python | Genetic design automation tool for synthesis and optimization of genetic logic circuits. |
+| **[Synbiota/GENtle2](https://github.com/Synbiota/GENtle2)** | 106 | JavaScript | Web-Based DNA Editor for Synthetic Biology — a browser-based sequence editor designed for synbio researchers. |
+| **[SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub)** | 84 | JavaScript | Web application enabling users and software to browse, upload, and share synthetic biology designs — a community registry and design exchange. |
+| **[JBEI/ART](https://github.com/JBEI/ART)** | 66 | Jupyter Notebook | A machine learning tool to improve the effectiveness of strain engineering in synthetic biology — predictive modeling for metabolic engineering outcomes. |
+| **[20n/act](https://github.com/20n/act)** | 92 | Java | Computational synthetic biology: predicting DNA edits for bioengineering — a constraint-based automated DNA design tool. |
 
 ### 🔬 CRISPR & Guide RNA Design Tools
 
@@ -60,11 +64,17 @@ As part of ongoing research into the tools and communities shaping modern biotec
 | **[sysu-software/BiArkit](https://github.com/sysu-software/BiArkit)** | 1 | Java | Versatile synthetic biology toolkit: GenomeBrowser, Riboswitch/SiRNA design, MetaNetwork pathway scanning, metabolic network Simulator, G-Circle visualization. |
 | **[biotech-software-engineer-list](https://github.com/babilonczyk/biotech-software-engineer-list)** | 1 | — | Community-curated list of biotech software engineers specializing in BioAI, bioinformatics, and computational biology. |
 
+### 🧬 Theranostics & Drug Discovery
+
+| Project | Stars | Language | Description |
+|---|---|---|---|
+| **[mims-harvard/TDC](https://github.com/mims-harvard/TDC)** | 1,279 | Jupyter Notebook | Therapeutics Data Commons — a multimodal foundation for therapeutic science with AI-ready datasets and benchmarks for drug discovery. |
+| **[Merck/deepbgc](https://github.com/Merck/deepbgc)** | 158 | Jupyter Notebook | Deep learning tool for Biosynthetic Gene Cluster (BGC) detection and classification from genomic data — natural product discovery and metabolic engineering. |
+
 ### 🧬 Deep Learning & Genomics
 
 | Project | Stars | Language | Description |
 |---|---|---|---|
-| **[Merck/deepbgc](https://github.com/Merck/deepbgc)** | 158 | Jupyter Notebook | Deep learning tool for Biosynthetic Gene Cluster (BGC) detection and classification from genomic data — natural product discovery and metabolic engineering. |
 | **[google/deepvariant](https://github.com/google/deepvariant)** | 3,726 | Python | Google's deep learning pipeline for genetic variant calling from NGS data — cornerstone of clinical genomics. |
 | **[LEXO-dat/CELLM](https://github.com/LEXO-dat/CELLM)** | 2 | Python | AI-powered tool bridging synthetic biology and NLP — enables natural-language-driven biology design. |
 
@@ -81,28 +91,68 @@ As part of ongoing research into the tools and communities shaping modern biotec
 |---|---|---|
 | [Awesome-Bioinformatics](https://github.com/danielecook/Awesome-Bioinformatics) | ⭐ 4,098 | Curated list of bioinformatics libraries and software |
 | [awesome-single-cell](https://github.com/seandavi/awesome-single-cell) | ⭐ 3,748 | Software and data resources for single-cell omics |
+| [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | ⭐ 223 | Curated list of Synthetic Biology / Genetic Engineering projects, articles and resources |
 
 ---
 
-### 🎯 What the Community Is Currently Concerned About (June 2026)
+### 🎯 What the Community Is Currently Concerned About
 
-Analysis of recent open issues across these projects reveals several recurring themes:
+Analysis of recent open issues across these projects reveals several recurring themes the community is grappling with:
 
-1. **mRNA Therapeutics & Sequence Design** — DnaChisel seeing surging demand for uridine depletion, CAI-aware optimization, and mRNA-specific constraints. CodonTransformer's 2M+ downloads confirm the market pull. This reflects the explosive growth of mRNA therapeutics and vaccines.
+#### 1. mRNA Therapeutics & Sequence Design
+**DnaChisel** is seeing surging demand for uridine depletion, CAI-aware optimization, and mRNA-specific constraints. **CodonTransformer**'s 2M+ downloads confirm massive market pull toward transformer-based codon optimization. This reflects the explosive growth of mRNA therapeutics and vaccines post-pandemic — the tools are rapidly evolving to meet demand.
 
-2. **Parser Reliability & Dependency Migration** — Poly (GenBank parser) and DnaFeaturesViewer (GFF3/BCBio dependency) both need rewrites as upstream libraries lose maintenance. Fragile parsers are a systemic risk in the bioinformatics supply chain.
+#### 2. Parser Reliability & Dependency Migration
+**Poly** (GenBank parser) and **DnaFeaturesViewer** (GFF3/BCBio dependency) both need rewrites as upstream libraries lose maintenance. Fragile parsers are a systemic risk in the bioinformatics supply chain — when a core dependency like Biopython changes its API, every tool built on top of it can break silently.
 
-3. **Platform & Installation Reliability** — Cello, iBioSim, CRISPR-Local, and ChaipCR all report compilation errors, platform compatibility breakage (Mac, Windows 11), and environment setup friction. The community needs better Docker support, pre-built binaries, and cross-platform CI.
+#### 3. Platform & Installation Reliability
+- **Cello-v2** (74 ⭐, actively maintained until recently): Compilation errors, platform compatibility breakage, and friction between the open-source CLI and the cellocad.org web deployment.
+- ** chaipcr** (99 ⭐): Hardware-software interface problems persisting for years — device control software doesn't keep pace with new OS versions.
+- **CRISPR-Local**: Local design for non-reference genomes works well but setup friction on Windows/Mac is a persistent barrier.
 
-4. **Connectivity & Cloud Dependencies** — iBioSim's SynBioHub and LCP integration failures, Cello's cellocad.org login breakdowns, and ChaipCR's website being down show how fragile the cloud-dependent parts of these tools are. Academic projects rarely have DevOps resources.
+The community needs better Docker support, pre-built binaries, and cross-platform CI/CD.
 
-5. **Reproducibility in Pipelines** — Nextflow's lineage tracking bug (missing cache-determining inputs) is a concrete example of how reproducibility infrastructure itself needs maintenance. Cache invalidation and provenance tracking are harder than they look.
+#### 4. Connectivity & Cloud Dependencies
+Academic projects inadvertently build dependencies on cloud-hosted services that are fragile understaffing:
+- **iBioSim** / SynBioHub integration failures
+- **Cello**'s cellocad.org login breakdowns (multiple open issues from 2024–2025)
+- **ChaipCR**'s website being intermittently offline
 
-6. **Long-Tail Maintenance Debt** — iBioSim has issues dating to March 2024 still unresolved. ChaipCR has hardware-software interface problems persisting for years. Academic tools often lack the maintainer bandwidth to keep up with OS/platform changes.
+This is a structural problem: academic labs rarely have DevOps resources, yet their tools depend on always-on web services.
 
-7. **Genome & Variant Awareness** — CRISPR-Local's core motivation of supporting non-reference genomes is a major gap in most design tools. ClinVar clinical isolates, engineered strains, and non-model organisms are underserved by tools that assume a single reference genome.
+#### 5. Reproducibility in Pipelines
+**Nextflow** — the backbone of reproducible bioinformatics — has open lineage-tracking bugs where cache-determining inputs are missing, meaning reproducibility guarantees themselves are fragile. Cache invalidation and provenance tracking are harder than they appear, especially when data processing pipelines have nondeterministic steps.
 
-8. **ML-Driven Sequence Engineering** — CodonTransformer (transformer-based codon optimization), DeepBGC (ML for BGC detection), and CELLM (NLP-driven biology design) represent the growing intersection of deep learning and biological sequence design — a trend that will accelerate.
+#### 6. Long-Tail Maintenance Debt
+Academic tools face a chronic problem: once the original PhD student or postdoc moves on, the project stagnates.
+- **iBioSim** has issues dating to March 2024 still unresolved.
+- **Cello-v2** had a "Fix Broken Tests" issue open since September 2022.
+- The original **CIDARLAB/cello** (legacy) has diverged from Cello-v2, creating maintenance fragmentation.
+
+#### 7. Genome & Variant Awareness
+**CRISPR-Local**'s core motivation of supporting non-reference genomes is a major gap in most design tools. Most synbio CAD tools assume a single reference genome, but real-world applications involve:
+- ClinVar clinical isolates
+- Engineered strains with bespoke modifications
+- Non-model organisms (plants, environmental microbes)
+
+Tools that can't handle custom genomes are limited in their real-world applicability.
+
+#### 8. ML-Driven Sequence Engineering
+The intersection of deep learning and biological sequence design is accelerating:
+- **CodonTransformer** (transformer-based codon optimization with 2M+ downloads)
+- **DeepBGC** (ML for Biosynthetic Gene Cluster detection — Merck-backed)
+- **CELLM** (NLP-driven biology design — natural language → DNA sequence)
+- **TDC** (1,279 ⭐) provides curated benchmarks that make ML-driven therapeutic discovery reproducible and comparable
+
+This trend will accelerate as foundation models for biology mature.
+
+#### 9. Standards Interoperability
+The synbio community relies on key standards that tools must interoperate with:
+- **SBOL** (Synthetic Biology Open Language) — for exchanging genetic designs between tools
+- **SBML** (Systems Biology Markup Language) — for mathematical models of biological systems
+- **GeneBank/GFF3** — for sequence and feature annotations
+
+Tools that support these standards (iBioSim, DnaChisel, DnaFeaturesViewer) are more sustainable because they can integrate into broader ecosystems. Tools that don't become isolated silos.
 
 ---
 
@@ -143,4 +193,15 @@ This project is licensed under the MIT License — see the [LICENSE](LICENSE) fi
 
 ## Acknowledgments
 
-This repository was conceived alongside research into the vibrant open-source synthetic biology ecosystem. The tools and communities profiled above — from Cello's genetic circuit engineering to CRISPR-Local's plant genome editing, from iBioSim's standards-based modeling to PathoGD's diagnostic pipeline design, from Opentrons' lab automation to DnaChisel's mRNA therapeutics optimizations — demonstrate the remarkable convergence of biology, computation, and open collaboration that defines modern biotechnology. Their challenges (reliability, genome diversity, reproducibility, usability, maintenance sustainability) mirror the same challenges that content creators face: making robust tools, managing complex data, and building communities that innovate together.
+This repository was conceived alongside research into the vibrant open-source synthetic biology ecosystem. The tools and communities profiled above — from **Cello's** genetic circuit engineering to **CRISPR-Local's** plant genome editing, from **iBioSim's** standards-based modeling to **PathoGD's** diagnostic pipeline design, from **Opentrons'** lab automation to **DnaChisel's** mRNA therapeutics optimizations, from **Poly's** organism engineering toolkit to **TDC's** therapeutic AI benchmarks — demonstrate the remarkable convergence of biology, computation, and open collaboration that defines modern biotechnology.
+
+Their challenges mirror those of content creators: making robust tools, managing complex data dependencies, building communities that innovate together, and maintaining projects long after the initial excitement fades. The recurring themes — parser fragility, platform reliability, genome diversity awareness, reproducibility, and maintenance sustainability — are universal concerns across open-source BioIT.
+
+The community is actively working on:
+- **mRNA-aware sequence optimization** for the next generation of therapeutics
+- **Parser refactoring and dependency isolation** for long-term tool stability
+- **Docker-first distribution** to eliminate "works on my machine" problems
+- **Non-reference genome support** as a first-class feature, not an afterthought
+- **ML-driven design pipelines** that learn from community benchmarks
+
+These efforts represent the frontier of computational biotechnology — and make for compelling episode material.
