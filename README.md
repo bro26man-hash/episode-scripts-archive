@@ -1,142 +1,118 @@
-# Episode Scripts Archive
+# 🧬 Episode Scripts Archive
 
-Welcome to the **Episode Scripts Archive** — a project dedicated to storing, organizing, and preserving episode scripts, source materials, transcripts, and related content. This repository serves as a central hub for audiovisual content production, enabling creators, researchers, and collaborators to manage, version, and reuse script assets.
-
-## Purpose & Scope
-
-- **Centralize** episode scripts, show notes, source materials, and production assets in a single, version-controlled location
-- **Preserve** content history through Git's branching and commit tracking
-- **Collaborate** by providing a clear workflow for writers, editors, producers, and guests
-- **Enable reuse** — modular script components can be repurposed across episodes
-- **Document provenance** — every edit and contributor is tracked
+> A structured archive for storing episode scripts, source materials, research notes, and reference links — covering topics in **synthetic biology**, **biotech software tools**, and adjacent open-source communities.
 
 ---
 
-## Research: Synthetic Biology & Biotech Software Tools
+## 📁 Repository Purpose
 
-This archive tracks the ecosystem of **synthetic biology (synbio)** and **genetic engineering software**, profiled alongside live GitHub issue-tracker findings.
+This archive serves as a centralized home for:
 
-### 🧬 Genetic Circuit Design & CAD Tools
+- **Episode scripts** — full write-ups and outlines for episodes covering science, technology, and open-source topics
+- **Source materials** — research notes, citations, GitHub issue threads, and community discussions consulted during episode prep
+- **Reference links** — curated pointers to key projects, papers, and communities
+- **Background research** — snapshots of the open-source landscape at the time of each episode's production
 
-| Project | Stars | Language | Description |
+---
+
+## 🔬 Synthetic Biology & Biotech Software Tools Landscape
+
+The following open-source projects represent the active frontier of computational synthetic biology and bioinformatics tooling on GitHub. These were surveyed as part of episode research, with a close read of each project's live issue tracker to surface what the community is currently concerned about or actively working on.
+
+---
+
+### 🏆 Top Synthetic Biology Tools
+
+#### 1. [Cello — CIDARLAB/cello](https://github.com/CIDARLAB/cello) ⭐ 873
+**Language:** Java | **License:** BSD-2-Clause
+
+Cello is a **genetic circuit design automation** tool. It takes high-level logic specifications written in **Verilog** (a hardware description language) and compiles them into biological implementations. The workflow includes:
+- Logic synthesis from truth tables → AND-Inverter Graphs → NOR-Inverter Graphs
+- Gate assignment using breadth-first search, hill climbing, or simulated annealing
+- Physical plasmid/DNA layout generation via the Eugene language
+
+> **Active Issues:** The community is reporting login/authentication issues with the hosted web platform at cellocad.org, as well as compilation errors in local deployments — suggesting friction between the hosted service and the open-source codebase. Some long-standing issues around Linux/NetSynth compatibility and Docker build failures (matplotlib errors) remain open, indicating the tooling is aging and needs maintenance attention.
+
+#### 2. [SynBioHub — SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) ⭐ 84
+**Language:** JavaScript (Node.js + Java backend) | **License:** BSD-2-Clause
+
+SynBioHub is a **web-based repository for browsing, uploading, and sharing synthetic biology designs**. It powers public instances like synbiohub.org (enriched _B. subtilis_, _E. coli_ features, and the iGEM Registry of Standard Biological Parts). It stores data in OpenLink Virtuoso and serves designs via the SBOL standard.
+
+> **Active Issues (as of Sept 2026):** This is a **healthily active** project with a swarm of recent, labeled issues targeted at the upcoming **SBH 1.6.2** release. Current community focus:
+> - Correctly handling recursive downloads that follow linked collections (#1755)
+> - Deleting outdated legacy data stored in Virtuoso (#1754)
+> - OMEX downloads not pulling attached SBML files (#1753)
+> - Public-collection visibility toggles accidentally changing URL prefixes (#1752)
+> - SubCollection membership reporting in the public graph (#1756)
+> - Incremental update support for SBOLExplorer (#1746)
+> - SBOLCanvas layout handling for root-collection filters (#1745)
+> - Backend OR-parsing for SPARQL queries (#1744)
+
+#### 3. [20n/act](https://github.com/20n/act) ⭐ 92
+**Language:** Java (Scala stack) | **License:** GPL-3.0
+
+20n/act is a **computational / predictive bioengineering** platform: given a target molecule, it predicts the DNA insertions into a host (e.g. _E. coli_, _S. cerevisiae_) that enable the cell to produce that molecule by fermentation. It predicted/invented the first biosynthetic route to acetaminophen (Tylenol). Issue tracker is **closed/private** (no open issues — the team keeps development closed and offers an enterprise-licensed DB), but the public codebase covers reaction-operator inference, biointerpretation, reachables/cascades computation, and DNA design.
+
+---
+
+### 🧬 Related & Emerging Biotech Infrastructure
+
+| Project | ⭐ Stars | Language | Role |
 |---|---|---|---|
-| [CIDARLAB/cello](https://github.com/CIDARLAB/cello) | 877 | Java | Genetic circuit design automation using Verilog-like specifications |
-| [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 | Java | CAD tool for genetic circuits; supports SBML and SBOL standards |
-| [bebop/poly](https://github.com/bebop/poly) | 729 | Go | Go package for engineering organisms: codon optimization, primer design, synthesis fragment design |
-| [khokao/synergetica](https://github.com/khokao/synergetica) | 118 | TypeScript | Desktop app for genetic circuit design with node-based interfaces |
-| [Edinburgh-Genome-Foundry/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | 274 | Python | DNA sequence optimizer; surging 2026 demand around mRNA therapeutics |
-| [Edinburgh-Genome-Foundry/DnaFeaturesViewer](https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer) | 690 | Python | Plot DNA sequence features from GenBank/GFF files |
-| [Adibvafa/CodonTransformer](https://github.com/Adibvafa/CodonTransformer) | 212 | Python | Transformer-based ML codon optimizer, 2M+ downloads |
-| [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) | 84 | JavaScript | Web platform for sharing synthetic biology designs |
-| [20n/act](https://github.com/20n/act) | 92 | Java | Predictive bioengineering: finding all biosynthesizable chemicals |
+| [bebop/poly](https://github.com/bebop/poly) | 729 | Go | Modern Go package for engineering organisms — codon optimization, primer design, circular hashing, GenBank/FASTA I/O |
+| [khokao/synergetica](https://github.com/khokao/synergetica) | 118 | TypeScript | Desktop genetic-circuit designer with a node-based UI |
+| [Edinburgh-Genome-Foundry/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | 274 | Python | DNA sequence optimizer; demand rising around mRNA therapeutics |
+| [Edinburgh-Genome-Foundry/DnaFeaturesViewer](https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer) | 690 | Python | Plot DNA sequence features from GenBank/GFF |
+| [Adibvafa/CodonTransformer](https://github.com/Adibvafa/CodonTransformer) | 212 | Python | Transformer-based ML codon optimizer (2M+ downloads) |
+| [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 | Java | CAD tool for genetic circuits; SBML/SBOL support |
 
-### 🔬 CRISPR & Guide RNA Design
+**Genomics / CRISPR tooling (for sourcing & editing context):**
 
-| Project | Stars | Language | Description |
+| Project | ⭐ Stars | Language | Role |
 |---|---|---|---|
+| [google/deepvariant](https://github.com/google/deepvariant) | 3,726 | Python | Deep-learning genetic variant calling |
+| [Merck/deepbgc](https://github.com/Merck/deepbgc) | 158 | Jupyter | Deep learning for biosynthetic gene cluster detection |
 | [richysix/Crispr](https://github.com/richysix/Crispr) | 24 | Perl | CRISPR/Cas9 guide RNA design and analysis |
 | [sunjiamin0824/CRISPR-Local](https://github.com/sunjiamin0824/CRISPR-Local) | 17 | Perl | Local sgRNA design for non-reference plant genomes |
 
-### 🧬 Deep Learning & Genomics
+---
 
-| Project | Stars | Language | Description |
-|---|---|---|---|
-| [google/deepvariant](https://github.com/google/deepvariant) | 3,726 | Python | Google's deep learning pipeline for genetic variant calling |
-| [Merck/deepbgc](https://github.com/Merck/deepbgc) | 158 | Jupyter Notebook | Deep learning for Biosynthetic Gene Cluster detection |
+### 📋 What the Community Is Currently Concerned About (Cross-Project Themes)
 
-### 🧬 Bioinformatics Infrastructure
+Synthesizing the live issue-trackers surveyed above, several recurring themes emerge:
 
-| Project | Stars | Language | Description |
-|---|---|---|---|
-| [biopython/biopython](https://github.com/biopython/biopython) | 5,070 | Python | Foundational Python toolkit for computational molecular biology |
-| [nextflow-io/nextflow](https://github.com/nextflow-io/nextflow) | 3,412 | Groovy | DSL for reproducible bioinformatics pipelines |
-| [MultiQC/MultiQC](https://github.com/MultiQC/MultiQC) | 1,491 | JavaScript | Bioinformatics QC report aggregator |
-
-### 🔍 Live Issue-Tracker Snapshot (June 2026)
-
-#### SynBioHub/synbiohub (84 ⭐)
-
-| # | Issue | Label |
-|---|---|---|
-| 1756 | SubCollections not reporting members in public graph | bug |
-| 1755 | Recursive download not following linked collections | bug |
-| 1753 | OMEX download dropping attached SBML files | bug |
-| 1752 | Visibility changes alter URL prefix (private→public) | — |
-| 1746 | Incremental updates not working with SBOLExplorer | bug |
-
-*Themes: data integrity, URL/visibility consistency, frontend-backend interoperability around the SBOL standard.*
-
-#### MyersResearchGroup/iBioSim (67 ⭐)
-
-| # | Issue | Age |
-|---|---|---|
-| 640 | Java exception on launch | 1 yr |
-| 639 | Can't upload SynBioHub designs | 1 yr |
-| 638 | Unable to run iBioSim 3.2.0 on Mac | 1 yr |
-| 635 | Can't open iBioSim on Windows 11 | 2 yr |
-| 634 | Bug importing files on startup | 2 yr |
-
-*Themes: cross-platform compatibility rot (Mac/Win/Linux, 1-2 yr backlog), SynBioHub integration failures, maintenance bandwidth shortage.*
-
-#### 20n/act (92 ⭐) & JBEI/ART (66 ⭐)
-**Zero open issues.** Both reflect sustained, focused engineering — 20n/act predicted and invented the first bio-route to Acetaminophen; ART (multi-target MCMC strain recommender) keeps its source in a private repo under commercial-friendly licensing, limiting external contributions.
-
-#### MultiQC/MultiQC (1,491 ⭐)
-
-| # | Issue | Labels |
-|---|---|---|
-| 3535 | Exploration: use ECharts instead of Plotly | refactoring |
-| 3616 | Add columns in Software Versions section | front end |
-| 3603 | New module: cramino | module: new |
-
-*Themes: healthy architectural modernization debate, continuous module onboarding — signs of growth at scale.*
-
-### 🎯 Community Concerns Summary
-
-1. **mRNA Therapeutics demand** — DnaChisel, CodonTransformer (2M+ downloads) reflect explosive mRNA/vaccines market pull.
-2. **Parser fragility** — Bioinformatics parsers (GenBank, GFF3) break as upstream libraries lose maintenance.
-3. **Cross-platform reliability** — Cello, iBioSim, CRISPR-Local need better Docker support and CI.
-4. **Cloud dependency fragility** — Academic tools' web services and integrations go down with no DevOps.
-5. **Maintenance debt** — Stale 1-2 year old issues at iBioSignal show academic tools lack sustainenance.
-6. **Genome awareness gap** — Most tools assume a single reference; CRISPR-Local's non-reference approach is underserved.
-7. **ML + sequence design** — CodonTransformer, DeepBGC, CELLM point to accelerating AI/biology convergence.
-8. **ML-driven biology** — CodonTransformer, DeepBGC, CELLM represent growing ML/biology intersection.
-9. **Accessibility vs. commercialization** — ART's closed-source and 20n/act's commercial-tied models show sustainability tensions.
+1. **Platform/service vs. open-source divergence** — Hosted web platforms (cellocad.org / SynBioHub instances) drift from the open-source repos; users hit login, build, and deployment mismatches (Cello #63, #61, #50; SynBioHub #1752, #1753).
+2. **Data lifecycle & correctness** — Managing legacy data, recursive collection traversal, and attached-file completeness in multi-part downloads remain live concerns (SynBioHub #1754, #1755, #1753).
+3. **Standards compliance & interoperability** — SBOL/SBML/OMEX handling and correct parsing (SPARQL OR semantics, SBOLCanvas layouts) dominate current SynBioHub development (#1744, #1745, #1746).
+4. **Maintenance debt** — Aging codebases (Cello's NetSynth/Linux/Docker issues from 2018–2023) show that long-lived CAD tools often lack ongoing upkeep, leaving broken builds for new users.
+5. **Modernization via ML** — Enzymatic pathway prediction (20n/act), codon optimization (CodonTransformer), and variant calling (DeepVariant) reflect a broader shift towards data-driven / ML-augmented bioengineering.
 
 ---
 
-## Structure
+### 🌐 Communities & Hubs
 
-```
-episode-scripts-archive/
-├── README.md                  # This file
-├── episodes/
-│   ├── ep-001/
-│   │   ├── script.md
-│   │   ├── source-materials/
-│   │   └── metadata.json
-│   └── ep-002/
-├── research/
-│   ├── synbio-tools-survey-2026-06.md
-│   └── community-issues-snapshot.md
-├── templates/
-├── assets/
-└── docs/
-```
-
-## Contributing
-
-1. Create a branch per episode or major update
-2. Include `metadata.json` with episode details
-3. Link or attach source materials, transcripts, show notes
-4. Submit PRs for review before merging
-
-## License
-
-MIT License — see [LICENSE](LICENSE).
+- **iGEM / Registry of Standard Biological Parts** — foundational shared-parts ecosystem (mirrors in SynBioHub).
+- **SynBioBench / SynBioDex** — standards testing (SBOLTestSuite) backing tools like SynBioHub.
+- **Broad / Edinburgh Genome Foundry** — open CAD tooling (DnaChisel, DnaFeaturesViewer).
+- **20n** — predictive/mechanistic bioengineering research (commercial-licensed core).
 
 ---
 
-## Acknowledgments
+## 📚 Contents (planned structure)
 
-Conceived alongside research into the open-source synthetic biology ecosystem: Cello's circuit engineering, CRISPR-Local's non-reference genome editing, iBioSim's SBML/SBOL modeling, SynBioHub's design-sharing platform, Opentrons' lab automation, DnaChisel's mRNA therapeutics optimizations, 20n/act's bioproduction route prediction, and JBEI's ML-driven strain recommendation. Their shared challenges — reliability, genome diversity, reproducibility, usability, maintenance — mirror every collaborative project's tensions.
+- `episodes/` — individual episode scripts and show notes
+- `source-materials/` — research notes, transcripts, citations
+- `synthetic-biology/` — synbio/biotech-specific episode research (this `README.md`, tooling notes, issue-tracker snapshots)
+- `reference-links/` — curated links to projects, papers, and communities
+
+---
+
+## 🤝 Contributing
+
+Contributions, corrections, and episode submissions are welcome. Please fork the repository, propose changes via a pull request, and ensure scripts/links are organized under the appropriate topic folder.
+
+---
+
+## 📜 License
+
+This archive is shared for research and reference purposes. See individual project licenses (linked above) for third-party tooling.
