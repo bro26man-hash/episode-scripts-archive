@@ -38,6 +38,9 @@ This archive keeps a running snapshot of the GitHub-based **synthetic biology (s
 | [SynBioDex/libSBOLj](https://github.com/SynBioDex/libSBOLj) | 43 | Java | Java library for the Synthetic Biology Open Language (SBOL) |
 | [Gardner-BinfLab/TISIGNER-ReactJS](https://github.com/Gardner-BinfLab/TISIGNER-ReactJS) | 30 | JavaScript | TISIGNER: interactive synbio design tool |
 | [SynBioDex/SBOL-specification](https://github.com/SynBioDex/SBOL-specification) | 23 | TeX | The Synthetic Biology Open Language specification |
+| [BIOFAB/ClothoBiofabEdition](https://github.com/BIOFAB/ClothoBiofabEdition) | 9 | Java | Synthetic Biology Computer-Aided Design tool |
+| [SynBioCAD/biocad](https://github.com/SynBioCAD/biocad) | 16 | JavaScript | Web-based CAD tool for synthetic biology built on SBOL standard |
+| [KOSASIH/ecobio-remediatech-core](https://github.com/KOSASIH/ecobio-remediatech-core) | 26 | Python | EcoBio Remediatech — environmental bioengineering algorithms |
 
 ---
 
@@ -124,17 +127,108 @@ iBioSim is a CAD tool for modeling, analysis, and design of genetic circuits, wi
 
 ---
 
+#### Autodesk/bionano-wetLabAccelerator — Visual wet-lab protocol designer (32 ⭐)
+
+A tool for researchers working in synthetic biology and virology to design robotic wet lab protocols using a visual UI without coding. Users create protocols from scratch or use templates, set up each step with graphical visualizations of wet lab containers, and interact with results through dynamic visualizations. Generates vendor-specific code and verifies it.
+
+**Recent open issues:**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #4 | Update versions of dependencies | Maintenance — outdated stack (AngularJS, D3.js from 2017–2018) |
+| #2 | Demo moved from wla.bionano.autodesk.com to wla.lifesciences.autodesk.com | Infrastructure — org rebranding / URL migration |
+
+**Takeaway:** Only 2 open issues, both very old (2017–2018), suggesting the project is in maintenance mode. The dependency-update issue hints at technical debt from the old AngularJS stack. Autodesk's involvement shows surprising big-design-interest in synbio protocol automation, but the project appears to have been left in a semi-deprecated state.
+
+---
+
+#### SynBioCAD/biocad — Web-based SBOL CAD tool (16 ⭐)
+
+An open-source, web-based computer-aided design tool for synthetic biology built on the SBOL standard and Parametric SBOLv. Supports visualization of SBOL3 designs, drag-and-drop modification, and sequence editing.
+
+**Recent open issues:**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #60 | Should ungroup preserve positions of child objects? | UI interaction |
+| #59 | Export not valid SBOL2? | Standards compliance / export bug |
+| #57 | Labels above glyphs | UI / visualization |
+| #56 | Search for parts | Feature request — part discovery |
+| #55 | Delete connection | UI interaction |
+| #54 | Edit sequence → import file | Feature request — file import |
+| #53 | Module sequence | Feature request — module-level editing |
+| #52 | TypeError: Not allowed to request resource when exporting as GenBank | Bug — CORS / export integration |
+| #51 | If I try to import a SBOL2 file, the tool freezes | Bug — import stability |
+| #50 | Things aren't always deselected on mouse up | UI interaction bug |
+
+**Takeaway:** A significant cluster of open issues (10+, all from 2019) suggests the project stalled after an initial burst of development. The issues span UI interaction bugs, export/import stability, and missing features like part search and module editing. The SBOL2 export bug (#59) and import freeze (#51) are particularly concerning for a CAD tool that claims SBOL compliance. This project illustrates the challenge of maintaining open-source academic tools beyond a proof-of-concept phase.
+
+---
+
+#### sysu-software/BiArkit — Integrated synbio toolkit (1 ⭐)
+
+A versatile Java toolkit that integrates multiple modules for synthetic biology research: GenomeBrowser for genome visualization, Biobrick for part registry search, Riboswitch and SiRNA for regulatory element design, MetaNetwork for pathway database scanning, Simulator for metabolic network analysis, and G-Circle for genome expression illustration. Localized for offline use.
+
+**Recent open issues:** No open issues found — the repository appears to be inactive, with no recent commits or issue activity. The last release included a Windows installer and compiled binaries, suggesting distribution through traditional academic channels rather than continuous open-source collaboration.
+
+**Takeaway:** BiArkit represents an earlier era of synbio software — comprehensive feature set but packaged as a desktop application with a Windows installer, lacking modern CI/CD, issue tracking engagement, or community contribution workflows. The lack of open issues isn't a sign of health; it's a sign of dormancy.
+
+---
+
+#### SASTRA-iGEM2019/ToeholdSwitchDesign — RNA device design tools (0 ⭐)
+
+Three open-source tools for machine-learning-based design of RNA devices (toehold switches): GrammarParser for sequence domain parsing, predict_linear for efficacy prediction using engineered features, and nn_model for neural-network-based prediction. Includes an end-to-end bash pipeline and a curated dataset of 228 toehold instances.
+
+**Recent open issues:** No open issues found — the repository is very small and appears to be a completed academic project (iGEM 2019). The tools are well-documented with a video demo and published paper reference.
+
+**Takeaway:** A clean example of an iGEM-team-built tool that does one thing well — predicting toehold switch efficacy — and ships with documentation, example data, and a published citation. While not actively maintained, it's a good reference for how to structure a small, focused scientific computing tool with proper documentation and reproducibility.
+
+---
+
+#### BIOFAB/Studio — Experimental web-based CAD tool (21 ⭐)
+
+An experimental synthetic biology CAD tool based on open web standards (JavaScript, HTML 5, CSS 3). A platform for rapid deployment of CAD algorithms being developed at the BIOFAB. Also houses the Data Access Client for BIOFAB's electronic datasheets.
+
+**Recent open issues:** No open issues found. The repository appears to be in a stable or archived state, with no active issue tracking. The source includes Python scripts and a NetBeans project structure, suggesting a mixed Python/Java development history.
+
+**Takeaway:** BIOFAB's experimental approach to web-based CAD tooling didn't sustain long-term community engagement. The lack of issues could mean the project was absorbed into other BIOFAB tools or superseded by more modern frameworks. It's historically significant as an early attempt at browser-based synbio design.
+
+---
+
+#### chaibio/chaipcr — Open-source qPCR instrument software (96 ⭐)
+
+The software platform powering Chai's line of Real-Time PCR Thermocyclers, including the Open qPCR instrument. Released as open source to facilitate development of open-source qPCR instruments. Includes bioinformatics processing, device control (C++ realtime), web backend (Ruby on Rails), and frontend (JavaScript/HTML5).
+
+**Recent open issues:**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #105 | Website is down | Infrastructure — project web presence |
+| #104 | No screen after factory reset | Device firmware / hardware |
+| #102 | Can't set up a new account after factory reset | User management / device setup |
+| #101 | Can I use PuTTY to login to the instrument? | Feature request — developer access |
+| #44 | Open Hardware Schematics | Feature request — hardware openness |
+| #1 | Ability to jump out of cycling stage early | Feature request — device control |
+| #2 | Ability to pause in-progress run | Feature request — device control |
+| #3 | disable run failure on lid opening | Feature request — device safety |
+
+**Takeaway:** The issues reveal a tension between the open-source software philosophy and the physical hardware reality. Issues #1–#3 (from 2016) are feature requests that were never implemented, while #104–#105 (from 2026) are infrastructure problems. The open-hardware schematics request (#44) remains unanswered — a gap between the open-source software and the closed hardware design. Chai Bio's commercial venture (Open qPCR) doesn't seem to give back to the open-source community proportionally.
+
+---
+
 ### 📊 Community Themes (from issue surveys across all projects)
 
 Across these projects, the synbio/biotech open-source community is currently focused on:
 
 1. **Interoperability & integration friction** — iBioSim can't upload to SynBioHub; OMEX exports miss SBML files; collection prefixes shift when changing visibility. The dream of a connected synbio toolchain is still hampered by format/URL/API mismatches.
 2. **Data integrity in shared collections** — SubCollections not reporting members, recursive downloads not following links, legacy DB data piling up — these are growing-pains for platforms that host community-wide design registries.
-3. **Long-standing UI bugs in academic tools** — GENtle2's 2015-era interaction bugs remain unfixed, suggesting limited maintainer bandwidth for UI polish in favor of core algorithmic work.
+3. **Long-standing UI bugs in academic tools** — GENtle2's 2015-era interaction bugs remain unfixed; SynBioCAD/biocad's 2019-era UI issues persist. A common pattern in academic tools that lose active maintainers.
 4. **Cross-platform compatibility** — iBioSim's Mac issue persists, a reminder that Java "write once" is aspirational, not guaranteed.
-5. **Stable enterprise-oriented platforms vs. community-friendly ones** — 20n/act has zero open issues but requires enterprise licensing for the full database; this creates a tension between open-source ideals and practical deployment.
+5. **Stable enterprise-oriented platforms vs. community-friendly ones** — 20n/act has zero open issues but requires enterprise licensing; Chai Bio's open-source software doesn't extend to hardware schematics. This tension between open-source ideals and practical deployment runs throughout the ecosystem.
 6. **Deployment & DevOps gaps** — Virtuoso database migrations, Docker image complexity (SynBioHub requires Virtuoso, Maven, Node, etc.) — these barriers push away potential contributors and users who just want to run the tool.
-7. **ML + sequence design convergence** — ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of machine learning and biological design automation.
+7. **Stalled academic projects** — BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy with zero open issues but no active maintenance. The "publish and abandon" pattern is prevalent in university synbio software.
+8. **ML + sequence design convergence** — ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of machine learning and biological design automation.
+9. **Open hardware vs. open software divide** — Chai Bio released qPCR software as open source but keeps hardware schematics closed, revealing a gap in the open-science philosophy when commercial interests are involved.
 
 ---
 
@@ -145,11 +239,14 @@ Across these projects, the synbio/biotech open-source community is currently foc
 - **Myers Research Group** — Academic lab behind iBioSim; representative of university synbio CAD efforts
 - **JBEI (Joint BioEnergy Institute)** — DOE-funded lab; produces ART for strain engineering
 - **20n** — Startup that produced act; bridges academic research and commercial bioengineering
-- **Autodesk Bio/Nano/Protospace** — Surprising entry! Autodesk's wet-lab-accelerator tool shows big-design-interest in synbio protocol automation
+- **Autodesk Bio/Nano/Protospace** — Surprise entry! Autodesk's wet-lab-accelerator tool shows big-design-interest in synbio protocol automation
 - **klavinslab** — University of Washington lab; contributes Coral framework for synbio design processes
 - **MIMS/Harvard (Marinka Zitnik's lab)** — Produces TDC; the largest and most active community in therapeutics ML
-- **Chai Bio** — Produces chaipcr; open-hardware science instrumentation
+- **Chai Bio** — Produces chaipcr; open-hardware science instrumentation (with limitations)
 - **websemantics** — Curates the awesome-synthetic-biology list; community front door for the field
+- **BIOFAB** — Early contributor to web-based synbio CAD tools; experimental but historically significant
+- **SynBioCAD** — Community effort around SBOL-based web CAD tooling; stalled but conceptually important
+- **SASTRA-iGEM** — iGEM team example of small, focused, well-documented scientific computing tools
 
 ---
 
@@ -193,6 +290,7 @@ episode-scripts-archive/
 - [SBOL Specification](https://sbolstandard.org/) — Synthetic Biology Open Language standard
 - [TISIGNER](http://tignamer.com/) — Interactive synbio design
 - [GENtle2](https://synbiota.com) — Web DNA editor
+- [Autodesk Wet Lab Accelerator](https://wla.bionano.autodesk.com) — Visual wet-lab protocol designer
 
 ---
 
