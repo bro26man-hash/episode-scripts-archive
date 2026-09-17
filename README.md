@@ -32,7 +32,8 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | **awesome-synthetic-biology** | 223 | — | Curated directory of synbio projects, articles, and resources | [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) |
 | **GENtle2** | 106 | JavaScript | Web-based DNA editor for synthetic biology | [Synbiota/GENtle2](https://github.com/Synbiota/GENtle2) |
 | **act (20n)** | 92 | Java/Scala | Predictive bioengineering — discovers DNA routes to make target chemicals | [20n/act](https://github.com/20n/act) |
-| **SynBioHub** | 84 | JavaScript/Java | Web platform for browsing, uploading & sharing synthetic biology designs | [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) |
+| **SynBioHub v1** | 84 | JavaScript/Java | Web platform for browsing, uploading & sharing synthetic biology designs (legacy) | [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) |
+| **SynBioHub v3** | 16 | JavaScript/Java | **Redesign** of SynBioHub using React (Next.js) + Spring Boot (Java 17) | [SynBioHub/synbiohub3](https://github.com/SynBioHub/synbiohub3) |
 | **iBioSim** | 67 | Java | CAD for genetic circuits; SBML/SBOL support | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) |
 | **ART (JBEI)** | 66 | Jupyter Notebook | ML tool for automated strain engineering recommendations | [JBEI/ART](https://github.com/JBEI/ART) |
 | **Coral** | 32 | Python | Library & framework for specifying synthetic biology design processes | [klavinslab/coral](https://github.com/klavinslab/coral) |
@@ -42,11 +43,38 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 
 ### 🔬 Deep Dives — Most Active Repos & Their Open Issues
 
-#### 1. SynBioHub (84 ⭐) — The Interoperability Hub
+#### 1. SynBioHub v3 (16 ⭐) — The Great Redesign Migration
 
-**Scope:** Web application enabling users and software to browse, upload, and share synthetic biology designs. Hosts the iGEM Registry of Standard Biological Parts and enriched *B. subtilis* and *E. coli* data. Stack: JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore). BSD-2-Clause license. PR-based development with CI (Travis + Docker integration tests via SBOLTestSuite); automatic Docker Hub publishing via GitHub Actions.
+**Scope:** A full rewrite of the SynBioHub platform using **React (Next.js) + Spring Boot (Java 17)**, replacing the legacy v1 stack (Node.js + Maven + OpenLink Virtuoso RDF triplestore). BSD-2-Clause license. Actively developed — latest commits September 15, 2026.
 
-**Current Open Issues (Milestone SBH 1.6.2):**
+**Why this matters:** The v1→v3 migration is *the* defining infrastructure story in the synbio ecosystem right now. The legacy v1 has 84 stars and is in maintenance mode (milestone SBH 1.6.2), while v3 is the future — but it's still at 16 stars, meaning the community hasn't fully migrated yet.
+
+**Current Open Issues (Milestones SBH 2.0.0 & SBH 3.0.0):**
+
+| Issue | Title | Theme | Milestone | Date |
+|---|---|---|---|---|
+| [#1108](https://github.com/SynBioHub/synbiohub3/issues/1108) | Dev2 doesn't show any similar parts | Bug — search quality | — | Sep 2026 |
+| [#1107](https://github.com/SynBioHub/synbiohub3/issues/1107) | Update Collections Page | Enhancement | SBH 2.0.0 | Sep 2026 |
+| [#1106](https://github.com/SynBioHub/synbiohub3/issues/1106) | Develop New API Using Swagger | Enhancement — API design | SBH 3.0.0 | Sep 2026 |
+| [#1060](https://github.com/SynBioHub/synbiohub3/issues/1060) | Search Suggestions | User Study — UX | SBH 2.0.0 | Jul 2026 |
+| [#1062](https://github.com/SynBioHub/synbiohub3/issues/1062) | Create 2 boxes when applying filters in search | User Study — UX | SBH 2.0.0 | Jul 2026 |
+| [#1093](https://github.com/SynBioHub/synbiohub3/issues/1093) | Add owner modal | User Study — sharing | SBH 2.0.0 | Aug 2026 |
+| [#1092](https://github.com/SynBioHub/synbiohub3/issues/1092) | Sharing and adding owner needs visibility of status | User Study — sharing | SBH 2.0.0 | Aug 2026 |
+| [#1091](https://github.com/SynBioHub/synbiohub3/issues/1091) | Add owner list of users | User Study — sharing | SBH 2.0.0 | Aug 2026 |
+
+**Recent commits (Sep 15, 2026):** Implemented `removeCollection` for the v3 backend, added tests for add/edit/remove field operations, aligned v3 response format with v1.
+
+**Known challenge:** The README explicitly warns about a **legacy OpenSSL vulnerability** (Node.js OpenSSL 3 `digital envelope routines unsupported` error) that limits dev mode to Mac and Linux only — a real blocker for Windows developers contributing to the redesign.
+
+**Takeaway:** The SynBioHub team is doing a courageous full-stack rewrite. They're shifting from a triplestore-based architecture to a modern React + Spring Boot stack, but the community hasn't caught up yet (16 vs. 84 stars). The migration story — from Virtuoso to relational DB, from server-rendered pages to React SPA, from opaque APIs to Swagger-documented ones — is a rich narrative about the cost and necessity of modernizing scientific infrastructure.
+
+---
+
+#### 2. SynBioHub v1 (84 ⭐) — The Interoperability Hub (Legacy/Maintenance)
+
+**Scope:** The original SynBioHub platform. Web application enabling users and software to browse, upload, and share synthetic biology designs. Hosts the iGEM Registry of Standard Biological Parts and enriched *B. subtilis* and *E. coli* data. Stack: JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore). BSD-2-Clause license. PR-based development with CI (Travis + Docker integration tests via SBOLTestSuite); automatic Docker Hub publishing via GitHub Actions.
+
+**Current Open Issues (Milestone SBH 1.6.2 — final maintenance releases):**
 
 | Issue | Title | Theme | Date |
 |---|---|---|---|
@@ -58,11 +86,11 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | Bug — tool integration | Jul 2026 |
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend lacks OR request parsing mechanism | Bug — query capability | Jul 2026 |
 
-**Takeaway:** The community is **seriously focused on data portability and interoperability**. OMEX bundle integrity, recursive collection resolution, and database hygiene are the pain points. This signals the ecosystem is maturing — users need dependable data pipelines.
+**Takeaway:** The v1 issues tell the story of a platform in graceful decline — the team is doing maintenance releases but the real innovation is in v3. The Virtuoso triplestore, once cutting-edge for RDF-based design sharing, is now showing its age: recursive collection resolution breaks, OMEX exports are incomplete, and database hygiene is a growing burden. These are classic symptoms of a legacy graph database struggling at scale.
 
 ---
 
-#### 2. iBioSim (67 ⭐) — The CAD Tool Striving for Modern Compatibility
+#### 3. iBioSim (67 ⭐) — The CAD Tool Striving for Modern Compatibility
 
 **Scope:** Computer-aided design (CAD) tool for modeling, analysis, and design of genetic circuits. Imports/exports SBML (all levels/versions) and supports SBOL. Includes multi-cellular and spatial modeling support. Active developers: Lukas Buecherl, Pedro Fontanarrosa, Chris Myers. Apache-2.0 license. Stack: Java + libSBML + reb2sac + GeneNet + Yosys.
 
@@ -84,11 +112,11 @@ Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 ```
 A transitive dependency conflict — Apache Jena can't initialize because Xerces is missing or conflicting.
 
-**Takeaway:** Desktop-based synbio CAD tools struggle with **Java dependency management and OS-specific behavior**. This signals a strong opportunity for containerized or web-based alternatives.
+**Takeaway:** Desktop-based synbio CAD tools struggle with **Java dependency management and OS-specific behavior**. iBioSim's 305+ open issues and its broken SynBioHub integration (#639, #632) are a direct consequence of the v1 SynBioHub's aging API. When v3 launches with a proper Swagger API (#1106), this integration story may finally improve. This signals a strong opportunity for containerized or web-based alternatives.
 
 ---
 
-#### 3. GENtle2 (106 ⭐) — The Web DNA Editor With Legacy Debt
+#### 4. GENtle2 (106 ⭐) — The Web DNA Editor With Legacy Debt
 
 **Scope:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web. Written in JavaScript (Node.js + Express + Gulp).
 
@@ -107,7 +135,7 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 ---
 
-#### 4. DnaChisel (281 ⭐) — The Python-First DNA Optimizer
+#### 5. DnaChisel (281 ⭐) — The Python-First DNA Optimizer
 
 **Scope:** Python library for optimizing DNA sequences with respect to constraints and objectives. 15+ classes of sequence specifications: codon-optimization, GC-content tuning, restriction site avoidance, homology removal, and more. Part of the EGF Codons suite from the Edinburgh Genome Foundry.
 
@@ -125,7 +153,7 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 ---
 
-#### 5. Coral (32 ⭐) — Design-as-Code for Synthetic Biology
+#### 6. Coral (32 ⭐) — Design-as-Code for Synthetic Biology
 
 **Scope:** Python library for encoding the process of designing synthetic DNA constructs. Mirrors traditional GUI-based design steps (ApE, j5, Benchling) as operations on data structures. Enables iterative design through analysis modules. MIT license. Stack: Python (works with PyPy + numpy), Biopython.
 
@@ -141,14 +169,15 @@ Based on open-issue triage across all surveyed projects, these are the themes do
 
 | # | Theme | What It Means |
 |---|---|---|
-| 1 | **Interoperability & integration friction** | iBioSim can't upload to SynBioHub; OMEX exports miss SBML files; collection prefixes shift when changing visibility. The connected synbio toolchain is still hampered by format/URL/API mismatches. |
-| 2 | **Data integrity in shared collections** | SubCollections not reporting members, recursive downloads not following links, legacy DB data piling up. Growing-pains for platforms hosting community-wide design registries. |
-| 3 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded; SynBioCAD/biocad's 2019-era UI issues persist. A common pattern in academic tools that lose active maintainers. |
-| 4 | **Cross-platform compatibility** | iBioSim's Mac and Windows 11 issues, TDC's Windows pip install failures. Java "write once, run anywhere" remains aspirational. |
-| 5 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes), not just get the single best answer. A fundamental UX challenge in computational biology. |
-| 6 | **Modern language adoption** | The success of **poly** (Go, 737⭐) and **DnaChisel** (Python, 281⭐) vs. aging Java tools (iBioSim, GENtle2) suggests the community is gravitating toward modern, fast, easy-to-deploy languages. |
-| 7 | **ML + sequence design convergence** | ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of ML and biological design automation. |
-| 8 | **Stalled academic projects** | BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. |
+| 1 | **The SynBioHub Migration** | v1 is in maintenance mode with data-integrity bugs (OMEX exports broken, recursive downloads failing); v3 is a React+Spring Boot rewrite at 16 stars, not yet adopted by the community. The migration story is the central narrative of 2026 in synbio infrastructure. |
+| 2 | **Interoperability & integration friction** | iBioSim can't upload to SynBioHub; OMEX exports miss SBML files; collection prefixes shift when changing visibility. The connected synbio toolchain is still hampered by format/URL/API mismatches. |
+| 3 | **Data integrity in shared collections** | SubCollections not reporting members, recursive downloads not following links, legacy Virtuoso DB data piling up. Growing-pains for platforms hosting community-wide design registries. |
+| 4 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded; a common pattern in academic tools that lose active maintainers. |
+| 5 | **Cross-platform compatibility** | iBioSim's Mac and Windows 11 issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run anywhere" remains aspirational. |
+| 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes), not just get the single best answer. A fundamental UX challenge in computational biology. |
+| 7 | **Modern language adoption** | The success of **poly** (Go, 737⭐) and **DnaChisel** (Python, 281⭐) vs. aging Java tools (iBioSim, GENtle2) suggests the community is gravitating toward modern, fast, easy-to-deploy languages. Even SynBioHub is rewriting from Node.js+Virtuoso to React+Spring Boot. |
+| 8 | **ML + sequence design convergence** | ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of ML and biological design automation. |
+| 9 | **Stalled academic projects** | BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. |
 
 ---
 
@@ -157,16 +186,18 @@ Based on open-issue triage across all surveyed projects, these are the themes do
 ```
 episode-scripts-archive/
 ├── episodes/
-│   ├── EP001-interoperability-crisis/     # The SynBioHub data-portability story
-│   ├── EP002-desktop-tool-bottleneck/     # iBioSim & GENtle2 cross-platform struggles
-│   ├── EP003-from-hand-engineering-to-ml/ # ART, 20n/act, and computational design
-│   ├── EP004-dna-optimization-deep-dive/  # DnaChisel, poly, and sequence design
-│   ├── EP005-standards-maturation/        # SBOL, SBML, and the state of interoperability
-│   ├── EP006-academic-tool-dormancy/      # The "publish and abandon" pattern
+│   ├── EP001-synbiohub-migration/     # The v1→v3 rewrite story
+│   ├── EP002-interoperability-crisis/ # Data portability & OMEX bugs
+│   ├── EP003-desktop-tool-bottleneck/ # iBioSim & GENtle2 cross-platform struggles
+│   ├── EP004-from-hand-engineering-to-ml/ # ART, 20n/act, and computational design
+│   ├── EP005-dna-optimization-deep-dive/ # DnaChisel, poly, and sequence design
+│   ├── EP006-standards-maturation/    # SBOL, SBML, and the state of interoperability
+│   ├── EP007-academic-tool-dormancy/  # The "publish and abandon" pattern
 │   └── ...
 ├── research/
 │   ├── synbio-tools-survey-2026-09.md     # Full survey data
 │   ├── community-issues-snapshot-2026-09.md # Curated issue list
+│   ├── synbiohub-migration-analysis.md    # v1→v3 rewrite deep dive
 │   └── references/
 ├── source-materials/
 │   ├── presentations/
@@ -190,7 +221,8 @@ episode-scripts-archive/
 
 | Resource | Link | Description |
 |---|---|---|
-| [SynBioHub](https://synbiohub.org) | [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) | Design repository & sharing platform |
+| [SynBioHub v1](https://synbiohub.org) | [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) | Design repository & sharing platform (legacy, 84⭐) |
+| [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) | [SynBioHub/synbiohub3](https://github.com/SynBioHub/synbiohub3) | React + Spring Boot redesign (active, 16⭐) |
 | [iBioSim](http://www.ibiosim.org/) | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | Genetic circuit CAD tool |
 | [DnaChisel](https://edinburgh-genome-foundry.github.io/DnaChisel/) | [EGF/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | Python DNA sequence optimizer |
 | [poly](https://github.com/bebop/poly) | [bebop/poly](https://github.com/bebop/poly) | Go package for engineering organisms |
@@ -199,6 +231,8 @@ episode-scripts-archive/
 | [act](https://github.com/20n/act) | [20n/act](https://github.com/20n/act) | Predictive bioengineering platform |
 | [TDC](https://tdcommons.ai) | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | Therapeutics Data Commons |
 | [Synthea](https://synthetichealth.github.io/synthea/) | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | Synthetic patient simulator |
+| [BiArkit](https://github.com/sysu-software/BiArkit) | [sysu-software/BiArkit](https://github.com/sysu-software/BiArkit) | Chinese-localized synbio toolkit (GenomeBrowser, Riboswitch, Simulator) |
+| [ToeholdSwitchDesign](https://github.com/SASTRA-iGEM2019/ToeholdSwitchDesign) | [SASTRA-iGEM2019/ToeholdSwitchDesign](https://github.com/SASTRA-iGEM2019/ToeholdSwitchDesign) | ML-based toehold switch efficacy prediction (iGEM 2019) |
 
 ### Standards & Registries
 
@@ -221,7 +255,7 @@ episode-scripts-archive/
 
 ### Organizations to Follow
 
-- **SynBioHub** — Primary design-sharing platform & SBOL standards
+- **SynBioHub** — Primary design-sharing platform & SBOL standards (v1 maintenance, v3 rewrite)
 - **SynBioDex** — SBOL specification & related tools
 - **Edinburgh Genome Foundry** — DnaChisel & EGF Codons suite
 - **Myers Research Group** — iBioSim (academic CAD tool)
@@ -230,6 +264,7 @@ episode-scripts-archive/
 - **Autodesk Bio/Nano/Protospace** — Wet-lab protocol automation
 - **klavinslab** — Coral design framework
 - **BIOFAB** — Early web-based synbio CAD tools
+- **SASTRA-iGEM** — Academic iGEM team producing ML tools for RNA device design
 
 ---
 
@@ -258,4 +293,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 2026 — Surveyed 15+ GitHub projects, reviewed 30+ open issues, compiled community themes across the synthetic biology & biotech software ecosystem.*
+*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 40+ open issues spanning 8 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
