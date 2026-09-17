@@ -142,15 +142,18 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 **Current Open Issues:**
 
-| Issue | Title | Theme |
-|---|---|---|
-| [#114](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/114) | Produce multiple different optimized results | Feature — diversity in output |
-| [#113](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/113) | Low Codon Adaptation Index on optimized sequence | Bug — optimization quality |
-| [#107](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/107) | Support for Uridine Depletion (UD) optimization | Feature — new target (5 comments) |
-| [#111](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/111) | Unexpected Mutation of `codon_usage_table` During Optimization | Bug — data integrity |
-| [#100](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/100) | How to get under-optimal sequences during optimization? | Question — fitness landscape |
+| Issue | Title | Theme | Date |
+|---|---|---|---|
+| [#114](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/114) | Produce multiple different optimized results | Feature — diversity in output | Jun 2026 |
+| [#113](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/113) | Low Codon Adaptation Index on optimized sequence | Bug — optimization quality | May 2026 |
+| [#111](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/111) | Unexpected Mutation of `codon_usage_table` During Optimization | Bug — data integrity | Apr 2026 |
+| [#110](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/110) | Minimize CG | Feature — GC content optimization | Apr 2026 |
+| [#107](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/107) | Support for Uridine Depletion (UD) optimization objectives | Feature — new target (5 comments) | Apr 2026 |
+| [#102](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/102) | Feature: PDF report generation optional during optimize_with_report | Enhancement | Jul 2025 |
+| [#105](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/105) | Include / point to "CONTRIBUTING" in the documentation | Documentation | Feb 2026 |
+| [#100](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/100) | How to get under-optimal sequences during optimization? | Question — fitness landscape | May 2025 |
 
-**Takeaway:** Users want to **explore the fitness landscape**, not just find the single best sequence. The `codon_usage_table` mutation bug (#111) is concerning because it could silently produce incorrect optimization results. This has direct implications for episodes about "optimal vs. good enough" in biological sequence design.
+**Takeaway:** Users want to **explore the fitness landscape**, not just find the single best sequence. The `codon_usage_table` mutation bug (#111) is concerning because it could silently produce incorrect optimization results. The UD optimization request (#107, 5 comments) and GC minimization (#110) show that the community is pushing DnaChisel toward chemistry-aware targets (making DNA invisible to degradation pathways). The missing CONTRIBUTING docs (#105) hint that the maintainer is a solo academic struggling to absorb community contributions.
 
 ---
 
@@ -208,7 +211,7 @@ Based on open-issue triage across all surveyed projects, these are the themes do
 | 3 | **Data integrity in shared collections** | SubCollections not reporting members, recursive downloads not following links, legacy Virtuoso DB data piling up. Growing-pains for platforms hosting community-wide design registries. |
 | 4 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded; a common pattern in academic tools that lose active maintainers. |
 | 5 | **Cross-platform compatibility** | iBioSim's Mac and Windows 11 issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run anywhere" remains aspirational. |
-| 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes), not just get the single best answer. A fundamental UX challenge in computational biology. |
+| 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes), not just get the single best answer. New requests for UD optimization and GC minimization show the community pushing toward chemistry-aware design. A fundamental UX challenge in computational biology. |
 | 7 | **Modern language adoption** | The success of **poly** (Go, 737⭐) and **DnaChisel** (Python, 281⭐) vs. aging Java tools (iBioSim, GENtle2) suggests the community is gravitating toward modern, fast, easy-to-deploy languages. Even SynBioHub is rewriting from Node.js+Virtuoso to React+Spring Boot. |
 | 8 | **ML + sequence design convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of ML and biological design automation. |
 | 9 | **Stalled academic projects** | BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. |
@@ -331,4 +334,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 50+ open issues spanning 10 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration and poly (Go toolkit) emergence. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
+*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 60+ open issues spanning 12 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration, poly (Go toolkit), and DnaChisel optimization landscape. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
