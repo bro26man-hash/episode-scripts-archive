@@ -37,6 +37,7 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | **iBioSim** | 67 | Java | CAD for genetic circuits; SBML/SBOL support | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) |
 | **ART (JBEI)** | 66 | Jupyter Notebook | ML tool for automated strain engineering recommendations | [JBEI/ART](https://github.com/JBEI/ART) |
 | **Coral** | 32 | Python | Library & framework for specifying synthetic biology design processes | [klavinslab/coral](https://github.com/klavinslab/coral) |
+| **CASPIA** | 13 | Python | AI-powered platform for automatable, knowledge-retrieval-driven metabolic engineering | [shenmaa233/SJTU-software-CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) |
 | **ClothoBiofabEdition** | 9 | Java | Synthetic Biology Computer-Aided Design tool | [BIOFAB/ClothoBiofabEdition](https://github.com/BIOFAB/ClothoBiofabEdition) |
 
 ---
@@ -153,7 +154,40 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 ---
 
-#### 6. Coral (32 ⭐) — Design-as-Code for Synthetic Biology
+#### 6. 🆕 poly (737 ⭐) — The Ambitious Go-Native Synthetic Biology Toolkit
+
+**Scope:** A Go package for engineering organisms. Goal: "the most complete, open, and well used collection of computational synthetic biology tools ever assembled." Covers codon optimization, primer design, sequence hashing, Gibson Assembly, Golden Gate, and more. MIT license. Active Discord community.
+
+**Why this matters:** With 737 stars and 74 forks, **poly is the most-starred open-source pure synthbio software tool on GitHub** — surpassing even established tools like iBioSim and GENtle2. Its modern Go codebase, comprehensive module coverage, and active development (latest updates September 2026) make it the clearest signal that the synbio software community is shifting toward modern, fast, deployable languages.
+
+**Current Open Issues (Milestone v1.0 — Let's get poly to a releasable state!):**
+
+| Issue | Title | Theme | Priority | Date |
+|---|---|---|---|---|
+| [#359](https://github.com/bebop/poly/issues/359) | Implement Gibson Assembly | Enhancement — critical feature | High | Sep 2023 |
+| [#434](https://github.com/bebop/poly/issues/434) | Genbank parser needs heavy refactor or rewrite | Enhancement — code quality | Medium | Dec 2023 |
+| [#383](https://github.com/bebop/poly/issues/383) | Genbank parser doesn't handle colliding feature names | Bug — data integrity | High | Oct 2023 |
+| [#367](https://github.com/bebop/poly/issues/367) | Refactor `clone` package | Enhancement — UX | High | Sep 2023 |
+| [#448](https://github.com/bebop/poly/issues/448) | Remove lunny/log dependency from genbank.go | Enhancement — dep hygiene | — | Dec 2025 |
+| [#442](https://github.com/bebop/poly/issues/442) | Turn on `revive` linter in golangci config | Enhancement — devops | Low | Feb 2024 |
+| [#399](https://github.com/bebop/poly/issues/399) | Tutorial and tests for refactored golden gate | Enhancement — docs | — | Nov 2023 |
+| [#422](https://github.com/bebop/poly/issues/422) | Proposal: Create a biological reviewers group | Proposal — governance | — | Dec 2023 |
+
+**Takeaway:** poly's v1.0 milestone has 12 open issues — a mix of critical features (Gibson Assembly), code quality debt (genbank parser), and governance proposals (biological reviewers). The Gibson Assembly issue (#359) is blocked by the clone refactor (#367), creating a dependency chain that illustrates the challenge of building a comprehensive toolkit from scratch. The proposal for a "biological reviewers group" (#422) is particularly notable — it signals that the community is thinking about how to ensure biological accuracy of computationally designed constructs, a question that becomes urgent as design tools scale.
+
+---
+
+#### 7. 🆕 CASPIA (13 ⭐) — AI-Powered Automatable Metabolic Engineering
+
+**Scope:** CASPIA (Computational Automation for Synthetic Biology and Metabolic Engineering) is an AI-powered platform designed to revolutionize synthetic biology research through intelligent automation, knowledge retrieval, and metabolic engineering workflow orchestration. Python-based. Actively maintained (last update May 2026).
+
+**Why this matters:** CASPIA represents the emerging wave of **AI-native metabolic engineering platforms** — tools that don't just optimize sequences but orchestrate entire research workflows, retrieve relevant knowledge from literature, and suggest experimental next steps. It sits at the intersection of LLM-powered research assistance and traditional bioengineering pipelines.
+
+**Takeaway:** While still small (13 stars), CASPIA signals where metabolic engineering is heading: from manual, hypothesis-driven experimentation toward AI-coordinated, automated design-build-test-learn cycles. It complements — rather than competes with — tools like ART (which focuses on strain recommendation) and 20n/act (which focuses on DNA route prediction). CASPIA's knowledge-retrieval layer could be the glue that connects disparate synbio tools into an intelligent workflow.
+
+---
+
+#### 8. Coral (32 ⭐) — Design-as-Code for Synthetic Biology
 
 **Scope:** Python library for encoding the process of designing synthetic DNA constructs. Mirrors traditional GUI-based design steps (ApE, j5, Benchling) as operations on data structures. Enables iterative design through analysis modules. MIT license. Stack: Python (works with PyPy + numpy), Biopython.
 
@@ -176,8 +210,9 @@ Based on open-issue triage across all surveyed projects, these are the themes do
 | 5 | **Cross-platform compatibility** | iBioSim's Mac and Windows 11 issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run anywhere" remains aspirational. |
 | 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes), not just get the single best answer. A fundamental UX challenge in computational biology. |
 | 7 | **Modern language adoption** | The success of **poly** (Go, 737⭐) and **DnaChisel** (Python, 281⭐) vs. aging Java tools (iBioSim, GENtle2) suggests the community is gravitating toward modern, fast, easy-to-deploy languages. Even SynBioHub is rewriting from Node.js+Virtuoso to React+Spring Boot. |
-| 8 | **ML + sequence design convergence** | ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of ML and biological design automation. |
+| 8 | **ML + sequence design convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of ML and biological design automation. |
 | 9 | **Stalled academic projects** | BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. |
+| 10 | **Tool governance & biological review** | poly's proposal for a "biological reviewers group" (#422) signals that the community is grappling with how to ensure biological accuracy of computationally designed constructs — a question that becomes urgent as design tools scale. |
 
 ---
 
@@ -189,15 +224,17 @@ episode-scripts-archive/
 │   ├── EP001-synbiohub-migration/     # The v1→v3 rewrite story
 │   ├── EP002-interoperability-crisis/ # Data portability & OMEX bugs
 │   ├── EP003-desktop-tool-bottleneck/ # iBioSim & GENtle2 cross-platform struggles
-│   ├── EP004-from-hand-engineering-to-ml/ # ART, 20n/act, and computational design
+│   ├── EP004-from-hand-engineering-to-ml/ # ART, CASPIA, and computational design
 │   ├── EP005-dna-optimization-deep-dive/ # DnaChisel, poly, and sequence design
 │   ├── EP006-standards-maturation/    # SBOL, SBML, and the state of interoperability
 │   ├── EP007-academic-tool-dormancy/  # The "publish and abandon" pattern
+│   ├── EP008-poly-the-go-native-toolkit/ # Modern Go-based synbio engineering
 │   └── ...
 ├── research/
 │   ├── synbio-tools-survey-2026-09.md     # Full survey data
 │   ├── community-issues-snapshot-2026-09.md # Curated issue list
 │   ├── synbiohub-migration-analysis.md    # v1→v3 rewrite deep dive
+│   ├── poly-tool-analysis.md             # Go-native toolkit analysis
 │   └── references/
 ├── source-materials/
 │   ├── presentations/
@@ -225,10 +262,11 @@ episode-scripts-archive/
 | [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) | [SynBioHub/synbiohub3](https://github.com/SynBioHub/synbiohub3) | React + Spring Boot redesign (active, 16⭐) |
 | [iBioSim](http://www.ibiosim.org/) | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | Genetic circuit CAD tool |
 | [DnaChisel](https://edinburgh-genome-foundry.github.io/DnaChisel/) | [EGF/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | Python DNA sequence optimizer |
-| [poly](https://github.com/bebop/poly) | [bebop/poly](https://github.com/bebop/poly) | Go package for engineering organisms |
+| [poly](https://github.com/bebop/poly) | [bebop/poly](https://github.com/bebop/poly) | Go package for engineering organisms (737⭐) |
 | [GENtle2](https://synbiota.com) | [Synbiota/GENtle2](https://github.com/Synbiota/GENtle2) | Web-based DNA editor |
 | [Coral](https://github.com/klavinslab/coral) | [klavinslab/coral](https://github.com/klavinslab/coral) | Synbio design-as-code framework |
 | [act](https://github.com/20n/act) | [20n/act](https://github.com/20n/act) | Predictive bioengineering platform |
+| [CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | [shenmaa233/SJTU-software-CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | AI-powered metabolic engineering platform |
 | [TDC](https://tdcommons.ai) | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | Therapeutics Data Commons |
 | [Synthea](https://synthetichealth.github.io/synthea/) | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | Synthetic patient simulator |
 | [BiArkit](https://github.com/sysu-software/BiArkit) | [sysu-software/BiArkit](https://github.com/sysu-software/BiArkit) | Chinese-localized synbio toolkit (GenomeBrowser, Riboswitch, Simulator) |
@@ -293,4 +331,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 40+ open issues spanning 8 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
+*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 50+ open issues spanning 10 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration and poly (Go toolkit) emergence. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
