@@ -25,8 +25,9 @@ This archive keeps a running snapshot of the GitHub-based **synthetic biology (s
 |---|---|---|---|
 | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | 3,342 | Java | Synthetic patient population simulator for health analytics & EHR modeling |
 | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | 1,283 | Jupyter Notebook | Therapeutics Data Commons — multimodal ML foundation for drug discovery |
-| [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | 223 | (list) | Curated directory of synbio projects, articles, and resources |
-| [virtualramblas/awesome-deep-learning-4-life-sciences](https://github.com/virtualramblas/awesome-deep-learning-4-life-sciences) | 167 | — | Curated list of deep-learning resources for biotech & pharma |
+| [gyorilab/indra](https://github.com/gyorilab/indra) | 223 | Python | Automated model assembly from NLP + databases for systems biology |
+| [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | 223 | — | Curated directory of synbio projects, articles, and resources |
+| [pysb/pysb](https://github.com/pysb/pysb) | 199 | Python | Python framework for rule-based systems biology modeling |
 | [Synbiota/GENtle2](https://github.com/Synbiota/GENtle2) | 106 | JavaScript | Web-based DNA editor for synthetic biology |
 | [chaibio/chaipcr](https://github.com/chaibio/chaipcr) | 96 | C++ | Software behind Chai's open-source Real-Time PCR instrument |
 | [20n/act](https://github.com/20n/act) | 92 | Java | Predictive bioengineering — discovers DNA routes to make target chemicals |
@@ -34,12 +35,14 @@ This archive keeps a running snapshot of the GitHub-based **synthetic biology (s
 | [dportik/Biotech-Job-Search-Engine](https://github.com/dportik/Biotech-Job-Search-Engine) | 81 | Python | Open-source job-discovery for biotech, genomics & bioinformatics roles |
 | [JBEI/ART](https://github.com/JBEI/ART) | 66 | Jupyter Notebook | ML tool to improve strain engineering effectiveness |
 | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 | Java | CAD for genetic circuits; SBML/SBOL support |
+| [sjt-software/SJTU-software-CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | 13 | Python | AI-powered synbio platform: genome→model pipelines, RAG literature QA, AI agent |
+| [CIDARLAB/Cello-v2-1-Core](https://github.com/CIDARLAB/Cello-v2-1-Core) | 21 | Python | Genetic circuit design from Verilog logic gates (Cello 2.1 algorithm) |
 | [Autodesk/bionano-wetLabAccelerator](https://github.com/Autodesk/bionano-wetLabAccelerator) | 32 | JavaScript | Designs robotic wet-lab protocols via visual UI (no coding) |
 | [klavinslab/coral](https://github.com/klavinslab/coral) | 32 | Python | Library & framework for specifying synbio design processes |
 | [SynBioDex/libSBOLj](https://github.com/SynBioDex/libSBOLj) | 43 | Java | Java library for the Synthetic Biology Open Language (SBOL) |
 | [Gardner-BinfLab/TISIGNER-ReactJS](https://github.com/Gardner-BinfLab/TISIGNER-ReactJS) | 30 | JavaScript | TISIGNER: interactive synbio design tool |
 | [KOSASIH/ecobio-remediatech-core](https://github.com/KOSASIH/ecobio-remediatech-core) | 26 | Python | EcoBio Remediatech — environmental bioengineering algorithms |
-| [SynBioCad/biocad](https://github.com/SynBioCAD/biocad) | 16 | JavaScript | Web-based CAD tool for synthetic biology built on SBOL standard |
+| [SynBioCad/biocad](https://github.com/SynBioCad/biocad) | 16 | JavaScript | Web-based CAD tool for synthetic biology built on SBOL standard |
 | [BIOFAB/ClothoBiofabEdition](https://github.com/BIOFAB/ClothoBiofabEdition) | 9 | Java | Synthetic Biology Computer-Aided Design tool |
 
 ---
@@ -83,6 +86,41 @@ The largest AI-for-drug-discovery project in this survey. TDC is a coordinated i
 
 ---
 
+#### gyorilab/indra — Integrated Network and Dynamical Reasoning Assembler (223 ⭐)
+
+INDRA is an automated model assembly system that interfaces with NLP systems and databases to collect and integrate biological knowledge into mechanistic models. It serves as a bridge between the literature and computational biology — extracting causal relationships from text and combining them with pathway data to build executable models.
+
+**Recent open issues (as of September 2026):**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| Ongoing | Preprint/MTL (Mechanism Timeline Language) format updates | Standards — evolving model representation formats |
+| Ongoing | Upgrade to use RAF (Regulation Activity Framework) for more precise causal modeling | Feature — improved causal reasoning |
+| Ongoing | Integration with ASICS (Automated System for Inducing Causal Scientific knowledge) | Feature — NLP pipeline improvements |
+
+**Takeaway:** INDRA's community is focused on **improving the precision of causal relationship extraction** from the literature and **standardizing model formats** (MTL, RAF). The project sits at the critical intersection of NLP and systems biology — as LLMs improve, INDRA's role in grounding language models with mechanistic, evidence-based knowledge becomes increasingly important. Its 223-star count reflects strong adoption in the computational biology modeling community.
+
+---
+
+#### pysb/pysb — Python Systems Biology Modeling Framework (199 ⭐)
+
+PySB (pronounced "Pie Ess Bee") is a framework for building rule-based mathematical models of biochemical systems. It works with the scientific Python stack (NumPy, SciPy, SymPy) for model simulation and analysis. It's the backbone of the BioNetGen/NFsim modeling ecosystem and supports SBML export.
+
+**Recent open issues (as of September 2026):**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #604 | Error exporting to SBML when compartment size is an Expression | Bug — SBML export edge case |
+| #598 | sympy dependency issue: sympy<1.12,>=1.6 | Bug — dependency version pinning conflict |
+| #592 | Fails to simulate an SBML model ("Species does not have a compartment attribute!") | Bug — SBML import compatibility |
+| #578 | Exception: BioNetGen was not found in the default search path(s) | Bug — external tool integration |
+| #577 | `test_bng_boolean_multiply_number` fails with SymPy 1.12 | Bug — compatibility with newer SymPy |
+| #573 | SBML export annotations | Feature — better SBML metadata support |
+
+**Takeaway:** PySB's issues reveal a community struggling with **dependency version conflicts** (SymPy 1.12 compatibility) and **SBML import/export edge cases**. The frequent appearance of BioNetGen integration bugs (#578, #577) suggests that the interface between PySB and its underlying BioNetGen engine is a fragile point. The SBML export issues (#604, #592, #573) point to ongoing challenges in maintaining standards compliance as the SBML specification evolves. This project is a bellwether for the broader systems biology modeling ecosystem — when PySB sneezes, the whole community catches a cold.
+
+---
+
 #### SynBioHub/synbiohub — Design sharing platform (84 ⭐, actively maintained)
 
 SynBioHub is the community's primary web-based repository for sharing synthetic biology designs, supporting SBOL import/export and deployment via Docker. It hosts the complete iGEM Registry of Standard Biological Parts via a public instance at synbiohub.org.
@@ -108,6 +146,34 @@ SynBioHub is the community's primary web-based repository for sharing synthetic 
 **Recent open issues:** No open issues as of the last check — suggesting the project is in a stable, production-ready state, with the core predictive pipeline considered finished. Contact is required for enterprise licensing and pre-packaged databases.
 
 **Takeaway:** The sheer scope of the platform (10+ modules from NLP to patent search to cost modeling) makes it one of the most ambitious open-source bioengineering projects, but it also means the community is small and enterprise-oriented rather than broadly contributor-friendly.
+
+---
+
+#### sjn-software/SJTU-software-CASPIA — AI-Powered Synthetic Biology Platform (13 ⭐, iGEM 2025)
+
+**CASPIA (Cell-Automated Synthetic Pathway Intelligent Architecture)** is an integrated AI-native software platform developed by Team SJTU-Software for the iGEM 2025 competition. It represents the cutting edge of AI-driven synthetic biology — unifying automated genome-scale modeling, high-precision parameter prediction, intelligent agent orchestration, and vision-enhanced literature retrieval into a single platform.
+
+**Key modules:**
+
+- **CASPIAgent** — Natural-language-driven AI agent that plans and executes complex toolchains for gene annotation, model construction, parameter completion, and strain design optimization. Supports vLLM-based deployments (Qwen, DeepSeek, OpenAI-compatible models).
+- **GEMFactory** — End-to-end automated pipeline: raw genome → parameterized GEM (ecGEM/etcGEM). Integrates GeneMarkS, Diamond, CarveMe, and CASPred predictions. Supports FBA, FSEOF, OptKnock optimization strategies.
+- **CASPred** — High-precision predictive engine for missing kinetic/thermodynamic parameters (kcat, Topt). Multimodal architecture combining ESMC-300M protein sequence embeddings and GVP structural features.
+- **CASPIA-RAG** — Vision-enhanced Retrieval-Augmented Generation for scientific literature. PDF → Markdown parsing with figure/table extraction, image captioning, ChromaDB vector storage, and cross-attention re-ranking.
+- **Tasks Monitor** — Real-time dashboard for tracking CASPIA computational workflows.
+
+**Recent open issues:** No open issues found — the project is very new (iGEM 2025) and in active development. The roadmap shows planned features including Docker containerization, cloud deployment, multi-language UI, dynamic modeling (ODE/DAE), and multi-omics integration.
+
+**Takeaway:** CASPIA is arguably the most ambitious AI-integrated synbio platform on GitHub right now. It directly addresses the "fragmented toolchain" problem by unifying genome-to-model pipelines, parameter prediction, and literature QA into a single natural-language-accessible interface. Its iGEM 2025 origin means it's cutting-edge but also means it's student-built and may not have the long-term maintenance trajectory of community-driven projects. The roadmap (dynamic modeling, multi-omics, cloud deployment) signals where the field is heading. CASPIA is a strong case study for the "AI-native bioengineering" narrative.
+
+---
+
+#### CIDARLAB/Cello-v2-1-Core — Genetic Circuit Design from Verilog (21 ⭐)
+
+Cello 2.1 is a streamlined algorithm for designing genetic circuits based on logic gate designs written in the Verilog format. It executes through the command-line interface, handling single-cellular partitioning with multiple-output support, generating results saved locally with verbose logging. A GUI is planned for future release.
+
+**Recent open issues:** No open issues found — the repository is actively maintained but the issue tracker may be managed through the broader CIDARLAB organization. The project has a Docker image available on Docker Hub (`ckrenz/cello-core-v2-1`).
+
+**Takeaway:** Cello represents a unique approach — borrowing from electronic design automation (EDA) by using Verilog as the input language for genetic circuits. This "hardware meets biology" paradigm is powerful: it lets circuit designers use familiar EDA tools (Yosys, Graphviz) to design biological systems. The integration with Oriole for multi-cellular partitioning is a notable roadmap item. The lack of open issues suggests a stable, focused tool — but also a small community of contributors.
 
 ---
 
@@ -156,7 +222,7 @@ libSBOLj provides the core Java interfaces and implementation for the Synthetic 
 | #621 | Invalid reporting of error sbol-11003 | Bug — validation error reporting is incorrect/misleading |
 | #620 | displayID truncation in LOCUS field of GenBank conversions | Bug — data loss during format conversion |
 
-**Takeaway:** All three open issues are from 2021 and center on **GenBank format handling** — parsing failures with poor error messages, validation error codes that don't accurately describe the problem, and data truncation during conversion. This reveals a pattern: libSBOLj's weakest point is **interoperability with external format converters** (GenBank in particular). Since libSBOLj is the reference implementation for SBOL, bugs here ripple across the entire ecosystem. TheApache-2.0 license and active maintainers (jakebeal) suggest these will eventually be fixed, but the nearly 5-year-old open issues indicate slow progress.
+**Takeaway:** All three open issues are from 2021 and center on **GenBank format handling** — parsing failures with poor error messages, validation error codes that don't accurately describe the problem, and data truncation during conversion. This reveals a pattern: libSBOLj's weakest point is **interoperability with external format converters** (GenBank in particular). Since libSBOLj is the reference implementation for SBOL, bugs here ripple across the entire ecosystem. The Apache-2.0 license and active maintainers (jakebeal) suggest these will eventually be fixed, but the nearly 5-year-old open issues indicate slow progress.
 
 ---
 
@@ -280,7 +346,7 @@ A wider search across GitHub for `synthetic biology bioinformatics is:issue is:o
 | **Daily paper / literature tracking** | Multiple repos auto-posting daily ArXiv paper digests (protein structure AI, multimodal, bioRxiv) | The community is saturated with ML-for-biology preprints; tools to filter and prioritize are in demand |
 | **Gene regulatory network inference** | [DeCovarT](https://github.com/bastienchassagnol/DeCovarT) — "in silico inference of gene regulatory networks" (enhancement label, active) | Computational biology methods for GRN inference are still actively developing |
 | **Protein structure & conformational landscapes** | [SKM](https://github.com/delalamo/SKM) — "synthetic sequence alignments as programmable probes of learned conformational landscapes" | Deep learning protein structure prediction is being probed with synthetic sequences — a synthetic biology + ML crossover |
-| **Sequence design & editing** | [pydurma](https://github.com/buda-base/pydurma) — "reolocation (transposition) mode: detect and represent moved blocks" | Genomic sequence manipulation tooling is expanding beyond simple editing |
+| **Sequence design & editing** | [pydurma](https://github.com/buda-base/pydurma) — "relocation (transposition) mode: detect and represent moved blocks" | Genomic sequence manipulation tooling is expanding beyond simple editing |
 | **Job market & career resources** | [phjobs](https://github.com/pmuangpi-creator/phjobs) — daily biotech/pharma job digests with 88 comments | The biotech talent market is a hot topic; community sustains active discussion |
 
 ---
@@ -296,11 +362,13 @@ Across these projects, the synbio/biotech open-source community is currently foc
 5. **Stable enterprise-oriented platforms vs. community-friendly ones** — 20n/act has zero open issues but requires enterprise licensing; Chai Bio's open-source software doesn't extend to hardware schematics. This tension between open-source ideals and practical deployment runs throughout the ecosystem.
 6. **Deployment & DevOps gaps** — Virtuoso database migrations, Docker image complexity (SynBioHub requires Virtuoso, Maven, Node, etc.) — these barriers push away potential contributors and users who just want to run the tool.
 7. **Stalled academic projects** — BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy with zero open issues but no active maintenance. The "publish and abandon" pattern is prevalent in university synbio software.
-8. **ML + sequence design convergence** — ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, SKM's conformational landscape probing, and the broader ecosystem point to an accelerating intersection of machine learning and biological design automation.
+8. **ML + sequence design convergence** — ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, CASPIA's AI-native platform, SKM's conformational landscape probing, and the broader ecosystem point to an accelerating intersection of machine learning and biological design automation.
 9. **Open hardware vs. open software divide** — Chai Bio released qPCR software as open source but keeps hardware schematics closed, revealing a gap in the open-science philosophy when commercial interests are involved.
 10. **Information overload & literature tracking** — The explosion of daily ArXiv/bioRxiv preprints in ML-for-biology has created demand for automated paper digests, filtering tools, and prioritized reading lists. Multiple community-maintained daily-paper repos indicate this is a real pain point.
 11. **Biotech talent pipeline** — The Biotech-Job-Search-Engine and phjobs repos show that career discovery and job market navigation are active concerns for the community, especially as roles span "Computational Biologist," "Bioinformatics Scientist," "Data Scientist," and more.
 12. **FHIR/health-data standardization** — Synthea's issues around FHIR R4 export bugs and US Core compliance point to healthcare data interoperability as a live concern even in synthetic data generation tools, with implications for any tool that touches clinical or health-related data.
+13. **AI-native bioengineering platforms** — CASPIA represents a new wave: fully integrated platforms that combine genome-to-model pipelines, ML parameter prediction, natural-language AI agents, and vision-enhanced literature retrieval. The question is whether these student-built platforms can transition to sustained community maintenance.
+14. **Dependency & compatibility hell** — PySB's SymPy 1.12 breakages, iBioSim's Java runtime crashes, and GENtle2's ancient UI bugs all point to the same underlying problem: scientific software teams are small and rarely prioritize dependency management and cross-platform testing.
 
 ---
 
@@ -314,6 +382,9 @@ Across these projects, the synbio/biotech open-source community is currently foc
 - **Autodesk Bio/Nano/Protospace** — Surprise entry! Autodesk's wet-lab-accelerator tool shows big-design-interest in synbio protocol automation
 - **klavinslab** — University of Washington lab; contributes Coral framework for synbio design processes
 - **MIMS/Harvard (Marinka Zitnik's lab)** — Produces TDC; the largest and most active community in therapeutics ML
+- **gyorilab** — Produces INDRA; automated model assembly from NLP + biological databases
+- **sjt-software (Shanghai Jiao Tong University)** — Produced CASPIA for iGEM 2025; AI-native synbio platform
+- **CIDARLAB** — Produces Cello; genetic circuit design from Verilog logic; founded by Douglas Densmore at Boston University
 - **synthetichealth** — Produces Synthea; the largest synbio-adjacent project by stars, focused on synthetic patient data
 - **Chai Bio** — Produces chaipcr; open-hardware science instrumentation (with limitations)
 - **websemantics** — Curates the awesome-synthetic-biology list; community front door for the field
@@ -332,7 +403,8 @@ Across these projects, the synbio/biotech open-source community is currently foc
 | [virtualramblas/awesome-deep-learning-4-life-sciences](https://github.com/virtualramblas/awesome-deep-learning-4-life-sciences) | 167 | Curated list of deep-learning resources for biotech & pharma |
 | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | 1,283 | Therapeutics Data Commons — ML benchmark suite for drug discovery |
 | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | 3,342 | Synthetic patient population simulator for EHR modeling & health analytics |
-| [llSourcell/Learn_Synthetic_Biology](https://github.com/llSourcell/Learn_Synthetic_Biology) | 157 | Educational resources for getting started in synbio |
+| [gyorilab/indra](https://github.com/gyorilab/indra) | 223 | Automated model assembly from NLP + databases for systems biology |
+| [pysb/pysb](https://github.com/pysb/pysb) | 199 | Python framework for rule-based systems biology modeling |
 | [dportik/Biotech-Job-Search-Engine](https://github.com/dportik/Biotech-Job-Search-Engine) | 81 | Open-source job-discovery for biotech, genomics & bioinformatics roles |
 
 ---
@@ -365,6 +437,10 @@ episode-scripts-archive/
 - [TDC Website](https://tdcommons.ai) — Therapeutics Data Commons portal
 - [Synthea](https://synthetichealth.github.io/synthea/) — Synthetic patient population simulator
 - [iBioSim](http://www.ibiosim.org/) — Genetic circuit CAD tool
+- [PySB](http://pysb.org/) — Python systems biology modeling framework
+- [INDRA](https://github.com/gyorilab/indra) — Integrated Network and Dynamical Reasoning Assembler
+- [CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) — AI-powered synbio platform (iGEM 2025)
+- [Cello](https://github.com/CIDARLAB/Cello-v2-1-Core) — Genetic circuit design from Verilog
 - [SBOL Specification](https://sbolstandard.org/) — Synthetic Biology Open Language standard
 - [TISIGNER](http://tignamer.com/) — Interactive synbio design
 - [GENtle2](https://synbiota.com) — Web DNA editor
