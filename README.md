@@ -23,6 +23,7 @@ This archive keeps a running snapshot of the GitHub-based **synthetic biology (s
 
 | Project | Stars | Language | What it does |
 |---|---|---|---|
+| [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | 3,342 | Java | Synthetic patient population simulator for health analytics & EHR modeling |
 | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | 1,283 | Jupyter Notebook | Therapeutics Data Commons — multimodal ML foundation for drug discovery |
 | [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | 223 | (list) | Curated directory of synbio projects, articles, and resources |
 | [virtualramblas/awesome-deep-learning-4-life-sciences](https://github.com/virtualramblas/awesome-deep-learning-4-life-sciences) | 167 | — | Curated list of deep-learning resources for biotech & pharma |
@@ -45,9 +46,26 @@ This archive keeps a running snapshot of the GitHub-based **synthetic biology (s
 
 ### 🧬 In-Depth Investigation (active repos, open issues reviewed)
 
+#### synthetichealth/synthea — Synthetic Patient Population Simulator (3,342 ⭐)
+
+The largest and most active project in this survey. Synthea generates synthetic patient populations and corresponding electronic health records (EHRs) for research, benchmarking, and software testing. It models demographics, comorbidities, medications, labs, and clinical encounters using a modular, parameterized architecture.
+
+**Recent open issues (as of September 2026):**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #1700 | Proposal: stable de-identified export manifest for downstream benchmarks | Feature — standardization for benchmarking |
+| #1703 | CSV SYSTEM column depends on whether FHIR export is enabled | Bug — data consistency across export formats |
+| #1702 | FHIR R4 allergy export loses reaction severity by mutating a HashMap key | Bug — data corruption in FHIR export |
+| #1365 | US Core 3.1 | Feature — compliance with latest US Core FHIR spec |
+
+**Takeaway:** Synthea's issues reveal a community focused on **data consistency across export formats** (CSV vs FHIR), **standardization for benchmarking** (stable export manifests), and **regulatory compliance** (US Core 3.1). The HashMap key mutation bug (#1702) is particularly concerning — it silently corrupts allergy reaction severity data in FHIR R4 exports, which could affect downstream clinical research. The relatively small number of open issues (4) vs. the project's massive adoption (3,342 stars) suggests a small, efficient maintainer team, but also potentially thin coverage for edge cases.
+
+---
+
 #### mims-harvard/TDC — Therapeutics Data Commons (1,283 ⭐)
 
-The largest and most active project in this survey. TDC is a coordinated initiative to access and evaluate AI capability across therapeutic modalities and stages of discovery. It provides ready-to-use datasets, data functions, leaderboards, and benchmarks for ML-driven drug discovery.
+The largest AI-for-drug-discovery project in this survey. TDC is a coordinated initiative to access and evaluate AI capability across therapeutic modalities and stages of discovery. It provides ready-to-use datasets, data functions, leaderboards, and benchmarks for ML-driven drug discovery.
 
 **Recent open issues (as of September 2026):**
 
@@ -126,6 +144,22 @@ iBioSim is a CAD tool for modeling, analysis, and design of genetic circuits, wi
 
 ---
 
+#### SynBioDex/libSBOLj — SBOL Java Library (43 ⭐, actively maintained)
+
+libSBOLj provides the core Java interfaces and implementation for the Synthetic Biology Open Language (SBOL) specification. It offers an API for working with SBOL objects, read/write SBOL documents as XML/RDF, and a validator for checking the correctness of SBOL models. It is the reference Java implementation for SBOL and underpins many other tools in the ecosystem.
+
+**Recent open issues:**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #623 | Opaque failure while reading GenBank | Bug — unclear error messages when parsing malformed GenBank files |
+| #621 | Invalid reporting of error sbol-11003 | Bug — validation error reporting is incorrect/misleading |
+| #620 | displayID truncation in LOCUS field of GenBank conversions | Bug — data loss during format conversion |
+
+**Takeaway:** All three open issues are from 2021 and center on **GenBank format handling** — parsing failures with poor error messages, validation error codes that don't accurately describe the problem, and data truncation during conversion. This reveals a pattern: libSBOLj's weakest point is **interoperability with external format converters** (GenBank in particular). Since libSBOLj is the reference implementation for SBOL, bugs here ripple across the entire ecosystem. TheApache-2.0 license and active maintainers (jakebeal) suggest these will eventually be fixed, but the nearly 5-year-old open issues indicate slow progress.
+
+---
+
 #### Autodesk/bionano-wetLabAccelerator — Visual wet-lab protocol designer (32 ⭐)
 
 A tool for researchers working in synthetic biology and virology to design robotic wet lab protocols using a visual UI without coding. Users create protocols from scratch or use templates, set up each step with graphical visualizations of wet lab containers, and interact with results through dynamic visualizations. Generates vendor-specific code and verifies it.
@@ -176,7 +210,7 @@ A versatile Java toolkit that integrates multiple modules for synthetic biology 
 
 #### SASTRA-iGEM2019/ToeholdSwitchDesign — RNA device design tools (0 ⭐)
 
-Three open-source tools for machine-learning-based design of RNA devices (toehold switches): GrammarParser for sequence domain parsing, predict_linear for efficacy prediction using engineered features, and nn_model for neural-network-based prediction. Includes an end-to-end bash pipeline and a curated dataset of 228 toehold instances.
+Three open-source tools for machine-learning-based design of RNA devices (toehold switches): GrammarParser for sequence domain parsing, predict_linear for efficacy prediction using engineered features, and nn_model for neural-network-based prediction. Includes an end-to-end bash pipeline and a curated dataset of 228 toehold instances. Published in *Synthetic and Systems Biotechnology* (2022).
 
 **Recent open issues:** No open issues found — the repository is very small and appears to be a completed academic project (iGEM 2019). The tools are well-documented with a video demo and published paper reference.
 
@@ -246,7 +280,7 @@ A wider search across GitHub for `synthetic biology bioinformatics is:issue is:o
 | **Daily paper / literature tracking** | Multiple repos auto-posting daily ArXiv paper digests (protein structure AI, multimodal, bioRxiv) | The community is saturated with ML-for-biology preprints; tools to filter and prioritize are in demand |
 | **Gene regulatory network inference** | [DeCovarT](https://github.com/bastienchassagnol/DeCovarT) — "in silico inference of gene regulatory networks" (enhancement label, active) | Computational biology methods for GRN inference are still actively developing |
 | **Protein structure & conformational landscapes** | [SKM](https://github.com/delalamo/SKM) — "synthetic sequence alignments as programmable probes of learned conformational landscapes" | Deep learning protein structure prediction is being probed with synthetic sequences — a synthetic biology + ML crossover |
-| ** sequence design & editing** | [pydurma](https://github.com/buda-base/pydurma) — "relocation (transposition) mode: detect and represent moved blocks" | Genomic sequence manipulation tooling is expanding beyond simple editing |
+| **Sequence design & editing** | [pydurma](https://github.com/buda-base/pydurma) — "reolocation (transposition) mode: detect and represent moved blocks" | Genomic sequence manipulation tooling is expanding beyond simple editing |
 | **Job market & career resources** | [phjobs](https://github.com/pmuangpi-creator/phjobs) — daily biotech/pharma job digests with 88 comments | The biotech talent market is a hot topic; community sustains active discussion |
 
 ---
@@ -266,6 +300,7 @@ Across these projects, the synbio/biotech open-source community is currently foc
 9. **Open hardware vs. open software divide** — Chai Bio released qPCR software as open source but keeps hardware schematics closed, revealing a gap in the open-science philosophy when commercial interests are involved.
 10. **Information overload & literature tracking** — The explosion of daily ArXiv/bioRxiv preprints in ML-for-biology has created demand for automated paper digests, filtering tools, and prioritized reading lists. Multiple community-maintained daily-paper repos indicate this is a real pain point.
 11. **Biotech talent pipeline** — The Biotech-Job-Search-Engine and phjobs repos show that career discovery and job market navigation are active concerns for the community, especially as roles span "Computational Biologist," "Bioinformatics Scientist," "Data Scientist," and more.
+12. **FHIR/health-data standardization** — Synthea's issues around FHIR R4 export bugs and US Core compliance point to healthcare data interoperability as a live concern even in synthetic data generation tools, with implications for any tool that touches clinical or health-related data.
 
 ---
 
@@ -279,11 +314,13 @@ Across these projects, the synbio/biotech open-source community is currently foc
 - **Autodesk Bio/Nano/Protospace** — Surprise entry! Autodesk's wet-lab-accelerator tool shows big-design-interest in synbio protocol automation
 - **klavinslab** — University of Washington lab; contributes Coral framework for synbio design processes
 - **MIMS/Harvard (Marinka Zitnik's lab)** — Produces TDC; the largest and most active community in therapeutics ML
+- **synthetichealth** — Produces Synthea; the largest synbio-adjacent project by stars, focused on synthetic patient data
 - **Chai Bio** — Produces chaipcr; open-hardware science instrumentation (with limitations)
 - **websemantics** — Curates the awesome-synthetic-biology list; community front door for the field
 - **BIOFAB** — Early contributor to web-based synbio CAD tools; experimental but historically significant
 - **SynBioCAD** — Community effort around SBOL-based web CAD tooling; stalled but conceptually important
 - **SASTRA-iGEM** — iGEM team example of small, focused, well-documented scientific computing tools
+- **Sysu Software** — Chinese academic group; produced the comprehensive BiArkit toolkit
 
 ---
 
@@ -294,6 +331,7 @@ Across these projects, the synbio/biotech open-source community is currently foc
 | [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | 223 | Curated list of synbio projects, articles, and resources |
 | [virtualramblas/awesome-deep-learning-4-life-sciences](https://github.com/virtualramblas/awesome-deep-learning-4-life-sciences) | 167 | Curated list of deep-learning resources for biotech & pharma |
 | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | 1,283 | Therapeutics Data Commons — ML benchmark suite for drug discovery |
+| [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | 3,342 | Synthetic patient population simulator for EHR modeling & health analytics |
 | [llSourcell/Learn_Synthetic_Biology](https://github.com/llSourcell/Learn_Synthetic_Biology) | 157 | Educational resources for getting started in synbio |
 | [dportik/Biotech-Job-Search-Engine](https://github.com/dportik/Biotech-Job-Search-Engine) | 81 | Open-source job-discovery for biotech, genomics & bioinformatics roles |
 
@@ -325,6 +363,7 @@ episode-scripts-archive/
 - [SynBioHub Wiki](https://wiki.synbiohub.org) — Installation & API docs
 - [20n/act Wiki](https://github.com/20n/act/wiki) — Predictive bioengineering docs
 - [TDC Website](https://tdcommons.ai) — Therapeutics Data Commons portal
+- [Synthea](https://synthetichealth.github.io/synthea/) — Synthetic patient population simulator
 - [iBioSim](http://www.ibiosim.org/) — Genetic circuit CAD tool
 - [SBOL Specification](https://sbolstandard.org/) — Synthetic Biology Open Language standard
 - [TISIGNER](http://tignamer.com/) — Interactive synbio design
