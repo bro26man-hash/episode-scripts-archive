@@ -29,18 +29,17 @@ This archive keeps a running snapshot of the GitHub-based **synthetic biology (s
 | [Synbiota/GENtle2](https://github.com/Synbiota/GENtle2) | 106 | JavaScript | Web-based DNA editor for synthetic biology |
 | [chaibio/chaipcr](https://github.com/chaibio/chaipcr) | 96 | C++ | Software behind Chai's open-source Real-Time PCR instrument |
 | [20n/act](https://github.com/20n/act) | 92 | Java | Predictive bioengineering — discovers DNA routes to make target chemicals |
-| [dportik/Biotech-Job-Search-Engine](https://github.com/dportik/Biotech-Job-Search-Engine) | 81 | Python | Open-source job-discovery for biotech, genomics & bioinformatics roles |
 | [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) | 84 | JavaScript | Web platform for browsing, uploading & sharing synthetic biology designs |
+| [dportik/Biotech-Job-Search-Engine](https://github.com/dportik/Biotech-Job-Search-Engine) | 81 | Python | Open-source job-discovery for biotech, genomics & bioinformatics roles |
 | [JBEI/ART](https://github.com/JBEI/ART) | 66 | Jupyter Notebook | ML tool to improve strain engineering effectiveness |
 | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 | Java | CAD for genetic circuits; SBML/SBOL support |
 | [Autodesk/bionano-wetLabAccelerator](https://github.com/Autodesk/bionano-wetLabAccelerator) | 32 | JavaScript | Designs robotic wet-lab protocols via visual UI (no coding) |
 | [klavinslab/coral](https://github.com/klavinslab/coral) | 32 | Python | Library & framework for specifying synbio design processes |
 | [SynBioDex/libSBOLj](https://github.com/SynBioDex/libSBOLj) | 43 | Java | Java library for the Synthetic Biology Open Language (SBOL) |
 | [Gardner-BinfLab/TISIGNER-ReactJS](https://github.com/Gardner-BinfLab/TISIGNER-ReactJS) | 30 | JavaScript | TISIGNER: interactive synbio design tool |
-| [SynBioDex/SBOL-specification](https://github.com/SynBioDex/SBOL-specification) | 23 | TeX | The Synthetic Biology Open Language specification |
-| [BIOFAB/ClothoBiofabEdition](https://github.com/BIOFAB/ClothoBiofabEdition) | 9 | Java | Synthetic Biology Computer-Aided Design tool |
-| [SynBioCAD/biocad](https://github.com/SynBioCAD/biocad) | 16 | JavaScript | Web-based CAD tool for synthetic biology built on SBOL standard |
 | [KOSASIH/ecobio-remediatech-core](https://github.com/KOSASIH/ecobio-remediatech-core) | 26 | Python | EcoBio Remediatech — environmental bioengineering algorithms |
+| [SynBioCad/biocad](https://github.com/SynBioCAD/biocad) | 16 | JavaScript | Web-based CAD tool for synthetic biology built on SBOL standard |
+| [BIOFAB/ClothoBiofabEdition](https://github.com/BIOFAB/ClothoBiofabEdition) | 9 | Java | Synthetic Biology Computer-Aided Design tool |
 
 ---
 
@@ -189,9 +188,9 @@ Three open-source tools for machine-learning-based design of RNA devices (toehol
 
 An experimental synthetic biology CAD tool based on open web standards (JavaScript, HTML 5, CSS 3). A platform for rapid deployment of CAD algorithms being developed at the BIOFAB. Also houses the Data Access Client for BIOFAB's electronic datasheets.
 
-**Recent open issues:** No open issues found. The repository appears to be in a stable or archived state, with no active issue tracking. The source includes Python scripts and a NetBeans project structure, suggesting a mixed Python/Java development history.
+**Recent open issues:** No issues found. The repository appears to be in a stable or archived state, with no active issue tracking.
 
-**Takeaway:** BIOFAB's experimental approach to web-based CAD tooling didn't sustain long-term community engagement. The lack of issues could mean the project was absorbed into other BIOFAB tools or superseded by more modern frameworks. It's historically significant as an early attempt at browser-based synbio design.
+**Takeaway:** BIOFAB's experimental approach to web-based CAD tooling didn't sustain long-term community engagement. The lack of issues could mean the project was absorbed into other BIOFAB tools or superseded by more modern frameworks.
 
 ---
 
@@ -208,11 +207,47 @@ The software platform powering Chai's line of Real-Time PCR Thermocyclers, inclu
 | #102 | Can't set up a new account after factory reset | User management / device setup |
 | #101 | Can I use PuTTY to login to the instrument? | Feature request — developer access |
 | #44 | Open Hardware Schematics | Feature request — hardware openness |
-| #1 | Ability to jump out of cycling stage early | Feature request — device control |
-| #2 | Ability to pause in-progress run | Feature request — device control |
-| #3 | disable run failure on lid opening | Feature request — device safety |
+| #1–#3 | Feature requests (early exit from cycling, pause, lid-opening safety) | Feature request — device control (unimplemented since 2016) |
 
 **Takeaway:** The issues reveal a tension between the open-source software philosophy and the physical hardware reality. Issues #1–#3 (from 2016) are feature requests that were never implemented, while #104–#105 (from 2026) are infrastructure problems. The open-hardware schematics request (#44) remains unanswered — a gap between the open-source software and the closed hardware design. Chai Bio's commercial venture (Open qPCR) doesn't seem to give back to the open-source community proportionally.
+
+---
+
+#### dportik/Biotech-Job-Search-Engine — Open-source biotech career discovery (81 ⭐)
+
+A personalized job-search engine for biotech and life-science careers that searches company career pages directly, ranks openings against your background, and learns from the jobs you actually apply to. Built for people in bioinformatics, computational biology, genomics, sequencing, data science, microbiome, translational research, diagnostics, and adjacent life-science fields.
+
+**How it works:** Resume → Search Profile → Company Career Sites → ATS Collectors + Normalization → Scoring Engine → Ranked Matches + SQLite History → Human Calibration → Improved Profile / Scoring.
+
+**Key features:**
+- Searches major ATS platforms (Workday, Greenhouse, Lever, Ashby, Oracle, iCIMS, SmartRecruiters, Jobvite, ADP, etc.)
+- Personalized scoring based on role fit, seniority, scientific domains, technical skills, geography, and explicit positive/negative signals
+- Calibration workflow: rate real jobs (1–5 interest, Yes/Maybe/No apply), then back-test scoring changes against actual decisions
+- SQLite history for deduplication across searches
+- GitHub Actions workflow for automated daily searches with email alerts
+
+**Recent open issues:**
+
+| Issue | Summary | Theme |
+|---|---|---|
+| #3 | HTML Descriptions are multiline which confuses CSV | Bug — data parsing / output format |
+| #2 | Is score supposed to be in ranked_jobs.csv? | UX — output clarity / documentation gap |
+
+**Takeaway:** Only 2 open issues, both from the initial user feedback phase — the tool is relatively mature for its niche. The issues point to a need for better output documentation and CSV handling for multi-line HTML descriptions. This project fills a unique niche: it's not a synbio *design* tool, but it addresses the biotech talent pipeline that feeds the entire ecosystem.
+
+---
+
+### 🌐 Broader GitHub Issues Landscape
+
+A wider search across GitHub for `synthetic biology bioinformatics is:issue is:open` returned **104 results**, revealing additional community activity patterns:
+
+| Theme | Examples | What it tells us |
+|---|---|---|
+| **Daily paper / literature tracking** | Multiple repos auto-posting daily ArXiv paper digests (protein structure AI, multimodal, bioRxiv) | The community is saturated with ML-for-biology preprints; tools to filter and prioritize are in demand |
+| **Gene regulatory network inference** | [DeCovarT](https://github.com/bastienchassagnol/DeCovarT) — "in silico inference of gene regulatory networks" (enhancement label, active) | Computational biology methods for GRN inference are still actively developing |
+| **Protein structure & conformational landscapes** | [SKM](https://github.com/delalamo/SKM) — "synthetic sequence alignments as programmable probes of learned conformational landscapes" | Deep learning protein structure prediction is being probed with synthetic sequences — a synthetic biology + ML crossover |
+| ** sequence design & editing** | [pydurma](https://github.com/buda-base/pydurma) — "relocation (transposition) mode: detect and represent moved blocks" | Genomic sequence manipulation tooling is expanding beyond simple editing |
+| **Job market & career resources** | [phjobs](https://github.com/pmuangpi-creator/phjobs) — daily biotech/pharma job digests with 88 comments | The biotech talent market is a hot topic; community sustains active discussion |
 
 ---
 
@@ -227,8 +262,10 @@ Across these projects, the synbio/biotech open-source community is currently foc
 5. **Stable enterprise-oriented platforms vs. community-friendly ones** — 20n/act has zero open issues but requires enterprise licensing; Chai Bio's open-source software doesn't extend to hardware schematics. This tension between open-source ideals and practical deployment runs throughout the ecosystem.
 6. **Deployment & DevOps gaps** — Virtuoso database migrations, Docker image complexity (SynBioHub requires Virtuoso, Maven, Node, etc.) — these barriers push away potential contributors and users who just want to run the tool.
 7. **Stalled academic projects** — BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy with zero open issues but no active maintenance. The "publish and abandon" pattern is prevalent in university synbio software.
-8. **ML + sequence design convergence** — ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, and the broader ecosystem point to an accelerating intersection of machine learning and biological design automation.
+8. **ML + sequence design convergence** — ART's ML for strain engineering, iBioSim's circuit design, TDC's therapeutic benchmarks, SKM's conformational landscape probing, and the broader ecosystem point to an accelerating intersection of machine learning and biological design automation.
 9. **Open hardware vs. open software divide** — Chai Bio released qPCR software as open source but keeps hardware schematics closed, revealing a gap in the open-science philosophy when commercial interests are involved.
+10. **Information overload & literature tracking** — The explosion of daily ArXiv/bioRxiv preprints in ML-for-biology has created demand for automated paper digests, filtering tools, and prioritized reading lists. Multiple community-maintained daily-paper repos indicate this is a real pain point.
+11. **Biotech talent pipeline** — The Biotech-Job-Search-Engine and phjobs repos show that career discovery and job market navigation are active concerns for the community, especially as roles span "Computational Biologist," "Bioinformatics Scientist," "Data Scientist," and more.
 
 ---
 
@@ -257,10 +294,12 @@ Across these projects, the synbio/biotech open-source community is currently foc
 | [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | 223 | Curated list of synbio projects, articles, and resources |
 | [virtualramblas/awesome-deep-learning-4-life-sciences](https://github.com/virtualramblas/awesome-deep-learning-4-life-sciences) | 167 | Curated list of deep-learning resources for biotech & pharma |
 | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | 1,283 | Therapeutics Data Commons — ML benchmark suite for drug discovery |
+| [llSourcell/Learn_Synthetic_Biology](https://github.com/llSourcell/Learn_Synthetic_Biology) | 157 | Educational resources for getting started in synbio |
+| [dportik/Biotech-Job-Search-Engine](https://github.com/dportik/Biotech-Job-Search-Engine) | 81 | Open-source job-discovery for biotech, genomics & bioinformatics roles |
 
 ---
 
-## 📂 Proposed Archive Structure
+## 📂 Archive Structure
 
 ```
 episode-scripts-archive/
