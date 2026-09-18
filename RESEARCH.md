@@ -1,147 +1,299 @@
-# 🔬 Synthetic Biology & Biotech Software Tools — Research Findings
+# 🔬 Detailed Research Notes — Synbio & Biotech Software Tools
 
-> **Surveyd September 2026** — A snapshot of open issues and community concerns across key synbio/biotech open-source projects on GitHub. This document was compiled as research for the *episode-scripts-archive* project.
+## Survey Methodology
+
+1. **Repository Discovery** — Searched GitHub with queries: `synthetic biology`, `biotech software tools bioinformatics`, `synthbio CAD biology design`
+2. **Star-Ranked Analysis** — Identified top projects by community engagement (stars, forks, recent activity)
+3. **Open-Issue Triage** — Reviewed recent open issues across 10+ repositories, sorted by last-updated date
+4. **Deep-Dive Inspection** — Examined detailed issue threads on the most-reported bugs (SynBioHub #1753, iBioSim #637)
+5. **Commit-Activity Analysis** — Reviewed recent commits on the two most actively maintained repos (SynBioHub v1: 5 commits/week; iBioSim: steady monthly fixes)
 
 ---
 
-## 🏆 Synthesized Landscape — High-Activity / High-Relevance Tools
+## Repository Inventory
 
-| Project | Stars | Language | What it does |
+### Tier 1: High-Impact Platforms (50+ stars, active maintenance)
+
+| Repo | Stars | Language | License | Status |
+|---|---|---|---|---|
+| [biopython/biopython](https://github.com/biopython/biopython) | 5,070 | Python | BSD | ✅ Active |
+| [google/deepvariant](https://github.com/google/deepvariant) | 3,726 | Python | Apache-2.0 | ✅ Active |
+| [nextflow-io/nextflow](https://github.com/nextflow-io/nextflow) | 3,412 | Groovy | Apache-2.0 | ✅ Active |
+| [synthea](https://github.com/synthetichealth/synthea) | 3,342 | Java | Apache-2.0 | ✅ Active |
+| [TDC](https://github.com/mims-harvard/TDC) | 1,283 | Jupyter | MIT | ✅ Active |
+| [poly](https://github.com/bebop/poly) | 737 | Go | MIT | ✅ Active |
+| [deepTools](https://github.com/deeptools/deepTools) | 765 | Python | GPL-3.0 | ✅ Active |
+| [DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | 274 | Python | MIT | ✅ Active |
+| [awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) | 223 | — | CC-BY-4.0 | ✅ Active |
+| [GENtle2](https://github.com/Synbiota/GENtle2) | 106 | JavaScript | — | ⚠️ Stalled |
+| [act (20n)](https://github.com/20n/act) | 92 | Java/Scala | GPL-3.0 | 🔒 Internal |
+| [SynBioHub v1](https://github.com/SynBioHub/synbiohub) | 84 | JS/Java | BSD-2-Clause | 🟡 Maintenance |
+| [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) | 16 | JS/Java | BSD-2-Clause | ✅ Active (rewrite) |
+| [Cello-v2](https://github.com/CIDARLAB/Cello-v2) | 74 | Java | MIT | ✅ Active |
+| [iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 | Java | Apache-2.0 | ⚠️ Struggling |
+| [ART (JBEI)](https://github.com/JBEI/ART) | 66 | Jupyter | — | 🔒 Private code |
+
+### Tier 2: Emerging & Niche Tools (10-50 stars)
+
+| Repo | Stars | Language | Notable Feature |
 |---|---|---|---|
-| [biopython/biopython](https://github.com/biopython/biopython) | 5,070 | Python | Foundational Python toolkit for computational molecular biology |
-| [google/deepvariant](https://github.com/google/deepvariant) | 3,726 | Python | Deep-learning variant calling from NGS data |
-| [nextflow-io/nextflow](https://github.com/nextflow-io/nextflow) | 3,412 | Groovy | DSL for reproducible, scalable bioinformatics pipelines |
-| [Edinburgh-Genome-Foundry/DnaFeaturesViewer](https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer) | 690 | Python | Plot DNA sequence features from GenBank/GFF files |
-| [bebop/poly](https://github.com/bebop/poly) | 729 | Go | Go package for engineering organisms (codon optimization, primer design, synthesis fragments) |
-| [deeptools/deepTools](https://github.com/deeptools/deepTools) | 765 | Python | Process & analyze deep-sequencing data (normalization, coverage, visualization) |
-| [deeptools/HiCExplorer](https://github.com/deeptools/HiCExplorer) | 276 | Python | Process, normalize & visualize Hi-C data |
-| [Edinburgh-Genome-Foundry/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | 274 | Python | DNA sequence optimizer (expression, synthesis, mRNA constraints) |
-| [Adibvafa/CodonTransformer](https://github.com/Adibvafa/CodonTransformer) | 212 | Python | Transformer-based ML codon optimizer (2M+ downloads) |
-| [Merck/deepbgc](https://github.com/Merck/deepbgc) | 158 | Jupyter Notebook | Deep learning for Biosynthetic Gene Cluster detection |
-| [broadinstitute/viral-ngs](https://github.com/broadinstitute/viral-ngs) | 197 | Python | Command-line viral NGS toolkit (assembly, classification, phylogenetics) |
-| [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) | 84 | JavaScript | Web platform for sharing synthetic biology designs |
-| [CIDARLAB/Cello-v2](https://github.com/CIDARLAB/Cello-v2) | 74 | Java | Genetic circuit design automation (successor to the original Cello) |
-| [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 | Java | CAD for genetic circuits; SBML/SBOL support |
-| [khokao/synergetica](https://github.com/khokao/synergetica) | 118 | TypeScript | Node-based desktop app for genetic circuit design |
-| [BuildACell/bioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | 54 | Python | Modular compiler for biomolecular chemical reaction networks (SBML output) |
-| [SynBioDex/SBOLCanvas](https://github.com/SynBioDex/SBOLCanvas) | 17 | TypeScript | Web app for creation & editing of genetic constructs using the SBOL visual standard |
-| [lexO-dat/CELLM](https://github.com/lexO-dat/CELLM) | 2 | Python | AI-powered bridge between synthetic biology and natural-language processing |
+| [Coral](https://github.com/klavinslab/coral) | 32 | Python | Design-as-code framework; minimal open issues |
+| [BioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | 54 | Python | CRN compiler with TXTL cell-free support |
+| [CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | 13 | Python | AI-powered metabolic engineering |
+
+### Tier 3: Bleeding-Edge (5-15 stars)
+
+| Repo | Stars | Language | Architecture |
+|---|---|---|---|
+| [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) | 16 | JS/Java | React (Next.js) + Spring Boot (Java 17) |
+| [Syn-Zeug](https://github.com/Sheffield-iGEM/syn-zeug) | 7 | Rust + Svelte + WASM | Modern web-native toolbox |
+| [sboljs3](https://github.com/SynBioDex/sboljs3) | 7 | TypeScript | SBOL library for TS/JS apps |
 
 ---
 
-## 🧬 In-Depth Investigation — Open Issues Reviewed
+## Issue Analysis: SynBioHub v1 (8 Open Issues — Milestone SBH 1.6.2)
 
-### CIDARLAB/Cello-v2 (genetic circuit design automation)
+### Data Integrity & Export Completeness
 
-**Repo:** 874 ⭐ (original Cello), 74 ⭐ (Cello-v2) · **Language:** Java · **License:** BSD-2-Clause
+**#1756 — SubCollections does not report members in public graph**
+- Filed: Sep 3, 2026 by cjmyers (maintainer)
+- Fix already merged: commit `7c6c191` ("Fix public subcollection graph clauses")
+- **Significance:** Public graph views were hiding sub-collection members, meaning users couldn't see nested designs. The fix was immediate — maintainer is actively triaging.
 
-Cello lets users specify genetic circuits in **Verilog**, synthesizes them into logic gates, assigns experimentally characterized **TetR homologs** as NOR/NOT gates using Hill-function response curves, and then generates physical DNA sequences via the **Eugene language**. Cello-v2 is the actively maintained successor.
+**#1753 — OMEX download missing SBML file attachments**
+- Filed: Aug 21, 2026 by Gonza10V
+- 2 comments, community affected
+- **Root cause (from cjmyers):** `Model->source` is not followed to find all files during OMEX export. SBML files get orphaned because they're referenced indirectly, not as direct attachments.
+- **Proposed fix (from cjmyers):** Restructure SBML files as direct attachments of Model objects (pattern used in SynBioSuite).
+- **Significance:** This is THE interoperability bottleneck. If OMEX exports are incomplete, researchers can't reliably share designs between tools.
 
-| # | Issue | Description |
-|---|---|---|
-| #50 | Licensing question | User asks about licensing for Cello-v2 and the Docker-based DNACompiler container |
-| #49 / #48 | Login failures | Persistent inability to create accounts on hosted `cellocad.org` using Gmail addresses |
-| #47 | Sequential logic | Feature request: support for sequential (clocked) logic in Cello-v2 |
-| #26 | GFF/APE/FASTA output | Long-standing enhancement: export designs in GFF, APE, and FASTA formats |
-| #63 | Account creation (original Cello) | Same login issue on the original Cellocad platform |
+### Workflow Gaps
 
-**Takeaway:** Friction between the **open-source CLI** and the **hosted web service** — a common theme across academic synbio tooling. Users trust the community cloud but it lacks DevOps backing.
+**#1755 — Recursive download does not follow linked collections**
+- Filed: Aug 30, 2026 by cjmyers
+- Downloads don't traverse linked collection references
+- **Impact:** Researchers can't do bulk downloads of related design families
 
----
+**#1746 — Incremental updates not working with SBOLExplorer**
+- Filed: Jul 19, 2026 by cjmyers
+- Assigned to cl117
+- **Impact:** SBOLExplorer can't pull incremental updates from SynBioHub v1
 
-### BuildACell/bioCRNpyler (biomolecular CRN compiler)
+### Infrastructure & Query Capabilities
 
-**Repo:** 54 ⭐ · **Language:** Python · **License:** BSD-3-Clause
+**#1754 — Legacy data in Virtuoso should be deleted**
+- Filed: Aug 23, 2026 by cjmyers
+- **Significance:** The RDF triplestore (Virtuoso) is accumulating deprecated entries. This is a sign of aging infrastructure.
 
-BioCRNpyler compiles high-level biological part specifications (promoters, RBSs, CDSs, terminators) into **SBML chemical reaction networks**. It has first-class support for **cell-free transcription–translation (TXTL) extracts** as simulation contexts, and supports automatic CRN compilation and interactive visualization.
+**#1752 — Private-to-public visibility change resets prefix**
+- Filed: Aug 19, 2026 by cl117
+- Changing visibility from private to public resets the URI prefix from `localhost:3333` to `synbiohub.org`
+- **Impact:** Deployment friction for local instances
 
-| # | Issue | Description |
-|---|---|---|
-| #328 | TMSE companion module | Feature request: implement toehold-mediated strand displacement circuits as a "companion module" |
-| #337 | ODEint convergence failure | Bug: `ODEint` fails with "Repeated convergence failures" when using EnergyTXTL context |
-| #338 | Multi-substrate membrane components | Feature request: allow lists of multiple substrates for membrane components (i.e. transport) |
-| #333 | Naming conventions | Task: use consistent naming conventions for classes |
-| #341 | CI with bioscrape | Task: include bioscrape in CI tests |
-| #339 | Examples handling | Task: decide how to handle examples |
+**#1744 — Backend should have a mechanism to parse OR request**
+- Filed: Jul 16, 2026 by cl117
+- Backend lacks OR (logical disjunction) query parsing support
+- **Impact:** Limited query expressiveness compared to modern APIs
 
-**Takeaway:** The project is actively expanding toward **RNA-based devices** (TMSE module bridges into the toehold-switch toolchain from SASTRA-iGEM) and **cell-free expression** (EnergyTXTL), with growing pains around internal consistency and CI maturity.
-
----
-
-### SynBioDex/SBOLCanvas (SBOL-based genetic construct editor)
-
-**Repo:** 17 ⭐ · **Language:** TypeScript · **License:** Apache-2.0
-
-SBOLCanvas is a web application (Angular frontend + Dockerized Java backend) for creating and editing genetic designs using the **SBOL 2/3 data and visual standard**, with import/export via SynBioHub.
-
-| # | Issue | Description |
-|---|---|---|
-| #426 / #463 | Modeling elements + SBML linkage | Add additional modeling elements; add SBOL Model object referencing generated SBML files (Milestone 3.0) |
-| #458 / #460 | Annotations & parts | Add support for feature annotations; add ability to define parts (Milestone 2.1) |
-| #417 | Visual polish | Adjustable stroke width of part glyphs (Milestone 2.1) |
-| #446 | Circular DNA import | Circular topology recognized by VisBOL but not SBOLCanvas (Bug, Milestone 2.0) |
-| #453 | Interaction edges | Interaction edges missing the options that interaction nodes have (Bug, Milestone 2.0) |
-| #457 | External parts import | Can't import designs with unreachable external parts (Bug, Milestone 2.0) |
-| #471 | VPR interactions | Add interactions to components and modules using VPR (Milestone 2.0) |
-| #470 | Linked collections | Linked collection does not show up when importing parts (Bug, Milestone 2.0) |
-
-**Takeaway:** The project is closing the gap between visual design and simulation (SBML linkage, modeling elements), and the import pipeline has rough edges that need stabilization before the v2.1 release.
+**#1745 — Root collection filter should handle SBOLCanvas layout properly**
+- Filed: Jul 16, 2026 by cjmyers
+- SBOLCanvas layout not respected in root collection filter
+- **Impact:** Visualization inconsistency
 
 ---
 
-### deeptools/deepTools (deep-sequencing analysis)
+## Issue Analysis: iBioSim (7 Open Issues — Cross-Platform Struggles)
 
-**Repo:** 765 ⭐ · **Language:** Python
+### The Jena/Xerces Crash (#637) — Most Discussed
 
-| # | Issue | Description |
+**Error:**
+```
+java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query.ARQ
+Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
+```
+
+**Timeline:** Jan 20, 2025 — Jan 25, 2025 (6 comments)
+
+**Discussion thread:**
+1. **Hatem-synbio** reported the crash while debugging Kenzo's toggle switch model using the iBioSim tutorial (page 94, automatic model generation)
+2. Shared screenshots and offered the COMBINE archive on Slack
+3. **cjmyers (maintainer)** root-caused: *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."\*
+4. cjmyers requested the COMBINE archive for deeper testing
+
+**Key insight:** The crash isn't a bug — it's a design limitation. iGEM parts lack interaction information needed for model generation. But instead of a user-friendly error message, the tool crashes with a cryptic Java exception. This reveals a significant UX gap.
+
+**Implication for Swagger API (#1106):** If iBioSim could reliably upload to SynBioHub v3's proper API, it might offload some computation or get better error handling through the platform.
+
+### Cross-Platform Issues
+
+| Issue | OS | Problem | Comments |
+|---|---|---|---|
+| #638 | macOS | Can't run iBioSim 3.2.0 | 1 |
+| #635 | Windows 11 | Cannot open iBioSim | 4 |
+| #640 | Cross-platform | Java exception (runtime crash) | 1 |
+
+### Integration Failures
+
+| Issue | Target | Problem |
 |---|---|---|
-| #1459 | plotPCA regression | New SVD-based plotPCA writes bin scores instead of per-sample loadings (4.0.0 regression) |
-| #1457 | bamCompare bug | Catch-all arm causes `--operation first/second/add/mean` to silently emit log2 ratio; `reciprocal_ratio` inverted |
-| #1107 | plotCorrelation | xRange/yRange customization gap (long-standing) |
-
-**Takeaway:** Correctness regressions in the 4.0.0 Rust re-implementation are alarming for scientific users — ground-up rewrites of numerical code need rigorous validation.
+| #639 | SynBioHub | Can't upload design (API incompatibility) |
+| #632 | LCP Synbiohub | Can't connect (handshake failure) |
 
 ---
 
-### broadinstitute/viral-ngs (viral NGS toolkit)
+## Issue Analysis: GENtle2 (75+ Open Issues — 10+ Year Legacy)
 
-**Repo:** 197 ⭐ · **Language:** Python
+### The Refactor Milestones
 
-| # | Issue | Description |
+The maintainer (`alexandremeunier`) has created two refactor milestones:
+
+1. **Refactor — Canvas events & RES/annotation cards information**
+   - #164: Display feature details when hovering (2014)
+   - #163: Tracking mouse events in `Artist` (2014)
+   - #159: Tracking shapes in `Artist` (2014, 6 comments)
+
+2. **Refactor — Sequence opening/editing**
+   - #132: Replace non-allowed chars on Genebank import (2014)
+   - #130: Bug with selection using up arrow (2014)
+
+### The Persistent Bugs
+
+| Issue | Bug | Impact |
 |---|---|---|
-| #1101 | minibwa in Docker | Request to add minibwa aligner to the core Docker image |
-| #1051 | Duplicate read IDs | Gap in FastqToUBAM for duplicate read ID handling |
-| #1035 | Documentation | Effort to improve the RTD documentation |
+| #162 | Selection disappears via context menu | Data loss risk |
+| #161 | Selection disappears with hotkeys (no shift) | Workflow interruption |
+| #158 | Creating feature clears plasmid map without redraw | Visualization failure |
+| #156 | Caret moves by one base unexpectedly during selection | Input accuracy |
+| #154 | Plasmid map title overflows for long sequence names | Display issue |
 
-**Takeaway:** The multi-flavor Docker image strategy (core / assemble / classify / phylo) is a notable pattern for bundling complex bioinformatics stacks.
+### The Story These Issues Tell
+
+GENtle2 has **75+ open issues dating to 2014**. The maintainer is attempting a clean-slate architecture (the Refactor milestones), but progress is glacial. With only 6 comments on the most discussed issue (#159) and a 9+ year timeline for the refactor, this is a cautionary tale about **sustaining open-source scientific software**.
+
+The community is **starved for contributors**. The tool is well-known (106 stars) but the codebase is inaccessible to new contributors because it's JavaScript from 2014 with no TypeScript, no tests, and no CI pipeline.
 
 ---
 
-## 🗺️ Community Resources & Curated Lists
+## Issue Analysis: Syn-Zeug (10 Open Issues — All Features, No Bugs)
 
-| Resource | Stars | Description |
+### The Architecture
+
+Syn-Zeug uses a **three-layer architecture** that's worth studying:
+
+1. **Rust Core Library** — Performance-critical sequence operations (Extract Subsequences, Hamming Distance, Levenshtein Distance)
+2. **Svelte SPA** — Modern web UI with interactive pipeline builder
+3. **WASM Shim (biobox)** — Allows Rust library to run in the browser
+
+### Feature Roadmap
+
+| Category | Issues | Status |
 |---|---|---|
-| [Awesome-Bioinformatics](https://github.com/danielecook/Awesome-Bioinformatics) | 4,098 | Curated list of bioinformatics libraries and software |
-| [awesome-single-cell](https://github.com/seandavi/awesome-single-cell) | 3,748 | Software and data resources for single-cell omics |
-| [iGEM Registry](https://parts.igem.org/) | — | Central repository of biological parts for the international iGEM competition |
-| [SBOL Stack](https://sbols.org/) | — | Synthetic Biology Open Language — data model, visual notation, and repositories |
+| **New Tools** | #47 (Protein ORFs), #26 (Percent Composition), #17 (Shuffle Sequence), #8 (Mutate Sequence), #42 (Misc) | All open |
+| **Pipeline UX** | #38 (Pause tool), #36 (Drag-and-drop) | Both open |
+| **UI Polish** | #37 (Tooltips), #39 (Region info like Benchling) | Both open |
+| **Dependencies** | #46 (rust-bio updates) | 1 comment |
 
-### 🌐 The SBTools Community
+### Significance
 
-A cross-cutting thread across these projects is the **SBTools** (Synthetic Biology Tools) community, organized around a [Google Group](https://groups.google.com/g/sbtools/) and an active **Slack workspace** (channels like `#biocrnpyler`). This is the informal hub where synbio tool developers coordinate on standards (SBOL, SBML, Eugene), share best practices, and report cross-project bugs. BioCRNpyler's README explicitly references it, and the Cello authors are also active participants.
+The **all-feature-request, zero-bug-report** pattern is extraordinary. It means:
+- The core is stable and well-tested
+- The architecture is sound (Rust + WASM is working)
+- The community is productively engaged (suggesting features, not reporting crashes)
+- This is what sustainable open-source looks like
+
+Syn-Zeug represents **the future of web-native bioinformatics tooling**.
 
 ---
 
-## 🌐 Key Themes in the Community
+## Cross-Project Themes
 
-| # | Theme | Evidence |
+### Theme 1: The Interoperability Crisis
+
+SynBioHub v1's issues are almost exclusively about **data not moving correctly** between tools:
+- OMEX exports missing SBML attachments (#1753)
+- Recursive downloads breaking (#1755)
+- Incremental sync failing (#1746)
+- OR queries not supported (#1744)
+
+The root cause is architectural: the Virtuoso RDF triplestore was designed for flexible data representation, not reliable data export. The `Model->source` reference chain is a classic example — it works for internal queries but breaks during export.
+
+**The fix is structural, not patchable.** Restructuring SBML files as direct Model attachments (as done in SynBioSuite) is the right approach, but it requires a coordinated update across all tools that consume OMEX bundles.
+
+### Theme 2: The Desktop Tool Bottleneck
+
+iBioSim (305+ open issues) and GENtle2 (75+ open issues) share a common pattern:
+- **Java dependency hell** — iBioSim's Jena/Xerces crash (#637) is symptoms of deeper dependency management problems
+- **OS-specific breakage** — Mac (#638), Windows 11 (#635)
+- **Aging UI codebases** — GENtle2's 2014-era JavaScript
+- **Broken platform integration** — iBioSim can't upload to SynBioHub (#639, #632)
+
+The solution isn't better desktop apps — it's **web-native tools** that don't require installation, don't have OS-specific builds, and can be updated centrally.
+
+### Theme 3: The Swagger API as Linchpin
+
+Issue [#1106](https://github.com/SynBioHub/synbiohub3/issues/1106) — "Develop New API Using Swagger" — filed Sep 3, 2026 under the SBH 3.0.0 milestone.
+
+This single issue could unlock:
+- ✅ Reliable iBioSim ↔ SynBioHub integration
+- ✅ Third-party client development
+- ✅ Plugin architecture for tools
+- ✅ Versioned, documented API surface
+- ✅ Migration path from v1 to v3
+
+Without it, the v3 redesign is just a prettier frontend. With it, SynBioHub becomes a true platform.
+
+### Theme 4: The Missing Open-Source ML Stack
+
+ART (JBEI) and 20n/act represent the frontier of **computational biology design**:
+- ART: Probabilistic strain recommendations using MCMC and Bayesian optimization
+- 20n/act: End-to-end DNA design automation (predicted first bio-route to acetaminophen)
+
+But **both are closed-source**. ART's code is private (license access only). 20n/act is maintained internally by 20n Inc.
+
+There's a clear opportunity for an **open-source, web-native, ML-integrated design tool** that the community can build and modify together. Syn-Zeug (Rust) and sboljs3 (TypeScript) are early indicators of this direction.
+
+### Theme 5: Standards Are Maturing, but Pipelines Aren't
+
+SBOL and SBML are well-defined standards with active working groups. But the **pipelines** that move data between tools are broken:
+- OMEX exports are incomplete (#1753)
+- Recursive collection resolution fails (#1755)
+- Incremental sync doesn't work (#1746)
+
+The standards exist. The plumbing doesn't.
+
+`sboljs3` bringing SBOL to the browser is a promising sign — the next step is making those standards reachable from web-native tools end-to-end.
+
+---
+
+## Recommended Episode Topics
+
+Based on the research findings, here are 8 episode topics ranked by timeliness and community impact:
+
+| # | Episode | Angle | Key Issues | guests |
+|---|---|---|---|---|
+| 1 | **The Swagger API as Linchpin** | Interview cjmyers about why #1106 matters and what it will unlock | synbiohub3#1106 | cjmyers |
+| 2 | **The Interoperability Crisis** | Deep-dive into OMEX export bugs and what they mean for daily lab work | synbiohub#1753, #1755 | Gonza10V, cjmyers |
+| 3 | **Why Desktop Tools Die** | iBioSim's 305 issues and GENtle2's 12-year refactor — what went wrong? | iBioSim#637, GENtle2#159 | Lukas Buecherl |
+| 4 | **The Rust Revolution in Bioinformatics** | Syn-Zeug's all-feature roadmap and the WASM architecture pattern | syn-zug#47, #36 | Sheffield-iGEM team |
+| 5 | **From Hand Engineering to Computational Design** | ART and 20n/act — the "DeepSeek moment" for synbio | ART, 20n/act | JBEI team |
+| 6 | **SBOL in the Browser** | How sboljs3 and SynBioHub v3 are bringing standards to the web | sboljs3, synbiohub3#1106 | pagarap57 |
+| 7 | **The Maintenance Trap** | Why academic software stalls (GENtle2) vs. what makes it sustain (Coral) | GENtle2#159, Coral#37 | Klavins Lab |
+| 8 | **The Design-Build-Learn Cycle, Code-First** | Coral and BioCRNpyler — specifying biology as software | Coral, BioCRNpyler | Klavins Lab, BuildACell |
+
+---
+
+## Research Sources
+
+| Source | Type | Date |
 |---|---|---|
-| 1 | **Correctness of re-implemented backends** | deepTools 4.0.0 Rust rewrite introduced silent numerical/logic bugs (wrong PCA, broken bamCompare) |
-| 2 | **Packaging & dependency delivery** | Bioconda + multi-stage Docker images (viral-ngs) to manage complex C/C++/Rust dependencies |
-| 3 | **Parser fragility & dependency churn** | GFF3 parser in DnaFeaturesViewer broke when BCBio stagnated; GenBank parsers in Poly flagged for rewrite |
-| 4 | **mRNA & therapeutic sequence design** | DnaChisel (uridine depletion, CAI), CodonTransformer, and CELLM reflect heavy mRNA therapeutics demand |
-| 5 | **Bridging the hosted-service gap** | Cello-v2's cellocad.org login issues; SBOLCanvas production-maturity tasks — open-source academic tools lack DevOps for reliable hosted UX |
-| 6 | **Reproducibility & provenance** | Nextflow lineage-tracking bugs; general move toward pipeline frameworks for cache/lineage tracking |
-| 7 | **ML + sequence design convergence** | CodonTransformer, DeepBGC, CELLM — accelerating intersection of deep learning and biological sequence engineering |
-| 8 | **RNA device engineering & cell-free systems** | BioCRNpyler's TMSE module; EnergyTXTL convergence bug; toehold-switch design tools from SASTRA-iGEM — growing interest in programmable RNA devices and cell-free expression as alternatives to in-vivo circuit characterization |
-| 9 | **SBOL standard adoption** | SBOLCanvas roadmap (modeling elements, SBML linkage, feature annotations, part definitions) signals push toward richer, simulation-ready digital representations of genetic designs |
+| SynBioHub v1 open issues | GitHub Issues API | Sep 2026 |
+| SynBioHub v3 open issues | GitHub Issues API | Sep 2026 |
+| iBioSim open issues | GitHub Issues API | Aug 2025–Apr 2024 |
+| GENtle2 open issues | GitHub Issues API | Jul 2014–Jul 2023 |
+| Syn-Zeug open issues | GitHub Issues API | Apr 2022–Oct 2022 |
+| SynBioHub v1 commits | GitHub Commits API | Sep 2026 |
+| iBioSim commits | GitHub Commits API | Apr 2026 |
+| SynBioHub v1 #1753 discussion | GitHub Issue comments | Aug 2026 |
+| iBioSim #637 discussion | GitHub Issue comments | Jan 2025 |
+| Repository metadata | GitHub REST API | Sep 2026 |
+| awesome-synthetic-biology list | GitHub Repository | Sep 2026 |
