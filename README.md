@@ -31,7 +31,7 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | **synthea** | 3,342 | Java | Synthetic patient population simulator for health analytics & EHR modeling | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) |
 | **TDC** | 1,283 | Jupyter | Therapeutics Data Commons — multimodal ML foundation for drug discovery | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) |
 | **DnaFeaturesViewer** | 690 | Python | Plot DNA sequence features from GenBank/GFF files | [EGF/DnaFeaturesViewer](https://github.com/Edinburgh-Genome-Foundry/DnaFeaturesViewer) |
-| **poly** | 729 | Go | Go package for engineering organisms — codon optimization, primer design, synthesis fragments | [bebop/poly](https://github.com/bebop/poly) |
+| **poly** | 737 | Go | Go package for engineering organisms — codon optimization, primer design, synthesis fragments | [bebop/poly](https://github.com/bebop/poly) |
 | **deepTools** | 765 | Python | Process & analyze deep-sequencing data (normalization, coverage, visualization) | [deeptools/deepTools](https://github.com/deeptools/deepTools) |
 | **awesome-synthetic-biology** | 223 | — | Curated directory of synbio projects, articles, and resources | [websemantics/awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) |
 | **DnaChisel** | 274 | Python | Versatile DNA sequence optimizer — codon optimization, GC tuning, constraint satisfaction | [EGF/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) |
@@ -56,13 +56,21 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 
 **Why this matters:** The v1→v3 migration is *the* defining infrastructure story in the synbio ecosystem right now. The legacy v1 has 84 stars and is in maintenance mode (milestone SBH 1.6.2), while v3 is the future — but it's still at 16 stars, meaning the community hasn't fully migrated yet.
 
-**Current Open Issues (Milestones SBH 2.0.0 & SBH 3.0.0):**
+**🌟 FRESH — September 2026 Issues (just filed!):**
+
+| Issue | Title | Theme | Milestone | Date | Assignee |
+|---|---|---|---|---|---|
+| [#1108](https://github.com/SynBioHub/synbiohub3/issues/1108) | Dev2 doesn't show any similar parts | Bug — search quality | — | Sep 12, 2026 | cl117 |
+| [#1107](https://github.com/SynBioHub/synbiohub3/issues/1107) | Update Collections Page | Enhancement | SBH 2.0.0 | Sep 4, 2026 | BroD54 |
+| [#1106](https://github.com/SynBioHub/synbiohub3/issues/1106) | **Develop New API Using Swagger** | Enhancement — API design | SBH 3.0.0 | Sep 3, 2026 | pagarap57 |
+
+**Why issue #1106 is the most important open issue in synbio right now:**
+The Swagger API issue (#1106) was just filed on September 3, 2026 by maintainer **cjmyers** and assigned to contributor **pagarap57** under the **SBH 3.0.0** milestone. This is the API that could finally fix iBioSim's broken SynBioHub integration (#639, #632). Currently, iBioSim can't upload designs to SynBioHub because the v1 API is aging and inconsistent. A proper Swagger-documented API would enable reliable tool-to-platform integration and could unlock a new wave of third-party clients and plugins.
+
+**Other current open issues under active development:**
 
 | Issue | Title | Theme | Milestone | Date |
 |---|---|---|---|---|
-| [#1108](https://github.com/SynBioHub/synbiohub3/issues/1108) | Dev2 doesn't show any similar parts | Bug — search quality | — | Sep 2026 |
-| [#1107](https://github.com/SynBioHub/synbiohub3/issues/1107) | Update Collections Page | Enhancement | SBH 2.0.0 | Sep 2026 |
-| [#1106](https://github.com/SynBioHub/synbiohub3/issues/1106) | Develop New API Using Swagger | Enhancement — API design | SBH 3.0.0 | Sep 2026 |
 | [#1060](https://github.com/SynBioHub/synbiohub3/issues/1060) | Search Suggestions | User Study — UX | SBH 2.0.0 | Jul 2026 |
 | [#1062](https://github.com/SynBioHub/synbiohub3/issues/1062) | Create 2 boxes when applying filters in search | User Study — UX | SBH 2.0.0 | Jul 2026 |
 | [#1093](https://github.com/SynBioHub/synbiohub3/issues/1093) | Add owner modal | User Study — sharing | SBH 2.0.0 | Aug 2026 |
@@ -73,7 +81,7 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 
 **Known challenge:** The README explicitly warns about a **legacy OpenSSL vulnerability** (Node.js OpenSSL 3 `digital envelope routines unsupported` error) that limits dev mode to Mac and Linux only — a real blocker for Windows developers contributing to the redesign.
 
-**Takeaway:** The SynBioHub team is doing a courageous full-stack rewrite. They're shifting from a triplestore-based architecture to a modern React + Spring Boot stack, but the community hasn't caught up yet (16 vs. 84 stars). The migration story — from Virtuoso to relational DB, from server-rendered pages to React SPA, from opaque APIs to Swagger-documented ones — is a rich narrative about the cost and necessity of modernizing scientific infrastructure.
+**Takeaway:** The SynBioHub team is doing a courageous full-stack rewrite. They're shifting from a triplestore-based architecture to a modern React + Spring Boot stack, but the community hasn't caught up yet (16 vs. 84 stars). The migration story — from Virtuoso to relational DB, from server-rendered pages to React SPA, from opaque APIs to Swagger-documented ones — is a rich narrative about the cost and necessity of modernizing scientific infrastructure. The Swagger API issue (#1106) is the single most impactful open issue: it's the bridge that could connect the desktop tools (iBioSim) and web tools (GENtle2) to the redesigned platform.
 
 ---
 
@@ -109,18 +117,18 @@ He then identified the fix pattern used in the sibling project:
 
 **Scope:** Computer-aided design (CAD) tool for modeling, analysis, and design of genetic circuits. Imports/exports SBML (all levels/versions) and supports SBOL. Includes multi-cellular and spatial modeling support. Active developers: Lukas Buecherl, Pedro Fontanarrosa, Chris Myers. Apache-2.0 license. Stack: Java + libSBML + reb2sac + GeneNet + Yosys.
 
-**Current Open Issues:**
+**Current Open Issues (no new activity since Aug 2025):**
 
-| Issue | Title | Theme | Date |
-|---|---|---|---|
-| [#640](https://github.com/MyersResearchGroup/iBioSim/issues/640) | A Java exception has occurred | Stability / runtime | Aug 2025 |
-| [#639](https://github.com/MyersResearchGroup/iBioSim/issues/639) | Can't upload SynBioHub design | Integration failure | May 2025 |
-| [#638](https://github.com/MyersResearchGroup/iBioSim/issues/638) | Unable to run iBioSim 3.2.0 on Mac | Cross-platform | May 2025 |
-| [#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) | Unable to generate models (NoClassDefFoundError: Apache Jena/Xerces) | Bug — Java dependency | Jan 2025 |
-| [#635](https://github.com/MyersResearchGroup/iBioSim/issues/635) | Cannot open iBioSim on Windows 11 | Cross-platform | Jan 2025 |
-| [#634](https://github.com/MyersResearchGroup/iBioSim/issues/634) | Bug importing file and when starting iBioSim | Bug — data import | Sep 2024 |
-| [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP Synbiohub | Integration failure | Apr 2024 |
-| [#631](https://github.com/MyersResearchGroup/iBioSim/issues/631) | Problem with External Components | Bug — component handling | Mar 2024 |
+| Issue | Title | Theme | Date | Comments |
+|---|---|---|---|---|
+| [#640](https://github.com/MyersResearchGroup/iBioSim/issues/640) | A Java exception has occurred | Stability / runtime | Aug 2025 | 1 |
+| [#639](https://github.com/MyersResearchGroup/iBioSim/issues/639) | Can't upload SynBioHub design | Integration failure | May 2025 | 1 |
+| [#638](https://github.com/MyersResearchGroup/iBioSim/issues/638) | Unable to run iBioSim 3.2.0 on Mac | Cross-platform | May 2025 | 1 |
+| [#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) | Unable to generate models (NoClassDefFoundError: Apache Jena/Xerces) | Bug — Java dependency | Jan 2025 | 6 |
+| [#635](https://github.com/MyersResearchGroup/iBioSim/issues/635) | Cannot open iBioSim on Windows 11 | Cross-platform | Jan 2025 | 4 |
+| [#634](https://github.com/MyersResearchGroup/iBioSim/issues/634) | Bug importing file and when starting iBioSim | Bug — data import | Sep 2024 | 6 |
+| [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP Synbiohub | Integration failure | Apr 2024 | 2 |
+| [#631](https://github.com/MyersResearchGroup/iBioSim/issues/631) | Problem with External Components | Bug — component handling | Mar 2024 | — |
 
 **Key error from #637 (most discussed, 6 comments):**
 ```
@@ -197,26 +205,32 @@ This is a fundamental canvas event system rethink — but the milestone was due 
 
 ---
 
-#### 6. 🆕 poly (729 ⭐) — The Ambitious Go-Native Synthetic Biology Toolkit
+#### 6. 🆕 poly (737 ⭐) — The Ambitious Go-Native Synthetic Biology Toolkit
 
-**Scope:** A Go package for engineering organisms. Goal: "the most complete, open, and well used collection of computational synthetic biology tools ever assembled." Covers codon optimization, primer design, sequence hashing, Gibson Assembly, Golden Gate, and more. MIT license. Active Discord community.
+**Scope:** A Go package for engineering organisms. Goal: "the most complete, open, and well used collection of computational synthetic biology tools ever assembled." Covers codon optimization, primer design, sequence hashing, Gibson Assembly, Golden Gate, and more. MIT license. Active Discord community (74 forks).
 
-**Why this matters:** With 729 stars and 74 forks, **poly is the most-starred open-source pure synthbio software tool on GitHub** — surpassing even established tools like iBioSim and GENtle2. Its modern Go codebase, comprehensive module coverage, and active development (latest updates September 2026) make it the clearest signal that the synbio software community is shifting toward modern, fast, deployable languages.
+**Why this matters:** With 737 stars and 74 forks, **poly is the most-starred open-source pure synthbio software tool on GitHub** — surpassing even established tools like iBioSim and GENtle2. Its modern Go codebase, comprehensive module coverage, and active development make it the clearest signal that the synbio software community is shifting toward modern, fast, deployable languages.
 
 **Current Open Issues (Milestone v1.0 — Let's get poly to a releasable state!):**
 
-| Issue | Title | Theme | Priority | Date |
-|---|---|---|---|---|
-| [#359](https://github.com/bebop/poly/issues/359) | Implement Gibson Assembly | Enhancement — critical feature | High | Sep 2023 |
-| [#434](https://github.com/bebop/poly/issues/434) | Genbank parser needs heavy refactor or rewrite | Enhancement — code quality | Medium | Dec 2023 |
-| [#383](https://github.com/bebop/poly/issues/383) | Genbank parser doesn't handle colliding feature names | Bug — data integrity | High | Oct 2023 |
-| [#367](https://github.com/bebop/poly/issues/367) | Refactor `clone` package | Enhancement — UX | High | Sep 2023 |
-| [#448](https://github.com/bebop/poly/issues/448) | Remove lunny/log dependency from genbank.go | Enhancement — dep hygiene | — | Dec 2025 |
-| [#442](https://github.com/bebop/poly/issues/442) | Turn on `revive` linter in golangci config | Enhancement — devops | Low | Feb 2024 |
-| [#399](https://github.com/bebop/poly/issues/399) | Tutorial and tests for refactored golden gate | Enhancement — docs | — | Nov 2023 |
-| [#422](https://github.com/bebop/poly/issues/422) | Proposal: Create a biological reviewers group | Proposal — governance | — | Dec 2023 |
-| [#426](https://github.com/bebop/poly/issues/426) | Proposal — New external package (rebased) | Enhancement — modular design | Medium | Dec 2023 |
-| [#413](https://github.com/bebop/poly/issues/413) | Each fragment in a PCR amplification should have a circular tag | Proposal — PCR modeling | — | Dec 2023 |
+| Issue | Title | Theme | Priority | Date | Status |
+|---|---|---|---|---|---|
+| [#359](https://github.com/bebop/poly/issues/359) | **Implement Gibson Assembly** | Enhancement — critical feature | 🔴 High | Sep 2023 | **Blocked by #367**, 6 comments, assigned to carreter |
+| [#434](https://github.com/bebop/poly/issues/434) | Genbank parser needs heavy refactor or rewrite | Enhancement — code quality | Medium | Dec 2023 | 10 comments, marked stale |
+| [#383](https://github.com/bebop/poly/issues/383) | Genbank parser doesn't handle colliding feature names | Bug — data integrity | 🔴 High | Oct 2023 | Marked stale |
+| [#367](https://github.com/bebop/poly/issues/367) | Refactor `clone` package | Enhancement — UX | 🔴 High | Sep 2023 | **Blocks #359** |
+| [#448](https://github.com/bebop/poly/issues/448) | Remove lunny/log dependency from genbank.go | Enhancement — dep hygiene | — | Dec 2025 | Updated Feb 2026, marked stale |
+| [#442](https://github.com/bebop/poly/issues/442) | Turn on `revive` linter in golangci config | Enhancement — devops | Low | Feb 2024 | Good first issue, marked stale |
+| [#399](https://github.com/bebop/poly/issues/399) | Tutorial and tests for refactored golden gate | Enhancement — docs | — | Nov 2023 | Marked stale |
+| [#422](https://github.com/bebop/poly/issues/422) | Proposal: Create a biological reviewers group | Proposal — governance | — | Dec 2023 | Community governance question |
+| [#426](https://github.com/bebop/poly/issues/426) | Proposal — New external package (rebased) | Enhancement — modular design | Medium | Dec 2023 | Architecture discussion |
+| [#413](https://github.com/bebop/poly/issues/413) | Each fragment in PCR amplification should have a circular tag | Proposal — PCR modeling | — | Dec 2023 | Feature modeling |
+
+**The critical dependency chain blocking v1.0:**
+Issue #359 (Gibson Assembly) is explicitly **blocked by #367** (clone package refactor). This means the v1.0 release cannot ship until the clone package is refactored — a classic case of technical debt blocking feature delivery. The Gibson Assembly issue has 6 comments and is marked "high priority" and "intermediate" difficulty, making it the most important missing piece for the v1.0 milestone.
+
+**The governance question (#422):**
+The proposal for a "biological reviewers group" is particularly notable — it signals that the community is thinking about how to ensure biological accuracy of computationally designed constructs. As poly grows and more people use it without wet-lab expertise, this question becomes urgent: who validates that the DNA sequences poly generates are biologically correct and safe?
 
 **Takeaway:** poly's v1.0 milestone has 12 open issues — a mix of critical features (Gibson Assembly), code quality debt (genbank parser), and governance proposals (biological reviewers). The Gibson Assembly issue (#359) is blocked by the clone refactor (#367), creating a dependency chain that illustrates the challenge of building a comprehensive toolkit from scratch. The proposal for a "biological reviewers group" (#422) is particularly notable — it signals that the community is thinking about how to ensure biological accuracy of computationally designed constructs, a question that becomes urgent as design tools scale.
 
@@ -236,9 +250,9 @@ This is a fundamental canvas event system rethink — but the milestone was due 
 
 **Scope:** Python library for encoding the process of designing synthetic DNA constructs. Mirrors traditional GUI-based design steps (ApE, j5, Benchling) as operations on data structures. Enables iterative design through analysis modules. MIT license. Stack: Python (works with PyPy + numpy), Biopython.
 
-**Current Open Issues:** Only 1 open issue ([#37](https://github.com/klavinslab/coral/issues/37) — Ubuntu 22.04 Python 3 compatibility). Actively maintained, recent updates (June 2026).
+**Current Open Issues:** Only **1 open issue** ([#37](https://github.com/klavinslab/coral/issues/37) — Ubuntu 22.04 Python 3 compatibility, filed Dec 2023, 1 comment). Actively maintained, recent updates (June 2026).
 
-**Takeaway:** Coral is a rare example of a **well-maintained, open-source Python library** for synbio design automation. It's a great reference for how to structure design-as-code workflows, and a contrast point to the struggling desktop tools (iBioSim, GENtle2) that are grappling with dependency and maintenance debt.
+**Takeaway:** Coral is a rare example of a **well-maintained, open-source Python library** for synbio design automation. With only 1 open issue and consistent updates, it's the health benchmark of the ecosystem. It's a great reference for how to structure design-as-code workflows, and a contrast point to the struggling desktop tools (iBioSim, GENtle2) that are grappling with dependency and maintenance debt. If you want to see what "sustainable open-source synbio software" looks like, Coral is the model.
 
 ---
 
@@ -248,12 +262,12 @@ This is a fundamental canvas event system rethink — but the milestone was due 
 
 **Current Open Issues:**
 
-| Issue | Title | Theme | Date |
-|---|---|---|---|
-| #50 | Licensing question for DNACompiler container | Licensing — Docker | — |
-| #49 / #48 | Login failures on cellocad.org using Gmail | Hosted service — DevOps | — |
-| #47 | Sequential logic support | Feature — circuit design | — |
-| #26 | GFF/APE/FASTA output formats | Enhancement — export | — |
+| Issue | Theme | Date |
+|---|---|---|
+| #50 | Licensing question for DNACompiler container | Licensing — Docker |
+| #49 / #48 | Login failures on cellocad.org using Gmail | Hosted service — DevOps |
+| #47 | Sequential logic support | Feature — circuit design |
+| #26 | GFF/APE/FASTA output formats | Enhancement — export |
 
 **Takeaway:** Friction between the **open-source CLI** and the **hosted web service** — a common theme across academic synbio tooling. Users trust the community cloud but it lacks DevOps backing. The sequential logic request (#47) signals growing ambition beyond combinational circuits.
 
@@ -282,20 +296,67 @@ This is a fundamental canvas event system rethink — but the milestone was due 
 
 Based on open-issue triage across all surveyed projects, these are the themes dominating community attention right now:
 
-| # | Theme | What It Means |
-|---|---|---|
-| 1 | **The SynBioHub Migration** | v1 is in maintenance mode with data-integrity bugs (OMEX exports broken, recursive downloads failing, SubCollections not reporting members); v3 is a React+Spring Boot rewrite at 16 stars, not yet adopted by the community. The migration story is the central narrative of 2026 in synbio infrastructure. |
-| 2 | **Interoperability & integration friction** | iBioSim can't upload to SynBioHub (#639); OMEX exports miss SBML files (#1753); collection prefixes shift when changing visibility (#1752); incremental sync broken with SBOLExplorer (#1746). The connected synbio toolchain is still hampered by format/URL/API mismatches. |
-| 3 | **Data integrity in shared collections** | SubCollections not reporting members (#1756), recursive downloads not following links (#1755), legacy Virtuoso DB data piling up (#1754). Growing-pains for platforms hosting community-wide design registries. |
-| 4 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded (#159, #162, #163); a common pattern in academic tools that lose active maintainers. The "Refactor — Canvas events" milestone has been open for 12 years. |
-| 5 | **Cross-platform compatibility** | iBioSim's Mac (#638) and Windows 11 (#635) issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run anywhere" remains aspirational. |
-| 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes, #100), not just get the single best answer. New requests for UD optimization (#107, 5 comments) and GC minimization (#110) show the community pushing toward chemistry-aware design. The `codon_usage_table` mutation bug (#111) could silently produce incorrect results. A fundamental UX challenge in computational biology. |
-| 7 | **Modern language adoption** | The success of **poly** (Go, 729⭐) and **DnaChisel** (Python, 274⭐) vs. aging Java tools (iBioSim, GENtle2) suggests the community is gravitating toward modern, fast, easy-to-deploy languages. Even SynBioHub is rewriting from Node.js+Virtuoso to React+Spring Boot. |
-| 8 | **ML + sequence design convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, iBioSim's circuit design, TDC's therapeutic benchmarks, DeepVariant, and DeepBGC point to an accelerating intersection of ML and biological design automation. |
-| 9 | **RNA device engineering & cell-free systems** | BioCRNpyler's TMSE module (#328); EnergyTXTL convergence bugs (#337); toehold-switch design tools from SASTRA-iGEM — growing interest in programmable RNA devices and cell-free expression as alternatives to in-vivo circuit characterization. |
-| 10 | **Governance & biological review** | poly's proposal for a "biological reviewers group" (#422) signals that the community is grappling with how to ensure biological accuracy of computationally designed constructs — a question that becomes urgent as design tools scale and more people use them without wet-lab expertise. |
-| 11 | **Dependency management in desktop tools** | iBioSim's Jena/Xerces crash (#637), GENtle2's aging Node.js stack, poly's dependency hygiene issues (#448, #442) — all point to the challenge of managing transitive dependencies in scientific software that integrates many libraries. |
-| 12 | **Stalled academic projects** | GENtle2's 12-year-old refactor milestone, iBioSim's 305+ open issues with slow triage, and dormant projects like BiArkit and BIOFAB Studio — the "publish and abandon" pattern is prevalent in university synbio software. |
+| # | Theme | What It Means | Key Issues |
+|---|---|---|---|
+| 1 | **🔴 The SynBioHub Swagger API** | The just-filed #1106 (Sep 3, 2026) is the most impactful open issue in the ecosystem. A proper API would fix iBioSim's broken upload (#639), enable third-party clients, and unlock the v3 migration. Without it, the toolchain remains disconnected. | [synbiohub3#1106](https://github.com/SynBioHub/synbiohub3/issues/1106), [iBioSim#639](https://github.com/MyersResearchGroup/iBioSim/issues/639) |
+| 2 | **The SynBioHub Migration** | v1 is in maintenance mode with data-integrity bugs (OMEX exports broken, recursive downloads failing, SubCollections not reporting members); v3 is a React+Spring Boot rewrite at 16 stars, not yet adopted by the community. | [synbiohub#1753-1756](https://github.com/SynBioHub/synbiohub/issues), [synbiohub3#1106-1108](https://github.com/SynBioHub/synbiohub3/issues) |
+| 3 | **Interoperability & integration friction** | iBioSim can't upload to SynBioHub; OMEX exports miss SBML files; collection prefixes shift when changing visibility; incremental sync broken with SBOLExplorer. The connected synbio toolchain is still hampered by format/URL/API mismatches. | [iBioSim#639](https://github.com/MyersResearchGroup/iBioSim/issues/639), [synbiohub#1753](https://github.com/SynBioHub/synbiohub/issues/1753), [synbiohub#1746](https://github.com/SynBioHub/synbiohub/issues/1746) |
+| 4 | **Data integrity in shared collections** | SubCollections not reporting members (#1756), recursive downloads not following links (#1755), legacy Virtuoso DB data piling up (#1754). Growing-pains for platforms hosting community-wide design registries. | [synbiohub#1754-1756](https://github.com/SynBioHub/synbiohub/issues) |
+| 5 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded; a common pattern in academic tools that lose active maintainers. The "Refactor — Canvas events" milestone has been open for 12 years. | [GENtle2#159](https://github.com/Synbiota/GENtle2/issues/159), [GENtle2#162](https://github.com/Synbiota/GENtle2/issues/162) |
+| 6 | **Cross-platform compatibility** | iBioSim's Mac (#638) and Windows 11 (#635) issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run everywhere" remains aspirational. | [iBioSim#635](https://github.com/MyersResearchGroup/iBioSim/issues/635), [iBioSim#638](https://github.com/MyersResearchGroup/iBioSim/issues/638) |
+| 7 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes, #100), not just get the single best answer. New requests for UD optimization (#107, 5 comments) and GC minimization (#110) show chemistry-aware design. The `codon_usage_table` mutation bug (#111) could silently produce incorrect results. | [DnaChisel#100](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/100), [DnaChisel#111](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/111) |
+| 8 | **Dependency chains blocking releases** | poly's Gibson Assembly (#359) is blocked by the clone refactor (#367), preventing v1.0 delivery. Dependency hygiene issues (#448, #442) compound the problem. This is a pattern: academic tools ship incomplete because refactors block features. | [poly#359](https://github.com/bebop/poly/issues/359), [poly#367](https://github.com/bebop/poly/issues/367) |
+| 9 | **Modern language adoption** | The success of **poly** (Go, 737⭐) and **DnaChisel** (Python, 274⭐) vs. aging Java tools (iBioSim, GENtle2) shows the community gravitating toward modern, fast, easy-to-deploy languages. Even SynBioHub is rewriting from Node.js+Virtuoso to React+Spring Boot. | poly, DnaChisel, SynBioHub v3 |
+| 10 | **ML + AI convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, TDC's therapeutic benchmarks, DeepVariant point to an accelerating intersection of ML and biological design automation. | [ART](https://github.com/JBEI/ART), [CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA), [TDC](https://github.com/mims-harvard/TDC) |
+| 11 | **RNA device engineering & cell-free systems** | BioCRNpyler's TMSE module (#328); EnergyTXTL convergence bugs (#337); toehold-switch design tools from SASTRA-iGEM — growing interest in programmable RNA devices and cell-free expression as alternatives to in-vivo circuit characterization. | [BioCRNpyler#328](https://github.com/BuildACell/bioCRNpyler/issues/328), [BioCRNpyler#337](https://github.com/BuildACell/bioCRNpyler/issues/337) |
+| 12 | **Governance & biological review** | poly's proposal for a "biological reviewers group" (#422) signals that the community is grappling with how to ensure biological accuracy of computationally designed constructs — urgent as design tools scale and more people use them without wet-lab expertise. | [poly#422](https://github.com/bebop/poly/issues/422) |
+| 13 | **Dependency management in desktop tools** | iBioSim's Jena/Xerces crash (#637), GENtle2's aging Node.js stack, poly's dependency hygiene issues (#448, #442) — all point to the challenge of managing transitive dependencies in scientific software that integrates many libraries. | [iBioSim#637](https://github.com/MyersResearchGroup/iBioSim/issues/637) |
+| 14 | **Stalled academic projects** | GENtle2's 12-year-old refactor milestone, iBioSim's 305+ open issues with slow triage, and dormant projects — the "publish and abandon" pattern is prevalent in university synbio software. Coral (1 issue, consistently updated) is the counter-example. | [GENtle2#159](https://github.com/Synbiota/GENtle2/issues/159), [iBioSim#640](https://github.com/MyersResearchGroup/iBioSim/issues/640) |
+
+---
+
+## 🔥 Fresh Research Findings — September 2026
+
+This section captures the most recent discoveries from the September 2026 research sweep, highlighting issues that are brand-new or have significant recent activity.
+
+### 🆕 SynBioHub v3 — Swagger API (#1106) Just Landed
+
+- **Filed:** September 3, 2026 by maintainer **cjmyers**
+- **Assigned to:** Contributor **pagarap57**
+- **Milestone:** SBH 3.0.0 (142 open issues, 65 closed)
+- **Why it matters:** This is the **single most impactful open issue** in the entire synbio ecosystem. A Swagger-documented REST API would:
+  - Fix iBioSim's broken SynBioHub upload integration (#639, open since May 2025)
+  - Enable third-party clients and plugins (GENtle2, Desktop tools)
+  - Provide a stable interface for the v3 migration, decoupling frontend from backend
+  - Open the door for automated pipelines that programmatically upload and retrieve designs
+- **Risk:** The SBH 3.0.0 milestone was due August 31, 2026 — it's already overdue. The Swagger API is critical path for the entire v3 vision.
+
+### 🆕 SynBioHub v3 — Dev2 Search Bug (#1108)
+
+- **Filed:** September 12, 2026 by **cl117** (likely the same contributor working on the v3 backend)
+- **Label:** Bug
+- **No comments yet** — may be a fresh report without community visibility
+- **Context:** "dev2 doesn't show any similar parts" suggests the search/recommendation feature in the v3 development environment is broken. This is particularly concerning because search quality is fundamental to a design-sharing platform — if users can't find similar parts, the platform's utility drops significantly.
+
+### 🆕 SynBioHub v3 — Collections Page Update (#1107)
+
+- **Filed:** September 4, 2026 by **cjmyers**
+- **Assigned to:** **BroD54** (new contributor?)
+- **Milestone:** SBH 2.0.0
+- **Context:** The collections page is a core navigation element. An enhancement here suggests the v3 team is refining the user experience for browsing and organizing design collections — a sign they're moving from "make it work" to "make it usable."
+
+### 🆕 poly — Gibson Assembly Blocker (#359) Remains Unresolved
+
+- **High priority, intermediate difficulty, 6 comments, assigned to carreter**
+- **Blocked by #367** (clone package refactor) — this dependency chain means v1.0 cannot ship until the refactor is complete
+- **Marked stale** but still assigned — the maintainer hasn't closed it, suggesting it's still on their radar
+- **Impact:** Gibson Assembly is the most common molecular cloning method. Without it, poly can't compete with established tools like Benchling or ApE for standard cloning workflows
+
+### 🆕 Coral — Nearly Complete Health
+
+- **Only 1 open issue** (Ubuntu 22.04 Python 3 compatibility, filed Dec 2023)
+- **Consistent maintenance** — recent updates through June 2026
+- **This is the gold standard** for sustainable open-source synbio software in an ecosystem where many projects have 300+ open issues or 12-year-old milestones
 
 ---
 
@@ -314,6 +375,7 @@ episode-scripts-archive/
 │   ├── EP008-poly-the-go-native-toolkit/ # Modern Go-based synbio engineering
 │   ├── EP009-rna-devices-cell-free/   # BioCRNpyler, TMSE, EnergyTXTL
 │   ├── EP010-cello-verilog-to-dna/    # Verilog-to-DNA circuit synthesis
+│   ├── EP011-swagger-api-bridge/      # The SynBioHub v3 API story (Sep 2026)
 │   └── ...
 ├── research/
 │   ├── synbio-tools-survey-2026-09.md     # Full survey data
@@ -323,6 +385,7 @@ episode-scripts-archive/
 │   ├── dnachisel-optimization-landscape.md # DNA design UX challenges
 │   ├── ibiosim-cross-platform-struggles.md # iBioSim issue deep dive
 │   ├── cello-verilog-synthesis.md        # Cello circuit design analysis
+│   ├── swagger-api-impact-analysis.md    # The #1106 story
 │   └── references/
 ├── source-materials/
 │   ├── presentations/
@@ -350,7 +413,7 @@ episode-scripts-archive/
 | [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) | [SynBioHub/synbiohub3](https://github.com/SynBioHub/synbiohub3) | React + Spring Boot redesign (active, 16⭐) |
 | [iBioSim](http://www.ibiosim.org/) | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | Genetic circuit CAD tool |
 | [DnaChisel](https://edinburgh-genome-foundry.github.io/DnaChisel/) | [EGF/DnaChisel](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) | Python DNA sequence optimizer |
-| [poly](https://github.com/bebop/poly) | [bebop/poly](https://github.com/bebop/poly) | Go package for engineering organisms (729⭐) |
+| [poly](https://github.com/bebop/poly) | [bebop/poly](https://github.com/bebop/poly) | Go package for engineering organisms (737⭐) |
 | [GENtle2](https://synbiota.com) | [Synbiota/GENtle2](https://github.com/Synbiota/GENtle2) | Web-based DNA editor |
 | [Coral](https://github.com/klavinslab/coral) | [klavinslab/coral](https://github.com/klavinslab/coral) | Synbio design-as-code framework |
 | [Cello-v2](https://github.com/CIDARLAB/Cello-v2) | [CIDARLAB/Cello-v2](https://github.com/CIDARLAB/Cello-v2) | Verilog-to-DNA genetic circuit synthesizer |
@@ -424,4 +487,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 80+ open issues spanning 15 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration, poly (Go toolkit), DnaChisel optimization landscape, iBioSim cross-platform struggles (including the Jena/Xerces crash root cause from #637), Cello-v2 Verilog-to-DNA synthesis, BioCRNpyler's RNA device & cell-free systems expansion, and GENtle2's 12-year canvas refactor milestone. Research sources: GitHub issue trackers, repository READMEs, commit histories, community discussion threads (including maintainer commentary on issues #637 and #1753), and organization pages.*
+*Last research update: September 18, 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 90+ open issues spanning 15 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration (including the brand-new Swagger API issue #1106 filed Sep 3, 2026), poly's Gibson Assembly blocker (#359, blocked by #367), DnaChisel optimization landscape, iBioSim cross-platform struggles (including the Jena/Xerces crash root cause from #637), Cello-v2 Verilog-to-DNA synthesis, BioCRNpyler's RNA device & cell-free systems expansion, GENtle2's 12-year canvas refactor milestone, and Coral's benchmark of sustainable maintenance (1 open issue). Research sources: GitHub issue trackers, repository READMEs, commit histories, community discussion threads (including maintainer commentary on issues #637, #1753, and the fresh Sep 2026 sweep of SynBioHub v3 issues #1106-1108), and organization pages.*
