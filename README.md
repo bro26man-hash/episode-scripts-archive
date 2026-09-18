@@ -93,7 +93,15 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | [#1746](https://github.com/SynBioHub/synbiohub/issues/1746) | Incremental updates not working with SBOLExplorer | Bug — tool integration | Jul 2026 |
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend lacks OR request parsing mechanism | Bug — query capability | Jul 2026 |
 
-**Takeaway:** The v1 issues tell the story of a platform in graceful decline — the team is doing maintenance releases but the real innovation is in v3. The Virtuoso triplestore, once cutting-edge for RDF-based design sharing, is now showing its age: recursive collection resolution breaks, OMEX exports are incomplete, and database hygiene is a growing burden. These are classic symptoms of a legacy graph database struggling at scale.
+**Community discussion highlights from #1753 (OMEX/SBML export bug):**
+
+Maintainer **cjmyers** explained the root cause:
+> *"The issue is that Model->source is not followed to find all files. However, the SBML file will come in an OMEX download of the Attachment object or the Collection that has the Attachment as a member."*
+
+He then identified the fix pattern used in the sibling project:
+> *"For SynBioSuite, fixed this by making the SBML file an attachment of the Model object."*
+
+**Takeaway:** The v1 issues tell the story of a platform in graceful decline — the team is doing maintenance releases but the real innovation is in v3. The Virtuoso triplestore, once cutting-edge for RDF-based design sharing, is now showing its age: recursive collection resolution breaks, OMEX exports are incomplete, and database hygiene is a growing burden. These are classic symptoms of a legacy graph database struggling at scale. The #1753 discussion reveals a specific structural problem: the OMEX export pipeline doesn't traverse `Model->source` references, so SBML attachments get orphaned in the download bundle. The fix — promoting SBML files to top-level Model attachments — is a schema-level change that will ripple across all downstream consumers.
 
 ---
 
@@ -114,33 +122,57 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | [#632](https://github.com/MyersResearchGroup/iBioSim/issues/632) | Can't connect to LCP Synbiohub | Integration failure | Apr 2024 |
 | [#631](https://github.com/MyersResearchGroup/iBioSim/issues/631) | Problem with External Components | Bug — component handling | Mar 2024 |
 
-**Key error from #637 (most discussed):**
+**Key error from #637 (most discussed, 6 comments):**
 ```
 java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query.ARQ
 Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 ```
-A transitive dependency conflict — Apache Jena can't initialize because Xerces is missing or conflicting.
+A transitive dependency conflict — Apache Jena can't initialize because Xerces is missing or conflicting. The stack trace shows the failure chain: `SBOLStackHandler.getInteractions` → `TripleStoreHandler.executeSparql` → `QueryEngineHTTP.<init>` → `ARQ.<clinit>` → `XMLChar` missing.
 
-**Takeaway:** Desktop-based synbio CAD tools struggle with **Java dependency management and OS-specific behavior**. iBioSim's 305+ open issues and its broken SynBioHub integration (#639, #632) are a direct consequence of the v1 SynBioHub's aging API. When v3 launches with a proper Swagger API (#1106), this integration story may finally improve. This signals a strong opportunity for containerized or web-based alternatives.
+**Community discussion highlights from #637:**
+
+User **Hatem-synbio** was debugging Kenzo's toggle switch model, following the iBioSim tutorial page 94 for automatic model generation. Offered to share the COMBINE archive on Slack.
+
+Maintainer **cjmyers** root-caused the issue:
+> *"I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."*
+
+This reveals two layered problems:
+1. **Immediate cause:** Apache Jena's Xerces dependency is missing or conflicting in the distribution
+2. **Deeper cause:** iGEM Registry parts lack the SBOL interaction annotations that iBioSim requires for model generation — and instead of a graceful error, users get a cryptic Java stack trace
+
+**Takeaway:** Desktop-based synbio CAD tools struggle with **Java dependency management and OS-specific behavior**. iBioSim's 305+ open issues and its broken SynBioHub integration (#639, #632) are a direct consequence of the v1 SynBioHub's aging API. When v3 launches with a proper Swagger API (#1106), this integration story may finally improve. The #637 discussion is particularly telling: the maintainer himself acknowledged the error message is unhelpful — *"there should be a better error than an exception."* This signals a strong opportunity for containerized or web-based alternatives with proper error handling and input validation.
 
 ---
 
 #### 4. GENtle2 (106 ⭐) — The Web DNA Editor With Legacy Debt
 
-**Scope:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web. Written in JavaScript (Node.js + Express + Gulp).
+**Scope:** Web-based DNA editor for synthetic biology. A re-think of the original GENtle desktop application for the web. Written in JavaScript (Node.js + Express + Gulp). The README notes: *"GENtle2 has been almost entirely rewritten over the past year, and remains very much in development. Core features will be extracted into their own modules in the coming months."*
 
-**Current Open Issues (organized under "Refactor — Canvas events & RES/annotation cards" milestone):**
+**Current Open Issues (organized under "Refactor" milestones):**
 
-| Issue | Title | Theme | Date |
+**Milestone: Refactor — Canvas events & RES/annotation cards information** (3 open issues, due Aug 2014):
+
+| Issue | Title | Labels | Comments |
 |---|---|---|---|
-| #164 | Display feature details when hovering | UI / Refactor | Jul 2023 |
-| #163 | Tracking mouse events in `Artist` | Feature / Refactor | Jul 2023 |
-| #162 | Selection disappears when copied via context menu | Bug | Jul 2023 |
-| #161 | Selection disappears with hotkeys without shift | Bug | Jul 2023 |
-| #159 | Tracking shapes in `Artist` | Feature / Refactor (6 comments) | Jul 2023 |
-| #158 | Creating a feature clears plasmid map but doesn't redraw | Bug / Refactor | Jul 2023 |
+| [#164](https://github.com/Synbiota/GENtle2/issues/164) | Display feature details when hovering | — | 0 |
+| [#163](https://github.com/Synbiota/GENtle2/issues/163) | Tracking mouse events in `Artist` | Feature, Refactor | 0 |
+| [#159](https://github.com/Synbiota/GENtle2/issues/159) | Tracking shapes in `Artist` | Feature, Refactor | 6 |
 
-**Takeaway:** GENtle2's issues trace back to 2014-era interaction bugs that persist in the backlog. The refactor milestone signals the maintainer is attempting a **clean-slate architecture** rather than patching the old codebase — a story worth telling about technical debt in scientific software.
+**Milestone: Refactor — Sequence opening/editing** (2 open issues):
+
+| Issue | Title | Labels |
+|---|---|---|
+| [#132](https://github.com/Synbiota/GENtle2/issues/132) | Replace non-allowed characters by placeholder when importing Genebank | Backlog, Refactor, Optimization |
+| [#130](https://github.com/Synbiota/GENtle2/issues/130) | Bug with selection using up arrow | Bug, Refactor |
+
+**Community discussion from #159 (Tracking shapes in `Artist`):**
+
+The maintainer **alexandremeunier** laid out a detailed technical plan:
+> *"When drawing a shape, add as an option the ability to `track` the shape, i.e. store it in the `Artist#shapes` array. When clearing or scrolling via `Artist`, the list of shapes needs to be updated (invisible shapes should be removed, position of shapes still visible should be updated when scrolling). We'll need, for each `Shape` subclass: `moveVertically(yOffset)`, `isVisible`, `includesPoint(x, y)`."*
+
+This is a fundamental canvas event system rethink — but the milestone was due August 2, 2014, and was last updated July 19, 2023. The 9-year gap between issue creation and last activity signals a community starved for contributors.
+
+**Takeaway:** GENtle2's issues trace back to 2014-era interaction bugs that persist in the backlog. The refactor milestones indicate the maintainer is attempting a **clean-slate architecture** rather than patching the old codebase — but with only 6 comments on the most discussed issue and a 9-year milestone deadline, this is a story about the difficulty of sustaining open-source scientific software. The canvas event system rewrite (#159, #163, #164) is the key to unlocking hover tooltips, interactive annotation cards, and modern UX — but it remains incomplete.
 
 ---
 
@@ -206,7 +238,7 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 **Current Open Issues:** Only 1 open issue ([#37](https://github.com/klavinslab/coral/issues/37) — Ubuntu 22.04 Python 3 compatibility). Actively maintained, recent updates (June 2026).
 
-**Takeaway:** Coral is a rare example of a **well-maintained, open-source Python library** for synbio design automation. It's a great reference for how to structure design-as-code workflows.
+**Takeaway:** Coral is a rare example of a **well-maintained, open-source Python library** for synbio design automation. It's a great reference for how to structure design-as-code workflows, and a contrast point to the struggling desktop tools (iBioSim, GENtle2) that are grappling with dependency and maintenance debt.
 
 ---
 
@@ -246,62 +278,24 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 ---
 
-#### 11. 🆕 Chai PCR /Chaibio (96 ⭐) — Open-Source Real-Time PCR Instrument Software
-
-**Scope:** The software platform behind Chai's line of Real-Time PCR Thermocyclers, including the [Open qPCR Real-Time PCR instrument](https://www.chaibio.com/openqpcr). Released as open source to facilitate development of open-source qPCR instruments and welcome community contributions. Apache-2.0 license. Multi-language stack: C++ (realtime device control), Python (bioinformatics), JavaScript/HTML5 (frontend), Ruby on Rails (web backend), Qt (touchscreen browser app).
-
-**Repository organization:**
-- `bioinformatics/` — Library code for processing qPCR bioinformatics data
-- `browser/` — Qt application powering device touchscreen
-- `device/` — Template configuration files
-- `devops/` — System for creating software builds and deploying to devices
-- `frontend/` — JavaScript/HTML5 frontend web application for operating device & analyzing results
-- `modules/` — Linux modules required by device
-- `realtime/` — C++ application operating the device in realtime for control and data acquisition
-- `web/` — Ruby on Rails backend application for operating the device and managing experiments
-
-**Current Open Issues:**
-
-| Issue | Title | Theme | Date |
-|---|---|---|---|
-| [#104](https://github.com/chaibio/chaipcr/issues/104) | No screen after factory reset | Hardware/software integration | Aug 2026 |
-| [#105](https://github.com/chaibio/chaipcr/issues/105) | Website is down | Infrastructure / DevOps | Jun 2026 |
-| [#102](https://github.com/chaibio/chaipcr/issues/102) | Can't set up a new account to access Open QPCR after factory reset | User account mgmt | Sep 2023 |
-| [#101](https://github.com/chaibio/chaipcr/issues/101) | Can I use PuTTy to login to the instrument? | Accessibility / SSH | Jul 2023 |
-
-**Takeaway:** Chai PCR is a rare example of **open-source hardware-software integration** in synbio — the software directly controls a physical thermocycler. The issues reveal a pattern common to hardware-adjacent open-source projects: the software is mature enough to run devices, but the supporting infrastructure (website, account system, factory reset recovery) is lagging. The community is small (45 forks, 96 stars) but the project fills a critical gap: making qPCR instruments accessible to the DIY and educational synbio community. This is a reminder that synbio software isn't just about sequence design — it also includes the embedded and control software that makes wet-lab hardware function.
-
----
-
-#### 12. 🆕 BiArkit /SYSU (1 ⭐) — Localized Synbio Toolkit (Stalled)
-
-**Scope:** A versatile Java-based toolkit integrating multiple modules for synthetic biology research: GenomeBrowser (visualizes genomes of model microorganisms), Riboswitch & SiRNA (design of regulatory elements), MetaNetwork (pathway database scanning), Simulator (in-silico metabolic network analysis), and G-Circle (genome expression visualization). Notably **localized** — all functions work without internet connectivity. Includes Clotho integration.
-
-**Current Open Issues:** **None.** The project has zero open issues on GitHub, which combined with its 1-star count and Chinese-language README/contact info suggests the project is effectively **dormant or in a private development phase**.
-
-**Takeaway:** BiArkit represents the **"publish and abandon" pattern** prevalent in university synbio software. The project has ambitious scope (7 integrated modules from genome visualization to network simulation), but the lack of issues, minimal community engagement, and Chinese-only documentation suggest it was developed as a research project rather than a community tool. The localization decision (offline-only operation) is interesting for field work in regions with limited internet, but it also limits community contribution and review. This is a cautionary tale: ambitious scope without community maintenance leads to archival status.
-
----
-
 ### 📊 Emerging Themes from the Community
 
 Based on open-issue triage across all surveyed projects, these are the themes dominating community attention right now:
 
 | # | Theme | What It Means |
 |---|---|---|
-| 1 | **The SynBioHub Migration** | v1 is in maintenance mode with data-integrity bugs (OMEX exports broken, recursive downloads failing); v3 is a React+Spring Boot rewrite at 16 stars, not yet adopted by the community. The migration story is the central narrative of 2026 in synbio infrastructure. |
-| 2 | **Interoperability & integration friction** | iBioSim can't upload to SynBioHub; OMEX exports miss SBML files; collection prefixes shift when changing visibility. The connected synbio toolchain is still hampered by format/URL/API mismatches. |
-| 3 | **Data integrity in shared collections** | SubCollections not reporting members, recursive downloads not following links, legacy Virtuoso DB data piling up. Growing-pains for platforms hosting community-wide design registries. |
-| 4 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded; a common pattern in academic tools that lose active maintainers. |
-| 5 | **Cross-platform compatibility** | iBioSim's Mac and Windows 11 issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run anywhere" remains aspirational. |
-| 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes), not just get the single best answer. New requests for UD optimization and GC minimization show the community pushing toward chemistry-aware design. A fundamental UX challenge in computational biology. |
+| 1 | **The SynBioHub Migration** | v1 is in maintenance mode with data-integrity bugs (OMEX exports broken, recursive downloads failing, SubCollections not reporting members); v3 is a React+Spring Boot rewrite at 16 stars, not yet adopted by the community. The migration story is the central narrative of 2026 in synbio infrastructure. |
+| 2 | **Interoperability & integration friction** | iBioSim can't upload to SynBioHub (#639); OMEX exports miss SBML files (#1753); collection prefixes shift when changing visibility (#1752); incremental sync broken with SBOLExplorer (#1746). The connected synbio toolchain is still hampered by format/URL/API mismatches. |
+| 3 | **Data integrity in shared collections** | SubCollections not reporting members (#1756), recursive downloads not following links (#1755), legacy Virtuoso DB data piling up (#1754). Growing-pains for platforms hosting community-wide design registries. |
+| 4 | **Long-standing UI bugs in academic tools** | GENtle2's 2014-era interaction bugs remain unfunded (#159, #162, #163); a common pattern in academic tools that lose active maintainers. The "Refactor — Canvas events" milestone has been open for 12 years. |
+| 5 | **Cross-platform compatibility** | iBioSim's Mac (#638) and Windows 11 (#635) issues; SynBioHub3's OpenSSL 3 breaking Windows dev setup. Java "write once, run anywhere" remains aspirational. |
+| 6 | **Optimization depth vs. usability** | DnaChisel users want to explore sub-optimal solutions (fitness landscapes, #100), not just get the single best answer. New requests for UD optimization (#107, 5 comments) and GC minimization (#110) show the community pushing toward chemistry-aware design. The `codon_usage_table` mutation bug (#111) could silently produce incorrect results. A fundamental UX challenge in computational biology. |
 | 7 | **Modern language adoption** | The success of **poly** (Go, 729⭐) and **DnaChisel** (Python, 274⭐) vs. aging Java tools (iBioSim, GENtle2) suggests the community is gravitating toward modern, fast, easy-to-deploy languages. Even SynBioHub is rewriting from Node.js+Virtuoso to React+Spring Boot. |
-| 8 | **ML + sequence design convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, iBioSim's circuit design, TDC's therapeutic benchmarks, CodonTransformer, and DeepBGC point to an accelerating intersection of ML and biological design automation. |
-| 9 | **RNA device engineering & cell-free systems** | BioCRNpyler's TMSE module; EnergyTXTL convergence bugs; toehold-switch design tools from SASTRA-iGEM — growing interest in programmable RNA devices and cell-free expression as alternatives to in-vivo circuit characterization. |
-| 10 | **Correctness of re-implemented backends** | deepTools 4.0.0 Rust rewrite introduced silent numerical/logic bugs (wrong PCA, broken bamCompare) — a cautionary tale for scientific software rewrites that undermines user trust in migrated tooling. |
-| 11 | **Stalled academic projects** | BiArkit (1⭐, zero issues), BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. Even Chai PCR, with 96 stars, has infrastructure issues (website down, account system broken) that suggest the community-maintained aspect is lagging behind the core software. |
-| 12 | **Tool governance & biological review** | poly's proposal for a "biological reviewers group" (#422) signals that the community is grappling with how to ensure biological accuracy of computationally designed constructs — a question that becomes urgent as design tools scale. |
-| 13 | **Hardware-software integration gaps** | Chai PCR's issues (#104 factory resets, #102 account recovery, #105 website down) reveal that open-source synbio isn't just about sequence design tools — it also includes embedded/control software for physical instruments. These projects face a different maintenance challenge: they need both software developers AND hardware-aware contributors, and the infrastructure around the core software (websites, account systems, documentation) often decays. |
+| 8 | **ML + sequence design convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, iBioSim's circuit design, TDC's therapeutic benchmarks, DeepVariant, and DeepBGC point to an accelerating intersection of ML and biological design automation. |
+| 9 | **RNA device engineering & cell-free systems** | BioCRNpyler's TMSE module (#328); EnergyTXTL convergence bugs (#337); toehold-switch design tools from SASTRA-iGEM — growing interest in programmable RNA devices and cell-free expression as alternatives to in-vivo circuit characterization. |
+| 10 | **Governance & biological review** | poly's proposal for a "biological reviewers group" (#422) signals that the community is grappling with how to ensure biological accuracy of computationally designed constructs — a question that becomes urgent as design tools scale and more people use them without wet-lab expertise. |
+| 11 | **Dependency management in desktop tools** | iBioSim's Jena/Xerces crash (#637), GENtle2's aging Node.js stack, poly's dependency hygiene issues (#448, #442) — all point to the challenge of managing transitive dependencies in scientific software that integrates many libraries. |
+| 12 | **Stalled academic projects** | GENtle2's 12-year-old refactor milestone, iBioSim's 305+ open issues with slow triage, and dormant projects like BiArkit and BIOFAB Studio — the "publish and abandon" pattern is prevalent in university synbio software. |
 
 ---
 
@@ -316,11 +310,10 @@ episode-scripts-archive/
 │   ├── EP004-from-hand-engineering-to-ml/ # ART, CASPIA, and computational design
 │   ├── EP005-dna-optimization-deep-dive/ # DnaChisel, poly, and sequence design
 │   ├── EP006-standards-maturation/    # SBOL, SBML, and the state of interoperability
-│   ├── EP007-academic-tool-dormancy/  # The "publish and abandon" pattern (BiArkit)
+│   ├── EP007-academic-tool-dormancy/  # The "publish and abandon" pattern
 │   ├── EP008-poly-the-go-native-toolkit/ # Modern Go-based synbio engineering
 │   ├── EP009-rna-devices-cell-free/   # BioCRNpyler, TMSE, EnergyTXTL
 │   ├── EP010-cello-verilog-to-dna/    # Verilog-to-DNA circuit synthesis
-│   ├── EP011-hardware-software-gaps/  # Chai PCR & open-source instrument software
 │   └── ...
 ├── research/
 │   ├── synbio-tools-survey-2026-09.md     # Full survey data
@@ -330,8 +323,6 @@ episode-scripts-archive/
 │   ├── dnachisel-optimization-landscape.md # DNA design UX challenges
 │   ├── ibiosim-cross-platform-struggles.md # iBioSim issue deep dive
 │   ├── cello-verilog-synthesis.md        # Cello circuit design analysis
-│   ├── chaipcr-hardware-integration.md   # Chai PCR open-source instrument software
-│   ├── biarkit-dormancy-case-study.md    # Stalled academic project pattern
 │   └── references/
 ├── source-materials/
 │   ├── presentations/
@@ -366,8 +357,6 @@ episode-scripts-archive/
 | [BioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | [BuildACell/bioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | Biomolecular CRN compiler |
 | [act](https://github.com/20n/act) | [20n/act](https://github.com/20n/act) | Predictive bioengineering platform |
 | [CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | [shenmaa233/SJTU-software-CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | AI-powered metabolic engineering platform |
-| [Chai PCR](https://www.chaibio.com/openqpcr) | [chaibio/chaipcr](https://github.com/chaibio/chaipcr) | Open-source Real-Time PCR instrument software (96⭐) |
-| [BiArkit](https://github.com/sysu-software/BiArkit) | [sysu-software/BiArkit](https://github.com/sysu-software/BiArkit) | Localized synbio toolkit (1⭐, dormant) |
 | [TDC](https://tdcommons.ai) | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | Therapeutics Data Commons |
 | [Synthea](https://synthetichealth.github.io/synthea/) | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | Synthetic patient simulator |
 | [deepTools](https://deeptools.readthedocs.io/) | [deeptools/deepTools](https://github.com/deeptools/deepTools) | Deep-sequencing analysis toolkit |
@@ -407,8 +396,6 @@ episode-scripts-archive/
 - **CIDARLab** — Cello genetic circuit synthesis (Verilog → DNA)
 - **BuildACell** — BioCRNpyler & systems biology tools
 - **SASTRA-iGEM** — Academic iGEM team producing ML tools for RNA device design
-- **Chai Bio** — Open-source qPCR thermocycler hardware & software
-- **Sun Yat-sen University (SYSU)** — BiArkit localized synbio toolkit
 
 ---
 
@@ -437,4 +424,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 80+ open issues spanning 15 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration, poly (Go toolkit), DnaChisel optimization landscape, iBioSim cross-platform struggles, Cello-v2 Verilog-to-DNA synthesis, BioCRNpyler's RNA device & cell-free systems expansion, Chai PCR open-source instrument software, and BiArkit's stalled-academic-project pattern. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
+*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 80+ open issues spanning 15 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration, poly (Go toolkit), DnaChisel optimization landscape, iBioSim cross-platform struggles (including the Jena/Xerces crash root cause from #637), Cello-v2 Verilog-to-DNA synthesis, BioCRNpyler's RNA device & cell-free systems expansion, and GENtle2's 12-year canvas refactor milestone. Research sources: GitHub issue trackers, repository READMEs, commit histories, community discussion threads (including maintainer commentary on issues #637 and #1753), and organization pages.*
