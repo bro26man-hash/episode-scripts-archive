@@ -246,6 +246,43 @@ A transitive dependency conflict — Apache Jena can't initialize because Xerces
 
 ---
 
+#### 11. 🆕 Chai PCR /Chaibio (96 ⭐) — Open-Source Real-Time PCR Instrument Software
+
+**Scope:** The software platform behind Chai's line of Real-Time PCR Thermocyclers, including the [Open qPCR Real-Time PCR instrument](https://www.chaibio.com/openqpcr). Released as open source to facilitate development of open-source qPCR instruments and welcome community contributions. Apache-2.0 license. Multi-language stack: C++ (realtime device control), Python (bioinformatics), JavaScript/HTML5 (frontend), Ruby on Rails (web backend), Qt (touchscreen browser app).
+
+**Repository organization:**
+- `bioinformatics/` — Library code for processing qPCR bioinformatics data
+- `browser/` — Qt application powering device touchscreen
+- `device/` — Template configuration files
+- `devops/` — System for creating software builds and deploying to devices
+- `frontend/` — JavaScript/HTML5 frontend web application for operating device & analyzing results
+- `modules/` — Linux modules required by device
+- `realtime/` — C++ application operating the device in realtime for control and data acquisition
+- `web/` — Ruby on Rails backend application for operating the device and managing experiments
+
+**Current Open Issues:**
+
+| Issue | Title | Theme | Date |
+|---|---|---|---|
+| [#104](https://github.com/chaibio/chaipcr/issues/104) | No screen after factory reset | Hardware/software integration | Aug 2026 |
+| [#105](https://github.com/chaibio/chaipcr/issues/105) | Website is down | Infrastructure / DevOps | Jun 2026 |
+| [#102](https://github.com/chaibio/chaipcr/issues/102) | Can't set up a new account to access Open QPCR after factory reset | User account mgmt | Sep 2023 |
+| [#101](https://github.com/chaibio/chaipcr/issues/101) | Can I use PuTTy to login to the instrument? | Accessibility / SSH | Jul 2023 |
+
+**Takeaway:** Chai PCR is a rare example of **open-source hardware-software integration** in synbio — the software directly controls a physical thermocycler. The issues reveal a pattern common to hardware-adjacent open-source projects: the software is mature enough to run devices, but the supporting infrastructure (website, account system, factory reset recovery) is lagging. The community is small (45 forks, 96 stars) but the project fills a critical gap: making qPCR instruments accessible to the DIY and educational synbio community. This is a reminder that synbio software isn't just about sequence design — it also includes the embedded and control software that makes wet-lab hardware function.
+
+---
+
+#### 12. 🆕 BiArkit /SYSU (1 ⭐) — Localized Synbio Toolkit (Stalled)
+
+**Scope:** A versatile Java-based toolkit integrating multiple modules for synthetic biology research: GenomeBrowser (visualizes genomes of model microorganisms), Riboswitch & SiRNA (design of regulatory elements), MetaNetwork (pathway database scanning), Simulator (in-silico metabolic network analysis), and G-Circle (genome expression visualization). Notably **localized** — all functions work without internet connectivity. Includes Clotho integration.
+
+**Current Open Issues:** **None.** The project has zero open issues on GitHub, which combined with its 1-star count and Chinese-language README/contact info suggests the project is effectively **dormant or in a private development phase**.
+
+**Takeaway:** BiArkit represents the **"publish and abandon" pattern** prevalent in university synbio software. The project has ambitious scope (7 integrated modules from genome visualization to network simulation), but the lack of issues, minimal community engagement, and Chinese-only documentation suggest it was developed as a research project rather than a community tool. The localization decision (offline-only operation) is interesting for field work in regions with limited internet, but it also limits community contribution and review. This is a cautionary tale: ambitious scope without community maintenance leads to archival status.
+
+---
+
 ### 📊 Emerging Themes from the Community
 
 Based on open-issue triage across all surveyed projects, these are the themes dominating community attention right now:
@@ -262,15 +299,16 @@ Based on open-issue triage across all surveyed projects, these are the themes do
 | 8 | **ML + sequence design convergence** | ART's ML for strain engineering, CASPIA's AI workflow orchestration, iBioSim's circuit design, TDC's therapeutic benchmarks, CodonTransformer, and DeepBGC point to an accelerating intersection of ML and biological design automation. |
 | 9 | **RNA device engineering & cell-free systems** | BioCRNpyler's TMSE module; EnergyTXTL convergence bugs; toehold-switch design tools from SASTRA-iGEM — growing interest in programmable RNA devices and cell-free expression as alternatives to in-vivo circuit characterization. |
 | 10 | **Correctness of re-implemented backends** | deepTools 4.0.0 Rust rewrite introduced silent numerical/logic bugs (wrong PCA, broken bamCompare) — a cautionary tale for scientific software rewrites that undermines user trust in migrated tooling. |
-| 11 | **Stalled academic projects** | BiArkit, BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. |
+| 11 | **Stalled academic projects** | BiArkit (1⭐, zero issues), BIOFAB Studio, and SynBioCAD/biocad all show signs of dormancy. The "publish and abandon" pattern is prevalent in university synbio software. Even Chai PCR, with 96 stars, has infrastructure issues (website down, account system broken) that suggest the community-maintained aspect is lagging behind the core software. |
 | 12 | **Tool governance & biological review** | poly's proposal for a "biological reviewers group" (#422) signals that the community is grappling with how to ensure biological accuracy of computationally designed constructs — a question that becomes urgent as design tools scale. |
+| 13 | **Hardware-software integration gaps** | Chai PCR's issues (#104 factory resets, #102 account recovery, #105 website down) reveal that open-source synbio isn't just about sequence design tools — it also includes embedded/control software for physical instruments. These projects face a different maintenance challenge: they need both software developers AND hardware-aware contributors, and the infrastructure around the core software (websites, account systems, documentation) often decays. |
 
 ---
 
 ## 📂 Archive Structure
 
 ```
-eepisode-scripts-archive/
+episode-scripts-archive/
 ├── episodes/
 │   ├── EP001-synbiohub-migration/     # The v1→v3 rewrite story
 │   ├── EP002-interoperability-crisis/ # Data portability & OMEX bugs
@@ -278,10 +316,11 @@ eepisode-scripts-archive/
 │   ├── EP004-from-hand-engineering-to-ml/ # ART, CASPIA, and computational design
 │   ├── EP005-dna-optimization-deep-dive/ # DnaChisel, poly, and sequence design
 │   ├── EP006-standards-maturation/    # SBOL, SBML, and the state of interoperability
-│   ├── EP007-academic-tool-dormancy/  # The "publish and abandon" pattern
+│   ├── EP007-academic-tool-dormancy/  # The "publish and abandon" pattern (BiArkit)
 │   ├── EP008-poly-the-go-native-toolkit/ # Modern Go-based synbio engineering
 │   ├── EP009-rna-devices-cell-free/   # BioCRNpyler, TMSE, EnergyTXTL
 │   ├── EP010-cello-verilog-to-dna/    # Verilog-to-DNA circuit synthesis
+│   ├── EP011-hardware-software-gaps/  # Chai PCR & open-source instrument software
 │   └── ...
 ├── research/
 │   ├── synbio-tools-survey-2026-09.md     # Full survey data
@@ -291,6 +330,8 @@ eepisode-scripts-archive/
 │   ├── dnachisel-optimization-landscape.md # DNA design UX challenges
 │   ├── ibiosim-cross-platform-struggles.md # iBioSim issue deep dive
 │   ├── cello-verilog-synthesis.md        # Cello circuit design analysis
+│   ├── chaipcr-hardware-integration.md   # Chai PCR open-source instrument software
+│   ├── biarkit-dormancy-case-study.md    # Stalled academic project pattern
 │   └── references/
 ├── source-materials/
 │   ├── presentations/
@@ -325,6 +366,8 @@ eepisode-scripts-archive/
 | [BioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | [BuildACell/bioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | Biomolecular CRN compiler |
 | [act](https://github.com/20n/act) | [20n/act](https://github.com/20n/act) | Predictive bioengineering platform |
 | [CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | [shenmaa233/SJTU-software-CASPIA](https://github.com/shenmaa233/SJTU-software-CASPIA) | AI-powered metabolic engineering platform |
+| [Chai PCR](https://www.chaibio.com/openqpcr) | [chaibio/chaipcr](https://github.com/chaibio/chaipcr) | Open-source Real-Time PCR instrument software (96⭐) |
+| [BiArkit](https://github.com/sysu-software/BiArkit) | [sysu-software/BiArkit](https://github.com/sysu-software/BiArkit) | Localized synbio toolkit (1⭐, dormant) |
 | [TDC](https://tdcommons.ai) | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | Therapeutics Data Commons |
 | [Synthea](https://synthetichealth.github.io/synthea/) | [synthetichealth/synthea](https://github.com/synthetichealth/synthea) | Synthetic patient simulator |
 | [deepTools](https://deeptools.readthedocs.io/) | [deeptools/deepTools](https://github.com/deeptools/deepTools) | Deep-sequencing analysis toolkit |
@@ -364,6 +407,8 @@ eepisode-scripts-archive/
 - **CIDARLab** — Cello genetic circuit synthesis (Verilog → DNA)
 - **BuildACell** — BioCRNpyler & systems biology tools
 - **SASTRA-iGEM** — Academic iGEM team producing ML tools for RNA device design
+- **Chai Bio** — Open-source qPCR thermocycler hardware & software
+- **Sun Yat-sen University (SYSU)** — BiArkit localized synbio toolkit
 
 ---
 
@@ -392,4 +437,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 80+ open issues spanning 15 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration, poly (Go toolkit), DnaChisel optimization landscape, iBioSim cross-platform struggles, Cello-v2 Verilog-to-DNA synthesis, and BioCRNpyler's RNA device & cell-free systems expansion. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
+*Last research update: September 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 80+ open issues spanning 15 repositories, compiled community themes, and documented the SynBioHub v1→v3 migration, poly (Go toolkit), DnaChisel optimization landscape, iBioSim cross-platform struggles, Cello-v2 Verilog-to-DNA synthesis, BioCRNpyler's RNA device & cell-free systems expansion, Chai PCR open-source instrument software, and BiArkit's stalled-academic-project pattern. Research sources: GitHub issue trackers, repository READMEs, commit histories, and community documentation.*
