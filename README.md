@@ -47,7 +47,7 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 
 ---
 
-## 🔬 Deep Dives — The Two Most Active Repos
+## 🔬 Deep Dives — The Most Active Repos
 
 ### 1. SynBioHub v3 (16 Stars) — The Great Redesign Migration
 
@@ -55,7 +55,7 @@ A full rewrite of the SynBioHub platform using **React (Next.js) + Spring Boot (
 
 **Why this matters:** The v1-to-v3 migration is *the* defining infrastructure story in the synbio ecosystem right now. The legacy v1 has 84 stars and is in maintenance mode (milestone SBH 1.6.2), while v3 is the future — but it's still at 16 stars, meaning the community hasn't fully migrated yet.
 
-**FRESH — September 2026 Issues:**
+**Fresh — September 2026 Issues:**
 
 | Issue | Title | Theme | Milestone | Date | Assignee |
 |---|---|---|---|---|---|
@@ -219,7 +219,7 @@ A modern toolbox for synthetic biology, written in **Rust** with a **Svelte SPA*
 - **Web UI:** Sequence Validation, Sequence Length, Reverse Sequence, Count Sequence Elements, Reverse Complement, Convert Case (DNA↔RNA↔Protein), GC Content, Find Open Reading Frames
 - **Rust Library:** Extract Subsequences, Hamming Distance, Levenshtein Distance
 
-**Takeaway:** Syn-Zeug's all-feature-request issue list signals a stable core ready for community expansion. The Rust+Svelte+WASM architecture is a pattern to watch — it may represent the future of web-native bioinformatics tooling. It's early-stage (7 stars) but the Sheffield-iGEM team is actively maintaining it with reviewer guidance for new contributors.
+**Takeaway:** Syn-Zeug's all-feature-request issue list signals a stable core ready for community expansion. The Rust+Svelte+WASM architecture is a modern alternative to the Java-based tools.
 
 ---
 
@@ -348,7 +348,7 @@ episode-scripts-archive/
 │   ├── EP005-ml-designed-biology/
 │   ├── EP006-rust-bioinformatics/
 │   ├── EP007-sbol-web-standard/
-│   └── EP008-graying-academic-tools/
+│   └── ...
 ├── source-materials/
 │   ├── presentations/
 │   ├── datasets/
@@ -394,4 +394,4 @@ This archive is released under the [Creative Commons Attribution 4.0 Internation
 
 ---
 
-*Last research update: September 18, 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 70+ fresh open issues spanning 10 repositories, compiled community themes, and documented the SynBioHub v1-to-v3 migration (including the brand-new Swagger API issue #1106 filed Sep 3, 2026), poly's Gibson Assembly blocker (#359, blocked by #367), DnaChisel's chemistry-aware optimization requests (#107 UD, #110 CGmin, #111 data integrity bug), iBioSim's cross-platform struggles (including the Jena/Xerces crash root cause from #637), GENtle2's 12-year canvas refactor milestone, Syn-Zeug's all-feature-expansion roadmap, and Coral's benchmark of sustainable maintenance (1 open issue).*
+*Last research update: September 18, 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 70+ fresh open issues spanning 10 repositories, compiled community themes, and documented the SynBioHub v1-to-v3 migration (including the brand-new Swagger API issue #1106 filed Sep 3, 2026), poly's Gibson Assembly blocker, DnaChisel's chemistry-aware optimization requests, iBioSim's cross-platform struggles (including the Jena/Xerces crash root cause from #637), GENtle2's 12-year canvas refactor milestone, Syn-Zeug's all-feature-expansion roadmap, and Coral's benchmark of sustainable maintenance.*
