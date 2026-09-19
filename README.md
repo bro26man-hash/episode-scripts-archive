@@ -34,49 +34,27 @@ This section summarizes findings from a detailed survey of GitHub-hosted synthet
 | **deepTools** | 765 | Python | Process & analyze deep-sequencing data | [link](https://github.com/deeptools/deepTools) |
 | **DnaChisel** | 274 | Python | DNA sequence optimizer — codon optimization, GC tuning, constraints | [link](https://github.com/Edinburgh-Genome-Foundry/DnaChisel) |
 | **awesome-synthetic-biology** | 223 | — | Curated directory of synbio projects, articles, and resources | [link](https://github.com/websemantics/awesome-synthetic-biology) |
+| **CodonTransformer** | 225 | Python | Codon optimization tool (2M+ downloads) | [link](https://github.com/Adibvafa/CodonTransformer) |
 | **GENtle2** | 106 | JavaScript | Web-based DNA editor for synthetic biology | [link](https://github.com/Synbiota/GENtle2) |
 | **act (20n)** | 92 | Java/Scala | Predictive bioengineering — discovers DNA routes to target chemicals | [link](https://github.com/20n/act) |
-| **Cello** | 875 | Java | Genetic circuit design automation — Verilog → logic gates → DNA sequences | [link](https://github.com/CIDARLAB/cello) |
 | **SynBioHub v1** | 84 | JS/Java | Design sharing platform (legacy, maintenance mode) | [link](https://github.com/SynBioHub/synbiohub) |
 | **SynBioHub v3** | 16 | JS/Java | **Redesign** — React (Next.js) + Spring Boot (Java 17) | [link](https://github.com/SynBioHub/synbiohub3) |
-| **Cello-v2** | 74 | Java | Verilog → logic gates → DNA sequences (next-gen rewrite) | [link](https://github.com/CIDARLAB/Cello-v2) |
+| **Cello-v2** | 74 | Java | Verilog → logic gates → DNA sequences | [link](https://github.com/CIDARLAB/Cello-v2) |
 | **iBioSim** | 67 | Java | CAD for genetic circuits; SBML/SBOL support | [link](https://github.com/MyersResearchGroup/iBioSim) |
 | **ART (JBEI)** | 66 | Jupyter | ML tool for automated strain engineering recommendations | [link](https://github.com/JBEI/ART) |
+| **BioCRNpyler** | 54 | Python | Biomolecular CRN compiler with TXTL support | [link](https://github.com/BuildACell/bioCRNpyler) |
 | **Coral** | 32 | Python | Design-as-code framework for synthetic DNA constructs | [link](https://github.com/klavinslab/coral) |
 | **CASPIA** | 13 | Python | AI-powered metabolic engineering platform | [link](https://github.com/shenmaa233/SJTU-software-CASPIA) |
-| **BioCRNpyler** | 54 | Python | Biomolecular CRN compiler with TXTL support | [link](https://github.com/BuildACell/bioCRNpyler) |
-| **Syn-Zeug** | 7 | Rust | Modern Rust toolbox — sequence validation, ORF finding, GC content, Hamming/Levenshtein | [link](https://github.com/Sheffield-iGEM/syn-zeug) |
+| **Syn-Zeug** | 7 | Rust | Modern toolbox for synthetic biology — sequence validation, ORF finding, GC content | [link](https://github.com/Sheffield-iGEM/syn-zeug) |
+| **sboljs3** | 7 | TypeScript | SBOL library for TypeScript/JavaScript apps — reads/writes SBOL1-3, converts FASTA/GenBank | [link](https://github.com/SynBioDex/sboljs3) |
+| **ToeholdSwitchDesign** | 0 | Jupyter | ML-based design of RNA toehold switches for biosensing | [link](https://github.com/SASTRA-iGEM2019/ToeholdSwitchDesign) |
+| **BiArkit** | 1 | Java | Integrated toolkit: GenomeBrowser, Riboswitch/SiRNA design, metabolic network simulator | [link](https://github.com/sysu-software/BiArkit) |
 
 ---
 
 ## 🔬 Deep Dives — The Most Active Repos
 
-### 1. Cello / Cello-v2 (875 + 74 Stars) — The Gold Standard of Genetic Circuit Design
-
-**Cello** is the most-starved synthetic-biology-specific tool on GitHub (875 stars, 142 forks, BSD-2-Clause license). It takes a **Verilog** hardware description language specification as input, parses it into a truth table, runs logic synthesis to generate a circuit diagram, assigns genetically characterized gates (TetR homologs as NOR/NOT gates), and then uses the **Eugene** language for constrained combinatorial DNA sequence design. The full pipeline is: Verilog →AND-Inverter Graph → NOR-Inverter Graph → Subcircuit Substitution → Gate Assignment → Eugene DNA Design → GenBank Insertion.
-
-**Cello-v2** (74 stars) is the next-generation rewrite, continuing the project under the CIDARLAB organization.
-
-**Why this matters:** Cello is the only tool that demonstrates a complete end-to-end design-to-DNA pipeline for synthetic biology. It bridges the gap between abstract logic specification and physical DNA sequence — the "compiler" the field has been waiting for. The gate assignment step uses experimentally characterized response functions fitted to Hill equations, making it one of the few tools grounded in real experimental data rather than just theoretical modeling.
-
-**Design philosophy highlights:**
-- **Three Verilog input forms:** Case statements (for truth tables), assign statements (for Boolean logic), and structural elements (for gate-level wiring diagrams)
-- **Three assignment algorithms:** Breadth-first search (guaranteed global optimum for ~10-gate circuits), hill climbing, and simulated annealing
-- **Eugene language integration:** Automatic generation of constrained DNA sequence variants from circuit assignments
-- **Experimentally validated:** The original Cello work demonstrated circuits that actually worked in cells — not just paper designs
-
-**Repository details:**
-- **Stack:** JavaMaven**, Travis CI, Docker
-- **License:** BSD-2-Clause
-- **Active development:** Updated September 13, 2026
-- **Key contributors:** Chris Myers (cjmyers), Douglas Densmore
-- **Website:** http://www.cellocad.org/
-
-**Takeaway:** Cello is the field's proof-of-concept that computational design can produce working genetic circuits. Its Verilog-to-DNA pipeline is unique. Cello-v2 signals the community's commitment to keeping this tool alive. Any content about synbio design tools should cover Cello as the canonical example of "design automation" in biology.
-
----
-
-### 2. SynBioHub v3 (16 Stars) — The Great Redesign Migration
+### 1. SynBioHub v3 (16 Stars) — The Great Redesign Migration
 
 A full rewrite of the SynBioHub platform using **React (Next.js) + Spring Boot (Java 17)**, replacing the legacy v1 stack (Node.js + Maven + OpenLink Virtuoso RDF triplestore). BSD-2-Clause license. **Actively developed — latest commits September 15, 2026.**
 
@@ -116,11 +94,11 @@ The Swagger API issue (#1106) was just filed on September 3, 2026 by maintainer 
 
 ---
 
-### 3. SynBioHub v1 (84 Stars) — The Interoperability Hub (Legacy/Maintenance)
+### 2. SynBioHub v1 (84 Stars) — The Interoperability Hub (Legacy/Maintenance)
 
 The original SynBioHub platform. Stack: JavaScript (Node.js) + Java (Maven) + OpenLink Virtuoso (RDF triplestore). BSD-2-Clause license. PR-based development with CI (Travis + Docker integration tests via SBOLTestSuite).
 
-**Current Open Issues (Milestone SBH 1.6.2 — final maintenance releases, September 2026):**
+**Current Open Issues (Milestone SBH 1.6.2 — final maintenance releases):**
 
 | Issue | Title | Theme | Date | Comments |
 |---|---|---|---|---|
@@ -134,8 +112,6 @@ The original SynBioHub platform. Stack: JavaScript (Node.js) + Java (Maven) + Op
 | [#1744](https://github.com/SynBioHub/synbiohub/issues/1744) | Backend lacks OR request parsing mechanism | Bug — query capability | Jul 16, 2026 | 0 |
 
 **Community discussion from #1753 (OMEX/SBML export bug):**
-
-User **Gonza10V** reported: *"OMEX download is downloading the SBOL but not the SBML file attached"* — this directly impacts researchers who rely on OMEX bundles to portable their designs between tools.
 
 Maintainer **cjmyers** explained the root cause:
 > "The issue is that Model->source is not followed to find all files. However, the SBML file will come in an OMEX download of the Attachment object or the Collection that has the Attachment as a member."
@@ -155,7 +131,7 @@ He then identified the fix pattern from SynBioSuite:
 
 ---
 
-### 4. iBioSim (67 Stars) — The CAD Tool Striving for Modern Compatibility
+### 3. iBioSim (67 Stars) — The CAD Tool Striving for Modern Compatibility
 
 Computer-aided design (CAD) tool for modeling, analysis, and design of genetic circuits. Imports/exports SBML (all levels/versions) and supports SBOL. Stack: Java + libSBML + reb2sac + GeneNet + Yosys.
 
@@ -177,14 +153,12 @@ java.lang.NoClassDefFoundError: Could not initialize class org.apache.jena.query
 Caused by: java.lang.NoClassDefFoundError: org/apache/xerces/util/XMLChar
 ```
 
-**Community discussion from #637 (verbatim):**
+**Community discussion from #637:**
 
-User **Hatem-synbio** was debugging Kenzo's toggle switch model, following the iBioSim tutorial on page 94 for automatic model generation. They shared screenshots and offered the COMBINE archive on Slack.
+User **Hatem-synbio** was debugging Kenzo's toggle switch model. Maintainer **cjmyers** root-caused:
+> "I'm pretty sure the issue has to do with trying to create a model using iGEM parts. iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception."
 
-Maintainer **cjmyers** root-caused (Jan 25, 2025):
-> "I'm pretty sure the issue has to do with trying to create a model using iGEM parts.  iGEM parts do not have interaction information, so it is impossible to generate a model. Granted, there should be a better error than an exception. To actually test this better, should use the Cello library."
-
-This double revelation is significant: (1) the crash is not a bug per se — it's a data quality issue where iGEM parts lack interaction information, and (2) the maintainer himself suggests using the **Cello library** as an alternative, implicitly acknowledging iBioSim's limitations for this workflow.
+Hatem-synbio shared screenshots and offered the COMBINE archive on Slack. cjmyers requested it for deeper testing and suggested using the **Cello library** instead of iGEM parts for proper model generation testing.
 
 **Recent commits (2026):**
 - `74ac459` — Merge PR #645: headless stdout fix (Apr 2026)
@@ -192,7 +166,7 @@ This double revelation is significant: (1) the crash is not a bug per se — it'
 - `17c876e` — Update .gitignore for Java SDKMAN (Mar 2026)
 - `9df4464` — Add missing full local build deps (Mar 2026)
 
-**Takeaway:** Desktop-based synbio CAD tools struggle with **Java dependency management and OS-specific behavior**. iBioSim's broken SynBioHub integration (#639, #632) is a direct consequence of the v1 SynBioHub's aging API. When v3 launches with a proper Swagger API (#1106), this integration story may finally improve. The #637 discussion also reveals a deeper truth: the data in shared registries (iGEM parts) may not always be complete enough for automated model generation — a data quality problem that no amount of tool engineering can fully solve.
+**Takeaway:** Desktop-based synbio CAD tools struggle with **Java dependency management and OS-specific behavior**. iBioSim's broken SynBioHub integration (#639, #632) is a direct consequence of the v1 SynBioHub's aging API. When v3 launches with a proper Swagger API (#1106), this integration story may finally improve.
 
 #### Repository Details — iBioSim
 - **Stack:** Java + libSBML + reb2sac + GeneNet + Yosys
@@ -204,7 +178,7 @@ This double revelation is significant: (1) the crash is not a bug per se — it'
 
 ---
 
-### 5. GENtle2 (106 Stars) — The Web DNA Editor With Legacy Debt
+### 4. GENtle2 (106 Stars) — The Web DNA Editor With Legacy Debt
 
 Web-based DNA editor for synthetic biology. Written in JavaScript (Node.js + Express + Gulp). A re-think of the original GENtle desktop application for the web.
 
@@ -227,7 +201,56 @@ Web-based DNA editor for synthetic biology. Written in JavaScript (Node.js + Exp
 
 ---
 
-### 6. Syn-Zeug (7 Stars) — The Modern Rust Toolbox
+### 5. DnaChisel (274 Stars) — The Busy Python Optimizer
+
+DNA sequence optimizer for codon optimization, GC content tuning, and constraint solving. Part of the Edinburgh Genome Foundry. Pure Python with a clean API.
+
+**Current Open Issues (April–June 2026):**
+
+| Issue | Title | Theme | Date | Comments |
+|---|---|---|---|---|
+| [#114](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/114) | Produce multiple different optimized results | Feature — diversity | Jun 2026 | 1 |
+| [#113](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/113) | Low Codon Adaptation Index on optimized sequence | Bug — optimization quality | May 2026 | 1 |
+| [#111](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/111) | Unexpected Mutation of `codon_usage_table` During Optimization | Bug — state corruption | Apr 2026 | 1 |
+| [#110](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/110) | Minimize CG | Feature — GC minimization | Apr 2026 | 2 |
+| [#107](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/107) | Support for Uridine Depletion (UD) optimization objectives | Feature — new objective | Apr 2026 | 5 |
+| [#105](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/105) | Include CONTRIBUTING in documentation | Maintenance — docs | Feb 2026 | 0 |
+
+**Takeaway:** DnaChisel's issues reveal a tool under active development with real user friction. The mutation bug (#111) and low CAI issue (#113) suggest the optimizer's core algorithm has edge cases that affect reliability. The UD depletion request (#107, 5 comments) and GC minimization (#110) show users want more sophisticated optimization objectives. The missing CONTRIBUTING guide (#105) is a tell — the project is getting external pull requests but hasn't formalized contribution guidelines.
+
+---
+
+### 6. BioPython (5,070 Stars) — The Foundation Layer
+
+The foundational Python toolkit for computational molecular biology. Nearly every synbio pipeline depends on BioPython at some level.
+
+**Current Open Issues:**
+
+| Issue | Title | Theme | Date | Comments |
+|---|---|---|---|---|
+| [#5319](https://github.com/biopython/biopython/issues/5319) | EMBL writer warns on valid INSDC mol_type values, accepts invalid ones | Bug — data integrity | Sep 2026 | 2 |
+
+**Takeaway:** With 5,070 stars and only 1 open issue visible, BioPython is remarkably stable. The EMBL writer issue (#5319) — warnings about valid but non-standard INSDC mol_type values — is a data-formatting edge case that shows even foundational tools are constantly refining their handling of real-world biological data variations.
+
+---
+
+### 7. Nextflow (3,412 Stars) — The Pipeline Backbone
+
+The DSL for reproducible, scalable bioinformatics pipelines. Nearly every large-scale bioinformatics workflow runs on Nextflow.
+
+**Current Open Issues (September 2026):**
+
+| Issue | Title | Theme | Date | Comments |
+|---|---|---|---|---|
+| [#7640](https://github.com/nextflow-io/nextflow/issues/7640) | nextflow 26.04.x+ incompatible with LSF 10.1.0 — head job doesn't stop compute jobs | Executor bug — LSF | Sep 2026 | 1 |
+| [#7642](https://github.com/nextflow-io/nextflow/issues/7642) | nf-tower: interactive auth prompts hang when stdin is not a terminal | UX — CI/CD | Sep 2026 | 0 |
+| [#6884](https://github.com/nextflow-io/nextflow/issues/6884) | Cache fail when specific conditions are met | Bug — caching | Mar 2026 | 1 |
+
+**Takeaway:** Nextflow's recent issues show a maturing platform dealing with HPC executor compatibility (LSF) and CI/CD UX (nf-tower auth). The cache failure (#6884, open since March) is the most impactful — pipeline reproducibility depends on reliable caching. These are "plumbing" issues, not feature gaps, which signals a project entering maintenance mode.
+
+---
+
+### 8. Syn-Zeug (7 Stars) — The Modern Rust Toolbox
 
 A modern toolbox for synthetic biology, written in **Rust** with a **Svelte SPA** web interface and a **WASM** shim (biobox). Represents a new generation of Rust-based bioinformatics tools.
 
@@ -250,7 +273,39 @@ A modern toolbox for synthetic biology, written in **Rust** with a **Svelte SPA*
 - **Web UI:** Sequence Validation, Sequence Length, Reverse Sequence, Count Sequence Elements, Reverse Complement, Convert Case (DNA↔RNA↔Protein), GC Content, Find Open Reading Frames
 - **Rust Library:** Extract Subsequences, Hamming Distance, Levenshtein Distance
 
-**Takeaway:** Syn-Zeug's all-feature-request issue list signals a stable core ready for community expansion. The Rust+Svelte+WASM architecture is a modern alternative to the Java-based tools. The Sheffield-iGEM team is actively maintaining it with a focus on code quality (reviewer-guided contributions for the Rust library).
+**Takeaway:** Syn-Zeug's all-feature-request issue list signals a stable core ready for community expansion. The Rust+Svelte+WASM architecture is a modern alternative to the Java-based tools.
+
+---
+
+### 9. SASTRA-iGEM2019 / ToeholdSwitchDesign — Academic ML for RNA Biosensors
+
+Three open-source tools for machine-learning-based design of RNA toehold switches, developed for second-generation designs but adaptable to first-generation. Published in *Synthetic and Systems Biotechnology* (2022).
+
+**Tools included:**
+1. **GrammarParser.py** — Parses toehold switch sequences into structural domains using dot-bracket notation (from ViennaRNA RNAfold)
+2. **predict_linear.py** — Predicts dynamic range from 6 engineered features (MFE values, specific heat, etc.)
+3. **nn_model.ipynb** — Neural network validation notebook with Keras/TensorFlow
+4. **toehold_efficacy_predict.sh** — End-to-end bash pipeline combining all steps
+
+**Requirements:** ViennaRNA, Python 3.x (pandas, numpy, matplotlib, sklearn, tensorflow, keras), bash
+
+**Takeaway:** This is a great example of academic open-source that actually works — a complete end-to-end pipeline with published validation data (228 toehold instances), trained models, and a video demo. The project is self-contained and reproducible, which is rare for academic software. Maintained by the Palaniappan lab at SASTRA.
+
+---
+
+### 10. SYSU / BiArkit (1 Star) — The Integrated Desktop Suite
+
+A versatile Chinese-developed toolkit integrating multiple modules for synthetic biology research:
+- **GenomeBrowser** — Visualizes genomes of model microorganisms
+- **Biobrick** — Localized search tool against iGEM registry
+- **Riboswitch & SiRNA** — Regulatory element design assistance
+- **MetaNetwork** — Pathway database scanner and optimizer
+- **Simulator** — In-silico metabolic network dynamic analysis
+- **G-Circle** — Genome expression visualization (also integrated into Clotho)
+
+**Key feature:** Fully localized — works without internet connection. Includes Windows installer (140 MB) and full source code. Stack: Java + R.
+
+**Takeaway:** BiArkit represents an alternative approach — a comprehensive, offline-first desktop suite rather than web-based tools. Its low GitHub star count belies its actual utility, as it appears to be distributed through Chinese academic channels rather than the open-source GitHub community. The inclusion of R for statistical analysis and integration with Clotho (a similar Chinese DSL tool) suggests it's part of a broader Chinese synbio software ecosystem.
 
 ---
 
@@ -292,7 +347,17 @@ The #637 discussion is particularly revealing: even the maintainer (cjmyers) ack
 ### 4. UI/UX Debt in DNA Editors (GENtle2)
 GENtle2's 75+ open issues (many dating to 2014) reveal persistent UX debt. The maintainer has created "Refactor" milestones targeting Canvas events, RES/annotation cards, and sequence opening/editing, but progress is slow. The 10+ year gap between issue creation and last activity signals a community starved for contributors.
 
-### 5. Modern Stacks & Feature Expansion (Syn-Zeug)
+### 5. Optimization Reliability & New Objectives (DnaChisel)
+DnaChisel's recent issues reveal real user pain:
+- **State corruption** (#111) — the `codon_usage_table` gets mutated unexpectedly during optimization, a serious bug for production use
+- **Low CAI** (#113) — the optimizer can produce sequences with poor Codon Adaptation Index, defeating the purpose of codon optimization
+- **New objectives** (#107, #110) — users want Uridine Depletion and GC minimization, showing the tool is being used for increasingly sophisticated designs
+- **Output diversity** (#114) — users want multiple optimization results to choose from, not just one "best" sequence
+
+### 6. HPC & CI/CD Plumbing (Nextflow)
+Nextflow's issues are "boring but critical" — LSF executor incompatibility (#7640), auth hangs in CI (#7642), and cache failures (#6884). These are the kind of issues that don't generate excitement but can bring entire pipelines to a halt. They signal a project that has become infrastructure — and infrastructure must be reliable.
+
+### 7. Modern Stacks & Feature Expansion (Syn-Zeug)
 Syn-Zeug's 10 open issues are **all feature requests**, not bug reports:
 - Protein ORF finding (#47)
 - Tooltips and UI polish (#37, #39)
@@ -301,7 +366,7 @@ Syn-Zeug's 10 open issues are **all feature requests**, not bug reports:
 
 This all-feature-request pattern signals a **stable core ready for community expansion**. The Rust+Svelte+WASM architecture is a modern alternative to the Java-based tools.
 
-### 6. Community Coordination & Resource Curation
+### 8. Community Coordination & Resource Curation
 The [awesome-synthetic-biology](https://github.com/websemantics/awesome-synthetic-biology) list (223 stars) remains the **central hub** for discovering tools, standards (SBOL, SBML), programming languages (Verilog/Cello, Eugene), and hardware (BioHackAcademy, 3DuF). No open issues — well-maintained with smooth community contributions.
 
 ---
@@ -313,11 +378,13 @@ The [awesome-synthetic-biology](https://github.com/websemantics/awesome-syntheti
 | 1 | **The Interoperability Crisis** | SynBioHub's issues are almost all about data not moving correctly. The #1753 discussion reveals the root cause: `Model->source` references aren't traversed. This is *the* current bottleneck. | [synbiohub#1753](https://github.com/SynBioHub/synbiohub/issues/1753) |
 | 2 | **The Swagger API as Linchpin** | Issue #1106 could fix everything — iBioSim's broken upload, third-party clients, the v1→v3 migration. It's the most impactful open issue in the ecosystem. | [synbiohub3#1106](https://github.com/SynBioHub/synbiohub3/issues/1106) |
 | 3 | **The Desktop Tool Bottleneck** | iBioSim's 305+ issues and GENtle2's 75+ issues both point to the same problem: desktop CAD tools struggle with Java dependency hell, OS compatibility, and aging UI codebases. | [iBioSim#637](https://github.com/MyersResearchGroup/iBioSim/issues/637), [GENtle2#159](https://github.com/Synbiota/GENtle2/issues/159) |
-| 4 | **From Hand Engineering to Computational Design** | Cello proves you can go from Verilog to working DNA. ART and 20n/act extend this to ML-driven design. This is the "DeepSeek moment" for synbio. | [Cello](https://github.com/CIDARLAB/cello), [ART](https://github.com/JBEI/ART), [20n/act](https://github.com/20n/act) |
-| 5 | **The Missing Open-Source Stack** | ART's code is private, 20n/act is internally maintained, and GENtle2 has a fractured community. There's a clear opportunity for an open-source, web-native, ML-integrated design tool. Syn-Zeug (Rust) and sboljs3 (TypeScript) are early indicators. | [Syn-Zeug](https://github.com/Sheffield-iGEM/syn-zeug), [sboljs3](https://github.com/SynBioDex/sboljs3) |
+| 4 | **From Hand Engineering to Computational Design** | ART and 20n/act represent a fundamental shift: enumerate all possible designs computationally and pick the best. This is the "DeepSeek moment" for synbio. | [ART](https://github.com/JBEI/ART), [20n/act](https://github.com/20n/act) |
+| 5 | **The Missing Open-Source Stack** | ART's code is private, 20n/act is internally maintained, and GENtle2 has a fractured community. There's a clear opportunity for an open-source, web-native, ML-integrated design tool. Syn-Zeug (Rust) and sboljs3 (TypeScript) are early indicators. | [Syn-Zeug](https://github.com/Sheffield-iGEM/syn-zeug) |
 | 6 | **Standards Are Maturing, but Pipelines Aren't** | SBOL and SBML are well-defined, but the *pipelines* that move data between tools are broken. The standards exist; the plumbing doesn't. | [synbiohub#1753-1756](https://github.com/SynBioHub/synbiohub/issues) |
-| 7 | **Modern Language Adoption** | poly (Go, 737 stars), DnaChisel (Python, 274 stars), and SynBioHub v3 (Spring Boot) are outpacing traditional Java tools. The old guard is adapting or being replaced. | [poly](https://github.com/bebop/poly), [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) |
+| 7 | **Modern Language Adoption** | poly (Go, 737 stars), CodonTransformer (Python, 225 stars), and DnaChisel (Python, 274 stars) are outpacing traditional Java tools. The SynBioHub v3 rewrite to Spring Boot signals the old guard is adapting. | [poly](https://github.com/bebop/poly), [CodonTransformer](https://github.com/Adibvafa/CodonTransformer), [SynBioHub v3](https://github.com/SynBioHub/synbiohub3) |
 | 8 | **Stalled Academic Projects** | GENtle2's 12-year-old refactor milestone and iBioSim's 305+ open issues contrast sharply with Coral (1 open issue) and Syn-Zeug (all features, no bugs). Sustainable maintenance is a choice, not an accident. | [GENtle2#159](https://github.com/Synbiota/GENtle2/issues/159), [Coral#37](https://github.com/klavinslab/coral/issues/37) |
+| 9 | **The Optimization Quality Gap** | DnaChisel's state corruption (#111) and low CAI (#113) bugs reveal that even "solved" problems like codon optimization still have reliability issues. Users are asking for more sophisticated objectives (UD depletion, GC minimization, output diversity). | [DnaChisel#111](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/111), [DnaChisel#113](https://github.com/Edinburgh-Genome-Foundry/DnaChisel/issues/113) |
+| 10 | **Infrastructure Is the New Feature** | Nextflow's LSF/cache/auth issues and BioPython's EMBL formatting edge case show that mature tools are now competing on reliability, not features. The boring issues matter most. | [nextflow#7640](https://github.com/nextflow-io/nextflow/issues/7640), [biopython#5319](https://github.com/biopython/biopython/issues/5319) |
 
 ---
 
@@ -327,8 +394,6 @@ The [awesome-synthetic-biology](https://github.com/websemantics/awesome-syntheti
 
 | Resource | Link | Stars |
 |---|---|---|
-| Cello (v1) | [CIDARLAB/cello](https://github.com/CIDARLAB/cello) | 875 |
-| Cello-v2 | [CIDARLAB/Cello-v2](https://github.com/CIDARLAB/Cello-v2) | 74 |
 | SynBioHub v1 | [SynBioHub/synbiohub](https://github.com/SynBioHub/synbiohub) | 84 |
 | SynBioHub v3 | [SynBioHub/synbiohub3](https://github.com/SynBioHub/synbiohub3) | 16 |
 | iBioSim | [MyersResearchGroup/iBioSim](https://github.com/MyersResearchGroup/iBioSim) | 67 |
@@ -336,12 +401,15 @@ The [awesome-synthetic-biology](https://github.com/websemantics/awesome-syntheti
 | poly | [bebop/poly](https://github.com/bebop/poly) | 737 |
 | GENtle2 | [Synbiota/GENtle2](https://github.com/Synbiota/GENtle2) | 106 |
 | Coral | [klavinslab/coral](https://github.com/klavinslab/coral) | 32 |
+| Cello-v2 | [CIDARLAB/Cello-v2](https://github.com/CIDARLAB/Cello-v2) | 74 |
 | BioCRNpyler | [BuildACell/bioCRNpyler](https://github.com/BuildACell/bioCRNpyler) | 54 |
 | act (20n) | [20n/act](https://github.com/20n/act) | 92 |
 | Syn-Zeug | [Sheffield-iGEM/syn-zeug](https://github.com/Sheffield-iGEM/syn-zeug) | 7 |
 | sboljs3 | [SynBioDex/sboljs3](https://github.com/SynBioDex/sboljs3) | 7 |
+| CodonTransformer | [Adibvafa/CodonTransformer](https://github.com/Adibvafa/CodonTransformer) | 225 |
 | TDC | [mims-harvard/TDC](https://github.com/mims-harvard/TDC) | 1,283 |
 | Biopython | [biopython/biopython](https://github.com/biopython/biopython) | 5,070 |
+| Nextflow | [nextflow-io/nextflow](https://github.com/nextflow-io/nextflow) | 3,412 |
 
 ### Standards & Registries
 
@@ -377,10 +445,11 @@ episode-scripts-archive/
 │   ├── EP002-the-swagger-api/
 │   ├── EP003-interoperability-crisis/
 │   ├── EP004-desktop-tool-bottleneck/
-│   ├── EP005-cello-verilog-to-dna/
-│   ├── EP006-ml-designed-biology/
-│   ├── EP007-rust-bioinformatics/
-│   ├── EP008-sbol-web-standard/
+│   ├── EP005-ml-designed-biology/
+│   ├── EP006-rust-bioinformatics/
+│   ├── EP007-sbol-web-standard/
+│   ├── EP008-codon-optimization-reliability/
+│   ├── EP009-pipeline-infrastructure/
 │   └── ...
 ├── source-materials/
 │   ├── presentations/
@@ -389,7 +458,6 @@ episode-scripts-archive/
 ├── scripts/
 │   ├── EP001-synbiohub-migration.md
 │   ├── EP002-the-swagger-api.md
-│   ├── EP005-cello-verilog-to-dna.md
 │   └── ...
 ├── transcripts/
 │   └── EP001-synbiohub-migration-transcript.md
@@ -398,7 +466,8 @@ episode-scripts-archive/
     ├── ibiosim-issues-2025-2026.md
     ├── gen-tle2-legacy-analysis.md
     ├── syn-zeug-feature-roadmap.md
-    └── cello-design-pipeline.md
+    ├── dnachisel-quality-issues-2026.md
+    └── nextflow-plumbing-issues-2026.md
 ```
 
 ---
@@ -425,8 +494,8 @@ Contributions are welcome! To add materials:
 
 ## 📜 License
 
-This archive is released under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
+This archive is released under the [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/), same as the awesome-synthetic-biology list. Individual episode scripts may carry their own licenses — check each episode directory for details.
 
 ---
 
-*Last research update: September 18, 2026 — Surveyed 20+ GitHub projects across synthetic biology and biotech software, reviewed 70+ fresh open issues spanning 10 repositories, compiled community themes, and documented the SynBioHub v1-to-v3 migration (including the brand-new Swagger API issue #1106 filed Sep 3, 2026), Cello's Verilog-to-DNA design pipeline (875 stars, the field's gold standard), iBioSim's cross-platform struggles (including the Jena/Xerces crash root cause from #637), GENtle2's 12-year canvas refactor milestone, Syn-Zeug's all-feature-expansion roadmap, and Coral's benchmark of sustainable maintenance.*
+*Last research update: September 19, 2026 — Surveyed 25+ GitHub projects across synthetic biology, biotech software, and bioinformatics. Reviewed 60+ fresh open issues spanning 12 repositories. Compiled community themes and documented the SynBioHub v1-to-v3 migration (including the brand-new Swagger API issue #1106 filed Sep 3, 2026), poly's Gibson Assembly blocker, DnaChisel's chemistry-aware optimization requests and state corruption bugs, iBioSim's cross-platform struggles (including the Jena/Xerces crash root cause from #637), GENtle2's 12-year canvas refactor milestone, Syn-Zeug's all-feature-expansion roadmap, Coral's benchmark of sustainable maintenance, Nextflow's HPC/CI plumbing issues, BioPython's EMBL formatting edge case, SASTRA-iGEM's complete toehold switch design pipeline, and SYSU's BiArkit offline-first integrated suite.*
